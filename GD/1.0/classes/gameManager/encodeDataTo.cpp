@@ -34,7 +34,7 @@ struct gameManager
     int playerColour;
     int playerColour2;
     /*
-    GLM and GS Value to be added
+    Dict info to be added
     */
     bool autoCheckpoints;
     bool showSongMarkers;
