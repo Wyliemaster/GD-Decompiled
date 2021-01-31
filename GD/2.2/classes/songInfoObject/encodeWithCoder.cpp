@@ -1,6 +1,6 @@
 #include <DS_Dictionary>
 
-int __fastcall encodeWithCoder(SongInfoObject *this, DS_Dictionary *DS_DictionaryPath)
+int __fastcall encodeWithCoder(SongInfoObject *this, DS_Dictionary *DS_Dictionary)
 {
     GameManager = GameManager::sharedState(this)
         DS_Dictionary->setIntegerForKey("kCEK", 6);
