@@ -13,7 +13,7 @@ void SongInfoObject::encodeWithCoder(SongInfoObject *this, DS_Dictionary *DS_Dic
     {
         if (this->songYT != 0)
         {
-            DS_Dictionary->setStringForKey("6", &this->songYT);
+            DS_Dictionary->setStringForKey("6", songYT);
         }
         if (this->artistYT != 0)
         {
