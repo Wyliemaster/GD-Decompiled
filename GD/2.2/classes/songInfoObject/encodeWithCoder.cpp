@@ -1,6 +1,6 @@
 #include <DS_Dictionary>
 
-int __fastcall encodeWithCoder(SongInfoObject *this, DS_Dictionary *DS_Dictionary)
+void encodeWithCoder(SongInfoObject *this, DS_Dictionary *DS_Dictionary)
 {
     GameManager = GameManager::sharedState(this)
         DS_Dictionary->setIntegerForKey("kCEK", 6);
@@ -21,5 +21,5 @@ int __fastcall encodeWithCoder(SongInfoObject *this, DS_Dictionary *DS_Dictionar
         }
         DS_Dictionary->setStringForKey("10", &this->downloadLink);
     }
-    return DS_Dictionary->setIntegerForKey('9', this->songPriority);
+    DS_Dictionary->setIntegerForKey('9', this->songPriority);
 }
