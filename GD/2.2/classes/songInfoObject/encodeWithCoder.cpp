@@ -11,11 +11,11 @@ void SongInfoObject::encodeWithCoder(SongInfoObject *this, DS_Dictionary *DS_Dic
     DS_Dictionary->setFloatForKey('5', downloadSize);
     if (GameManager == 1)
     {
-        if (this->songYT != 0)
+        if (songYT != 0)
         {
             DS_Dictionary->setStringForKey("6", songYT);
         }
-        if (this->artistYT != 0)
+        if (artistYT != 0)
         {
             DS_Dictionary->setStringForKey('7', artistYT);
         }
