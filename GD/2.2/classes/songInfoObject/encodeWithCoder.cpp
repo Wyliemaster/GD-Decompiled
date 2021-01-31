@@ -1,6 +1,6 @@
 #include <DS_Dictionary>
 
-void SongInfoObject::encodeWithCoder(SongInfoObject *this, DS_Dictionary *DS_Dictionary)
+void SongInfoObject::encodeWithCoder(DS_Dictionary *DS_Dictionary)
 {
     GameManager_ = GameManager::sharedState(this)
         DS_Dictionary->setIntegerForKey("kCEK", 6);
