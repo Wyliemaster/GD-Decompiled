@@ -9,7 +9,7 @@ int __fastcall encodeWithCoder(SongInfoObject *this, DS_Dictionary *DS_Dictionar
     DS_Dictionary::setStringForKey(DS_DictionaryPath, '4', &this->artistName);
     DS_Dictionary::setIntegerForKey(DS_DictionaryPath, '3', this->artistID);
     DS_Dictionary::setFloatForKey(DS_DictionaryPath, '5', this->downloadSize);
-    if (GameManager = 1)
+    if (GameManager == 1)
     {
         if (this->songYT != 0)
         {
