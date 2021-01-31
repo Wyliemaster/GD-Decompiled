@@ -2,24 +2,24 @@
 
 void SongInfoObject::encodeWithCoder(SongInfoObject *this, DS_Dictionary *DS_Dictionary)
 {
-    GameManager = GameManager::sharedState(this)
+    GameManager_ = GameManager::sharedState(this)
         DS_Dictionary->setIntegerForKey("kCEK", 6);
-    DS_Dictionary->setIntegerForKey('1', songID);
-    DS_Dictionary->setStringForKey('2', songName);
-    DS_Dictionary->setStringForKey('4', artistName);
-    DS_Dictionary->setIntegerForKey('3', artistID);
-    DS_Dictionary->setFloatForKey('5', downloadSize);
-    if (GameManager == 1)
+    DS_Dictionary->setIntegerForKey('1', songID_);
+    DS_Dictionary->setStringForKey('2', songName_);
+    DS_Dictionary->setStringForKey('4', artistName_);
+    DS_Dictionary->setIntegerForKey('3', artistID_);
+    DS_Dictionary->setFloatForKey('5', downloadSize_);
+    if (GameManager_ == 1)
     {
-        if (songYT != 0)
+        if (songYT_ != 0)
         {
-            DS_Dictionary->setStringForKey("6", songYT);
+            DS_Dictionary->setStringForKey("6", songYT_);
         }
-        if (artistYT != 0)
+        if (artistYT_ != 0)
         {
-            DS_Dictionary->setStringForKey('7', artistYT);
+            DS_Dictionary->setStringForKey('7', artistYT_);
         }
-        DS_Dictionary->setStringForKey("10", downloadLink);
+        DS_Dictionary->setStringForKey("10", downloadLink_);
     }
-    DS_Dictionary->setIntegerForKey('9', songPriority);
+    DS_Dictionary->setIntegerForKey('9', songPriority_);
 }
