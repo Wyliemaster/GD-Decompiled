@@ -1,2 +1,18 @@
 # GD-Decompiled
- an attempt to get the source code for Geometry Dash 2.11 through reverse engineering and decompiling the game
+ an attempt to get the source code for Geometry Dash through reverse engineering and decompiling the game
+
+## IMPORTANT
+
+barely anything is done in this project yet, its just something im doing in my spare time to improve at Reverse engineering. i highly suggest that you dont use this until it has a lot of important functions decompiled
+
+## Current Projects
+
+here are the parts of GD i am currently working on
+
+- 1.0
+    - Parsing algorithms
+
+- 2.2
+    - Parsing Algorithms
+    - gamesave
+
