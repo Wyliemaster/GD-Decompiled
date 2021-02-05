@@ -31,4 +31,4 @@ here are the parts of GD i am currently working on
 
 ## want to know more about the game?
 
-if you want to know about the game and how various aspects work, you can find documentation [here](https://github.com/Wyliemaster/gddocs
+if you want to know about the game and how various aspects work, you can find documentation [here](https://github.com/Wyliemaster/gddocs)
