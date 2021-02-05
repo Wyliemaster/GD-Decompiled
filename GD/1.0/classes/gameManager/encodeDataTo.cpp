@@ -1,6 +1,6 @@
 #include <DS_Dictionary>
 
-void GameManager::encodeDataTo(GameManager *this, DS_Dictionary *DS_Dictionary)
+void GameManager::encodeDataTo(DS_Dictionary *DS_Dictionary)
 {
     DS_Dictionary->setDictForKey("scoreKeeper", scoreKeeperDict_);
 
