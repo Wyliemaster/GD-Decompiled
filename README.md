@@ -22,6 +22,9 @@ here are the parts of GD i am currently working on
 - 1.0
     - Parsing algorithms
 
+- 2.1
+    - TBA
+
 - 2.2
     - Parsing Algorithms
     - gamesave
