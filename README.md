@@ -13,6 +13,8 @@ if for some reason you haven't already i recommend you go and buy GD
 
 barely anything is done in this project yet, its just something im doing in my spare time to improve at Reverse engineering. i highly suggest that you dont use this until it has a lot of important functions decompiled
 
+functions may also be wrong because im currently pushing unfinished versions so i have a back up
+
 ## Current Projects
 
 here are the parts of GD i am currently working on
