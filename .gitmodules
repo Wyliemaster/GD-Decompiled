@@ -1,0 +1,3 @@
+[submodule "GD/2.11/gdp"]
+	path = GD/2.11/gdp
+	url = https://github.com/camden314/gdp
