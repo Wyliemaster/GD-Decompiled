@@ -1,0 +1,3 @@
+[submodule "GD/submodules/gdp"]
+	path = GD/submodules/gdp
+	url = https://github.com/camila314/gdp
