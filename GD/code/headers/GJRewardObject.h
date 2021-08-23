@@ -1,3 +1,34 @@
+#include <cocos2d.h>
+
+enum SpecialRewardItem
+{
+    kSpecialRewardItemFireShard = 0x1,
+    kSpecialRewardItemIceShard = 0x2,
+    kSpecialRewardItemPoisonShard = 0x3,
+    kSpecialRewardItemShadowShard = 0x4,
+    kSpecialRewardItemLavaShard = 0x5,
+    kSpecialRewardItemBonusKey = 0x6,
+    kSpecialRewardItemOrbs = 0x7,
+    kSpecialRewardItemDiamonds = 0x8,
+    kSpecialRewardItemCustomItem = 0x9,
+};
+
+enum ItemType
+{
+    kItemTypeCube = 0x1,
+    kItemTypeCol1 = 0x2,
+    kItemTypeCol2 = 0x3,
+    kItemTypeShip = 0x4,
+    kItemTypeBall = 0x5,
+    kItemTypeBird = 0x6,
+    kItemTypeDart = 0x7,
+    kItemTypeRobot = 0x8,
+    kItemTypeSpider = 0x9,
+    kItemTypeStreak = 0xA,
+    kItemTypeDeath = 0xB,
+    kItemTypeGJItem = 0xC,
+};
+
 class GJRewardObject : cocos2d::CCObject
 {
     SpecialRewardItem m_eSpecialRewardItem;
