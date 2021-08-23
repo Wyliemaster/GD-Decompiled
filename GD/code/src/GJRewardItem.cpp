@@ -233,7 +233,7 @@ GJRewardObject *GJRewardItem::getRewardObjectForType(SpecialRewardItem _specialR
     if (!m_pRewardObjects)
     {
         cocos2d::CCArray *rewardObjects = cocos2d::CCArray::create();
-        GJRewardItem::setObjects(rewardObjects);
+        setObjects(rewardObjects);
     }
 
     for (int i = 0;; ++i)
@@ -255,7 +255,7 @@ void GJRewardItem::dataLoaded(DS_Dictionary *_dict)
     m_nChestID = _dict->getIntegerForKey("1");
     m_eRewardType = static_cast<GJRewardType>(_dict->getIntegerForKey("2"));
     cocos2d::CCArray *rewardObjects = _dict->getArrayForKey("3", false);
-    GJRewardItem::setObjects(rewardObjects);
+    setObjects(rewardObjects);
 }
 
 GJRewardItem *GJRewardItem::createWithCoder(DS_Dictionary *_dict)
@@ -268,15 +268,15 @@ GJRewardItem *GJRewardItem::createWithCoder(DS_Dictionary *_dict)
 
 SpecialRewardItem GJRewardItem::getRandomNonMaxShardType()
 {
-    SpecialRewardItem randomShard = GJRewardItem::getRandomShardType();
+    SpecialRewardItem randomShard = getRandomShardType();
     unsigned int idx = 5;
     while (true)
     {
-        const char *statString = GJRewardItem::rewardItemToStat(randomShard);
+        const char *statString = rewardItemToStat(randomShard);
         if (GameStatsManager::sharedState()->getStat(statString) <= 99)
             break;
 
-        randomShard = GJRewardItem::getNextShardType(randomShard);
+        randomShard = getNextShardType(randomShard);
         idx--;
 
         if (!idx)

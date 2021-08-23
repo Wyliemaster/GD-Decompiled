@@ -62,7 +62,7 @@ void GJRewardObject::dataLoaded(DS_Dictionary *_DSDictionary)
     m_eSpecialRewardItem = (SpecialRewardItem)_DSDictionary->getIntegerForKey("1");
     m_nItemID = _DSDictionary->getIntegerForKey("2");
     m_nTotal = _DSDictionary->getIntegerForKey("3");
-    m_eUnlockType = (ItemType)_DSDictionary->getIntegerForKey("4");
+    m_eUnlockType = static_cast<ItemType>(_DSDictionary->getIntegerForKey("4"));
 }
 
 GJRewardObject *GJRewardObject::createWithCoder(DS_Dictionary *_DSDictionary)
