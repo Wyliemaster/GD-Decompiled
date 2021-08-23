@@ -1,3 +1,7 @@
 [submodule "GD/submodules/gdp"]
 	path = GD/submodules/gdp
 	url = https://github.com/camden314/gdp
+
+[submodule "GD/cocos2d/cocos-headers"]
+	path = GD/cocos2d/cocos-headers
+	url = https://github.com/HJfod/cocos-headers
