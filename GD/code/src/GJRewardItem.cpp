@@ -191,3 +191,17 @@ const char *GJRewardItem::rewardItemToStat(SpecialRewardItem _rewardItem)
     }
     return statString;
 }
+
+bool GJRewardItem::isShardType(SpecialRewardItem _specialItem)
+{
+    return _specialItem <= 5;
+}
+
+int GJRewardItem::getNextShardType(SpecialRewardItem _specialRewardItem)
+{
+    int shard = 0;
+    if (_specialRewardItem < 6)
+        shard = Globals::ShardTypes[_specialRewardItem - 1];
+
+    return shard;
+}
