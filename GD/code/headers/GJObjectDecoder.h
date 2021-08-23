@@ -8,4 +8,4 @@ enum CoderKey
     kCoderKeyChallengeItem = 0x7,
     kCoderKeyRewardItem = 0x8,
     kCoderKeyRewardObject = 0x9
-}
+};

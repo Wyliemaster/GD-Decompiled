@@ -7,7 +7,7 @@ enum GJRewardType
     kGJRewardTypeLarge = 0x2,
 };
 
-class GJRewardItem : cocos2d::CCObject
+class GJRewardItem : public cocos2d::CCObject
 {
 public:
     int m_nChestID;
@@ -20,4 +20,5 @@ public:
     virtual bool canEncode();
     virtual void encodeWithCoder(DS_Dictionary *_dict);
     void setObjects(cocos2d::CCArray *_rewardObjects);
+    bool init(int _chestID, int _timeRemaining, std::string _rewardString);
 };

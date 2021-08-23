@@ -30,7 +30,7 @@ enum ItemType
     kItemTypeGJItem = 0xC,
 };
 
-class GJRewardObject : cocos2d::CCObject
+class GJRewardObject : public cocos2d::CCObject
 {
 public:
     SpecialRewardItem m_eSpecialRewardItem;
