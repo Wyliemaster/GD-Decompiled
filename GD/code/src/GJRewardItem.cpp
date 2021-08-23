@@ -197,11 +197,90 @@ bool GJRewardItem::isShardType(SpecialRewardItem _specialItem)
     return _specialItem <= 5;
 }
 
-int GJRewardItem::getNextShardType(SpecialRewardItem _specialRewardItem)
+SpecialRewardItem GJRewardItem::getNextShardType(SpecialRewardItem _specialRewardItem)
 {
     int shard = 0;
     if (_specialRewardItem < 6)
         shard = Globals::ShardTypes[_specialRewardItem - 1];
 
-    return shard;
+    return static_cast<SpecialRewardItem>(shard);
+}
+
+SpecialRewardItem GJRewardItem::getRandomShardType()
+{
+    return static_cast<SpecialRewardItem>(Globals::ShardTypes[rand() % 5]);
+}
+
+int GJRewardItem::getRewardCount(SpecialRewardItem _specialRewardItem)
+{
+    int total = 0;
+    if (m_pRewardObjects)
+    {
+        int idx = 0;
+        while (idx < m_pRewardObjects->count())
+        {
+            GJRewardObject *rewardObject = static_cast<GJRewardObject *>(m_pRewardObjects->objectAtIndex(idx));
+            if (rewardObject->m_eSpecialRewardItem == _specialRewardItem)
+                total += rewardObject->m_nTotal;
+            ++idx;
+        }
+    }
+    return total;
+}
+
+GJRewardObject *GJRewardItem::getRewardObjectForType(SpecialRewardItem _specialRewardItem)
+{
+    if (!m_pRewardObjects)
+    {
+        cocos2d::CCArray *rewardObjects = cocos2d::CCArray::create();
+        GJRewardItem::setObjects(rewardObjects);
+    }
+
+    for (int i = 0;; ++i)
+    {
+        if (i >= m_pRewardObjects->count())
+        {
+            GJRewardObject *rewardObj = GJRewardObject::create(_specialRewardItem, 0, 0);
+            m_pRewardObjects->addObject(rewardObj);
+            return rewardObj;
+        }
+        GJRewardObject *rewardObject = static_cast<GJRewardObject *>(m_pRewardObjects->objectAtIndex(i));
+        if (rewardObject->m_eSpecialRewardItem == _specialRewardItem)
+            return rewardObject;
+    }
+}
+
+void GJRewardItem::dataLoaded(DS_Dictionary *_dict)
+{
+    m_nChestID = _dict->getIntegerForKey("1");
+    m_eRewardType = static_cast<GJRewardType>(_dict->getIntegerForKey("2"));
+    cocos2d::CCArray *rewardObjects = _dict->getArrayForKey("3", false);
+    GJRewardItem::setObjects(rewardObjects);
+}
+
+GJRewardItem *GJRewardItem::createWithCoder(DS_Dictionary *_dict)
+{
+
+    GJRewardItem *rewardItem = GJRewardItem::create();
+    rewardItem->dataLoaded(_dict);
+    return rewardItem;
+}
+
+SpecialRewardItem GJRewardItem::getRandomNonMaxShardType()
+{
+    SpecialRewardItem randomShard = GJRewardItem::getRandomShardType();
+    unsigned int idx = 5;
+    while (true)
+    {
+        const char *statString = GJRewardItem::rewardItemToStat(randomShard);
+        if (GameStatsManager::sharedState()->getStat(statString) <= 99)
+            break;
+
+        randomShard = GJRewardItem::getNextShardType(randomShard);
+        idx--;
+
+        if (!idx)
+            return static_cast<SpecialRewardItem>(0);
+    }
+    return randomShard;
 }

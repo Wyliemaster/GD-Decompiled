@@ -28,5 +28,11 @@ public:
     static GJRewardItem *createWithObject(GJRewardType _rewardType, GJRewardObject *_rewardObject);
     const char *rewardItemToStat(SpecialRewardItem _rewardItem);
     bool isShardType(SpecialRewardItem _specialItem);
-    int getNextShardType(SpecialRewardItem _specialRewardItem);
+    SpecialRewardItem getNextShardType(SpecialRewardItem _specialRewardItem);
+    SpecialRewardItem getRandomShardType();
+    int getRewardCount(SpecialRewardItem _specialRewardItem);
+    GJRewardObject *getRewardObjectForType(SpecialRewardItem _specialRewardItem);
+    void dataLoaded(DS_Dictionary *_dict);
+    GJRewardItem *createWithCoder(DS_Dictionary *_dict);
+    SpecialRewardItem getRandomNonMaxShardType();
 };
