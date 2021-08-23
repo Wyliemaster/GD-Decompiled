@@ -86,3 +86,72 @@ bool GJRewardItem::init(int _chestID, int _timeRemaining, std::string _rewardStr
             setObjects(rewardObjects);
     }
 }
+
+GJRewardItem *GJRewardItem::create(int _chestID, int _timeRemaining, char *_rewardString)
+{
+    auto pRet = new GJRewardItem;
+
+    if (pRet && pRet->init(_chestID, _timeRemaining, _rewardString))
+    {
+        pRet->autorelease();
+        return pRet;
+    }
+
+    CC_SAFE_DELETE(pRet);
+    return nullptr;
+}
+
+GJRewardItem *GJRewardItem::create()
+{
+    return GJRewardItem::create(0, 0, "");
+}
+
+GJRewardItem *GJRewardItem::createWithObjects(GJRewardType _rewardType, cocos2d::CCArray *_rewardObjects)
+{
+    GJRewardItem *rewardItem = GJRewardItem::create();
+
+    rewardItem->m_eRewardType = _rewardType;
+    rewardItem->setObjects(_rewardObjects);
+    return rewardItem;
+}
+
+GJRewardItem *__fastcall GJRewardItem::createSpecial(GJRewardType _rewardType, int _orbTotal, int _diamondTotal, int _optionalItemType, SpecialRewardItem optionItemTotal, int _optionalItemType2, SpecialRewardItem _optionalItemTotal2, ItemType _itemType, int _itemUnlockID)
+{
+    bool itemTypeExists = false;
+    cocos2d::CCArray *rewardObjects = cocos2d::CCArray::create();
+
+    if (_orbTotal > 0)
+    {
+        GJRewardObject *orbs = GJRewardObject::create(SpecialRewardItem::kSpecialRewardItemOrbs, _orbTotal, 0);
+        rewardObjects->addObject(orbs);
+    }
+
+    if (_diamondTotal > 0)
+    {
+        GJRewardObject *diamonds = GJRewardObject::create(SpecialRewardItem::kSpecialRewardItemDiamonds, _diamondTotal, 0);
+        rewardObjects->addObject(diamonds);
+    }
+
+    if (_optionalItemType)
+    {
+        GJRewardObject *optional1 = GJRewardObject::create((SpecialRewardItem)_optionalItemType, optionItemTotal, 0);
+        rewardObjects->addObject(optional1);
+    }
+
+    if (_optionalItemType2)
+    {
+        GJRewardObject *optional2 = GJRewardObject::create((SpecialRewardItem)_optionalItemType2, _optionalItemTotal2, 0);
+        rewardObjects->addObject(optional2);
+    }
+
+    if (_itemUnlockID > 0)
+        itemTypeExists = _itemType > 0;
+
+    if (itemTypeExists)
+    {
+        GJRewardObject *itemUnlock = GJRewardObject::createItemUnlock(_itemType, _itemUnlockID);
+        rewardObjects->addObject(itemUnlock);
+    }
+
+    return GJRewardItem::createWithObjects(_rewardType, rewardObjects);
+}

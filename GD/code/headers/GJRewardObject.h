@@ -43,7 +43,7 @@ public:
     virtual void encodeWithCoder(DS_Dictionary *_DSDictionary);
     bool init(SpecialRewardItem _specialRewardItem, int _total, int _itemID);
     static GJRewardObject *create(SpecialRewardItem _specialRewardItem, int _total, int _itemID);
-    GJRewardObject *createItemUnlock(ItemType _itemType, int _itemID);
+    static GJRewardObject *createItemUnlock(ItemType _itemType, int _itemID);
     static GJRewardObject *create();
     bool isSpecialType();
     void dataLoaded(DS_Dictionary *_DSDictionary);

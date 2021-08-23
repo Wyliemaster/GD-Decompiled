@@ -21,4 +21,8 @@ public:
     virtual void encodeWithCoder(DS_Dictionary *_dict);
     void setObjects(cocos2d::CCArray *_rewardObjects);
     bool init(int _chestID, int _timeRemaining, std::string _rewardString);
+    static GJRewardItem *create(int _chestID, int _timeRemaining, char *_rewardString);
+    static GJRewardItem *create();
+    static GJRewardItem *createWithObjects(GJRewardType _rewardType, cocos2d::CCArray *_rewardObjects);
+    static GJRewardItem *createSpecial(GJRewardType _rewardType, int _orbTotal, int _diamondTotal, int _optionalItemType, SpecialRewardItem optionItemTotal, int _optionalItemType2, SpecialRewardItem _optionalItemTotal2, ItemType _itemType, int _itemUnlockID);
 };
