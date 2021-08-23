@@ -11,7 +11,7 @@ if for some reason you haven't already i recommend you go and buy GD
 
 ## IMPORTANT
 
-This repository is subject to change at any moment
+This repository is subject to change at any moment. It is not recommended that you actually use this for anything yet as it is still in its infancy
 
 ## want to know more about the game?
 
