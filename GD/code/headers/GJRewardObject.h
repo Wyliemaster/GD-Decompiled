@@ -2,6 +2,7 @@
 
 enum SpecialRewardItem
 {
+    kSpecialRewardItemUnknown = 0x0,
     kSpecialRewardItemFireShard = 0x1,
     kSpecialRewardItemIceShard = 0x2,
     kSpecialRewardItemPoisonShard = 0x3,
@@ -31,8 +32,20 @@ enum ItemType
 
 class GJRewardObject : cocos2d::CCObject
 {
+public:
     SpecialRewardItem m_eSpecialRewardItem;
     ItemType m_eUnlockType;
     int m_nItemID;
     int m_nTotal;
+
+    GJRewardObject();
+    virtual bool canEncode();
+    virtual void encodeWithCoder(DS_Dictionary *_DSDictionary);
+    bool init(SpecialRewardItem _specialRewardItem, int _total, int _itemID);
+    static GJRewardObject *create(SpecialRewardItem _specialRewardItem, int _total, int _itemID);
+    GJRewardObject *createItemUnlock(ItemType _itemType, int _itemID);
+    static GJRewardObject *create();
+    bool isSpecialType();
+    void dataLoaded(DS_Dictionary *_DSDictionary);
+    GJRewardObject *createWithCoder(DS_Dictionary *_DSDictionary);
 };
