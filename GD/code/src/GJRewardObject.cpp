@@ -1,4 +1,4 @@
-#include "../headers/GJRewardObject.h"
+#include "includes.h"
 
 GJRewardObject::GJRewardObject()
 {
@@ -11,7 +11,7 @@ bool GJRewardObject::canEncode()
 
 void GJRewardObject::encodeWithCoder(DS_Dictionary *_DSDictionary)
 {
-    _DSDictionary->setIntegerForKey("kCEK", 9);
+    _DSDictionary->setIntegerForKey("kCEK", CoderKey::kCoderKeyRewardObject);
     _DSDictionary->setIntegerForKey("1", m_eSpecialRewardItem);
     _DSDictionary->setIntegerForKey("2", m_nItemID);
     _DSDictionary->setIntegerForKey("3", m_nTotal);
