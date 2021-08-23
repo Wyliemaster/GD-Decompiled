@@ -25,4 +25,6 @@ public:
     static GJRewardItem *create();
     static GJRewardItem *createWithObjects(GJRewardType _rewardType, cocos2d::CCArray *_rewardObjects);
     static GJRewardItem *createSpecial(GJRewardType _rewardType, int _orbTotal, int _diamondTotal, SpecialRewardItem _optionalItemType, int optionItemTotal, SpecialRewardItem _optionalItemType2, int _optionalItemTotal2, ItemType _itemType, int _itemUnlockID);
+    static GJRewardItem *createWithObject(GJRewardType _rewardType, GJRewardObject *_rewardObject);
+    const char *rewardItemToStat(SpecialRewardItem _rewardItem);
 };

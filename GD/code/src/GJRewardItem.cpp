@@ -155,3 +155,39 @@ GJRewardItem *__fastcall GJRewardItem::createSpecial(GJRewardType _rewardType, i
 
     return GJRewardItem::createWithObjects(_rewardType, rewardObjects);
 }
+
+GJRewardItem *GJRewardItem::createWithObject(GJRewardType _rewardType, GJRewardObject *_rewardObject)
+{
+
+    cocos2d::CCArray *rewardObjects = cocos2d::CCArray::createWithObject(_rewardObject);
+    return GJRewardItem::createWithObjects(_rewardType, rewardObjects);
+}
+
+const char *GJRewardItem::rewardItemToStat(SpecialRewardItem _rewardItem)
+{
+    const char *statString = "";
+    switch (_rewardItem)
+    {
+    case SpecialRewardItem::kSpecialRewardItemFireShard:
+        statString = "18";
+        break;
+    case SpecialRewardItem::kSpecialRewardItemIceShard:
+        statString = "19";
+        break;
+    case SpecialRewardItem::kSpecialRewardItemPoisonShard:
+        statString = "17";
+        break;
+    case SpecialRewardItem::kSpecialRewardItemShadowShard:
+        statString = "16";
+        break;
+    case SpecialRewardItem::kSpecialRewardItemLavaShard:
+        statString = "20";
+        break;
+    case SpecialRewardItem::kSpecialRewardItemBonusKey:
+        statString = "21";
+        break;
+    default:
+        break;
+    }
+    return statString;
+}
