@@ -115,7 +115,7 @@ GJRewardItem *GJRewardItem::createWithObjects(GJRewardType _rewardType, cocos2d:
     return rewardItem;
 }
 
-GJRewardItem *__fastcall GJRewardItem::createSpecial(GJRewardType _rewardType, int _orbTotal, int _diamondTotal, int _optionalItemType, SpecialRewardItem optionItemTotal, int _optionalItemType2, SpecialRewardItem _optionalItemTotal2, ItemType _itemType, int _itemUnlockID)
+GJRewardItem *__fastcall GJRewardItem::createSpecial(GJRewardType _rewardType, int _orbTotal, int _diamondTotal, SpecialRewardItem _optionalItemType, int optionItemTotal, SpecialRewardItem _optionalItemType2, int _optionalItemTotal2, ItemType _itemType, int _itemUnlockID)
 {
     bool itemTypeExists = false;
     cocos2d::CCArray *rewardObjects = cocos2d::CCArray::create();
@@ -134,13 +134,13 @@ GJRewardItem *__fastcall GJRewardItem::createSpecial(GJRewardType _rewardType, i
 
     if (_optionalItemType)
     {
-        GJRewardObject *optional1 = GJRewardObject::create((SpecialRewardItem)_optionalItemType, optionItemTotal, 0);
+        GJRewardObject *optional1 = GJRewardObject::create(_optionalItemType, optionItemTotal, 0);
         rewardObjects->addObject(optional1);
     }
 
     if (_optionalItemType2)
     {
-        GJRewardObject *optional2 = GJRewardObject::create((SpecialRewardItem)_optionalItemType2, _optionalItemTotal2, 0);
+        GJRewardObject *optional2 = GJRewardObject::create(_optionalItemType2, _optionalItemTotal2, 0);
         rewardObjects->addObject(optional2);
     }
 
