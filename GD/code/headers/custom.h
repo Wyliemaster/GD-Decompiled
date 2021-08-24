@@ -4,7 +4,7 @@
 class RobertFuncs
 {
 public:
-    static cocos2d::CCArray *split(std::string _string, char *_splitter);
+    static cocos2d::CCArray *splitToCCArray(std::string _string, char *_splitter);
 };
 
 namespace Globals
