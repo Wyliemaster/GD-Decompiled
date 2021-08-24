@@ -44,7 +44,7 @@ class GJAccountDelegate
 class GJAccountBackupDelegate
 {
     virtual void backupAccountFinished();
-    virtual void backupAccountFailed(BackupAccountError _err)
+    virtual void backupAccountFailed(BackupAccountError _err);
 };
 
 class GJAccountSyncDelegate

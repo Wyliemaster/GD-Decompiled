@@ -16,4 +16,11 @@ public:
     GJAccountBackupDelegate *m_pBackupAccountDelegate;
     GJAccountSyncDelegate *m_pSyncAccountDelegate;
     GJAccountSettingsDelegate *m_pAccountSettingsDelegate;
+
+    cocos2d::CCObject *getDLObject(const char *_tag);
+    bool isDLActive(const char *_tag);
+    void addDLToActive(const char *_tag, cocos2d::CCObject *_obj);
+    void addDLToActive(const char *_tag);
+    void removeDLFromActive(const char *_tag);
+    std::string getGJP();
 };
