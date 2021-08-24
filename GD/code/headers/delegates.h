@@ -26,35 +26,41 @@ enum BackupAccountError
 
 class GJAccountRegisterDelegate
 {
+public:
     virtual void registerAccountFinished();
     virtual void registerAccountFailed(AccountError _err);
 };
 
 class GJAccountLoginDelegate
 {
-    virtual void loginAccountFinished();
+public:
+    virtual void loginAccountFinished(int accountID, int playerID);
     virtual void loginAccountFailed(AccountError _err);
 };
 
 class GJAccountDelegate
 {
+public:
     virtual void accountStatusChanged();
 };
 
 class GJAccountBackupDelegate
 {
+public:
     virtual void backupAccountFinished();
     virtual void backupAccountFailed(BackupAccountError _err);
 };
 
 class GJAccountSyncDelegate
 {
+public:
     virtual void syncAccountFinished();
     virtual void syncAccountFailed(BackupAccountError _err);
 };
 
 class GJAccountSettingsDelegate
 {
+public:
     virtual void updateSettingsFinished();
     virtual void updateSettingsFailed();
 };

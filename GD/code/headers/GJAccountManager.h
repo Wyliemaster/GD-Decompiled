@@ -23,4 +23,8 @@ public:
     void addDLToActive(const char *_tag);
     void removeDLFromActive(const char *_tag);
     std::string getGJP();
+    void encodeDataTo(DS_Dictionary *_dict);
+    void dataLoaded(DS_Dictionary *_dict);
+    void firstSetup();
+    void GJAccountManager::onLoginAccountCompleted(std::string a2, std::string a3);
 };

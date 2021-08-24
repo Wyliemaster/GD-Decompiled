@@ -10,6 +10,7 @@
 #include "GJObjectDecoder.h"
 #include "GJChallengeItem.h"
 #include "GJAccountManager.h"
+#include "delegates.h"
 
 enum GJHttpType
 {
