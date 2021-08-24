@@ -9,3 +9,4 @@
 #include "GJRewardObject.h"
 #include "GJObjectDecoder.h"
 #include "GJChallengeItem.h"
+#include "GJAccountManager.h"
