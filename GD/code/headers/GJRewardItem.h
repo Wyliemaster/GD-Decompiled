@@ -1,4 +1,4 @@
-#include <cocos2d.h>
+#include "includes.h"
 
 enum GJRewardType
 {
@@ -7,6 +7,7 @@ enum GJRewardType
     kGJRewardTypeLarge = 0x2,
 };
 
+class GJRewardObject;
 class GJRewardItem : public cocos2d::CCObject
 {
 public:

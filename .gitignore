@@ -1,4 +1,10 @@
+.vs
 .vscode
+out
+minhook
+hook
+CMakeLists.txt
+CMakeSettings.json
 boomlings
 1.9
 2.2

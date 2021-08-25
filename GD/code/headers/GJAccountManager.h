@@ -1,5 +1,11 @@
-#include <cocos2d.h>
-#include "delegates.h"
+#include "includes.h"
+
+class GJAccountRegisterDelegate;
+class GJAccountLoginDelegate;
+class GJAccountDelegate;
+class GJAccountBackupDelegate;
+class GJAccountSyncDelegate;
+class GJAccountSettingsDelegate;
 
 class GJAccountManager : public cocos2d::CCNode
 {

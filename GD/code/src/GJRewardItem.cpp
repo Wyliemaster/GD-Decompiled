@@ -1,4 +1,4 @@
-#include "includes.h"
+#include "../headers/includes.h"
 
 GJRewardItem::GJRewardItem()
 {
@@ -85,6 +85,7 @@ bool GJRewardItem::init(int _chestID, int _timeRemaining, std::string _rewardStr
         if (rewardObjects->count())
             setObjects(rewardObjects);
     }
+    return true;
 }
 
 GJRewardItem *GJRewardItem::create(int _chestID, int _timeRemaining, char *_rewardString)
@@ -273,7 +274,7 @@ SpecialRewardItem GJRewardItem::getRandomNonMaxShardType()
     while (true)
     {
         const char *statString = rewardItemToStat(randomShard);
-        if (GameStatsManager::sharedState()->getStat(statString) <= 99)
+        if (GameStatsManager::sharedState()->getStat(statString) <= 99) //todo: uncomment when these are added to GSM
             break;
 
         randomShard = getNextShardType(randomShard);

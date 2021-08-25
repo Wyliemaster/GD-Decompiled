@@ -1,4 +1,4 @@
-#include "includes.h"
+#include "../headers/includes.h"
 
 GJChallengeItem::GJChallengeItem()
 {

@@ -1,5 +1,4 @@
-#include "includes.h"
-
+#include "../headers/includes.h"
 GJRewardObject::GJRewardObject()
 {
 }

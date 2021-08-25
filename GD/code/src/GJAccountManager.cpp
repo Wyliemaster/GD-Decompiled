@@ -1,4 +1,4 @@
-#include "includes.h"
+#include "../headers/includes.h"
 
 cocos2d::CCObject *GJAccountManager::getDLObject(const char *_tag)
 {
@@ -51,7 +51,7 @@ void GJAccountManager::firstSetup() {}
 void GJAccountManager::onLoginAccountCompleted(std::string _response, std::string a3)
 {
     removeDLFromActive("login_account");
-    if (_response == std::to_string(AccountError::kAccountErrorAccountDisabled) || _response == std::to_string(AccountError::kAccountErrorLinkedToDifferentSteamAccount || _response == std::to_string(AccountError::kAccountErrorGeneric)))
+    if (stoi(_response) == AccountError::kAccountErrorAccountDisabled || stoi(_response) == AccountError::kAccountErrorLinkedToDifferentSteamAccount || stoi(_response) == AccountError::kAccountErrorGeneric)
     {
     errorLabel:
         if (!m_pLoginAccountDelegate)
