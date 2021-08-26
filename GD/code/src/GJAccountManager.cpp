@@ -77,11 +77,13 @@ void GJAccountManager::onRegisterAccountCompleted(std::string _response, std::st
     removeDLFromActive(_tag.c_str());
     if (stoi(_response) != 1)
     {
-        if (m_pRegisterAccountDelegate)
-            return m_pRegisterAccountDelegate->registerAccountFailed(static_cast<AccountError>(stoi(_response)));
+        if (!m_pRegisterAccountDelegate)
+            return;
+        return m_pRegisterAccountDelegate->registerAccountFailed(static_cast<AccountError>(stoi(_response)));
     }
-    else if (m_pRegisterAccountDelegate)
-        return m_pRegisterAccountDelegate->registerAccountFinished();
+    else if (!m_pRegisterAccountDelegate)
+        return;
+    m_pRegisterAccountDelegate->registerAccountFinished();
 }
 
 void GJAccountManager::onBackupAccountCompleted(std::string _response, std::string _tag)
@@ -90,8 +92,9 @@ void GJAccountManager::onBackupAccountCompleted(std::string _response, std::stri
     if (stoi(_response) == AccountError::kAccountErrorGeneric)
     {
     error_label:
-        if (m_pBackupAccountDelegate)
-            return m_pBackupAccountDelegate->backupAccountFailed(static_cast<BackupAccountError>(stoi(_response)));
+        if (!m_pBackupAccountDelegate)
+            return;
+        return m_pBackupAccountDelegate->backupAccountFailed(static_cast<BackupAccountError>(stoi(_response)));
     }
     else if (stoi(_response) == BackupAccountError::kBackupAccountErrorLoginFailed)
     {
@@ -102,11 +105,30 @@ void GJAccountManager::onBackupAccountCompleted(std::string _response, std::stri
     else
     {
         m_sPlayerPassword = "0";
-        if (m_pAccountDelegate)
-            m_pAccountDelegate->accountStatusChanged();
+        if (!m_pAccountDelegate)
+            return;
+        m_pAccountDelegate->accountStatusChanged();
 
-        if (m_pBackupAccountDelegate)
-            return m_pBackupAccountDelegate->backupAccountFinished();
+        if (!m_pBackupAccountDelegate)
+            return;
+        return m_pBackupAccountDelegate->backupAccountFinished();
+    }
+}
+
+void GJAccountManager::onUpdateAccountSettingsCompleted(std::string _response, std::string _tag)
+{
+    removeDLFromActive(_tag.c_str());
+    if (stoi(_response) == -1)
+    {
+        if (!m_pAccountSettingsDelegate)
+            return;
+        return m_pAccountSettingsDelegate->updateSettingsFailed();
+    }
+    else
+    {
+        if (!m_pAccountSettingsDelegate)
+            return;
+        return m_pAccountSettingsDelegate->updateSettingsFinished();
     }
 }
 
