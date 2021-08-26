@@ -84,6 +84,32 @@ void GJAccountManager::onRegisterAccountCompleted(std::string _response, std::st
         return m_pRegisterAccountDelegate->registerAccountFinished();
 }
 
+void GJAccountManager::onBackupAccountCompleted(std::string _response, std::string _tag)
+{
+    removeDLFromActive(_tag.c_str());
+    if (stoi(_response) == AccountError::kAccountErrorGeneric)
+    {
+    error_label:
+        if (m_pBackupAccountDelegate)
+            return m_pBackupAccountDelegate->backupAccountFailed(static_cast<BackupAccountError>(stoi(_response)));
+    }
+    else if (stoi(_response) == BackupAccountError::kBackupAccountErrorLoginFailed)
+    {
+        GameLevelManager::sharedState()->makeTimeStamp(_tag.c_str());
+        LocalLevelManager::sharedState()->markLevelsAsUnmodified();
+        goto error_label;
+    }
+    else
+    {
+        m_sPlayerPassword = "0";
+        if (m_pAccountDelegate)
+            m_pAccountDelegate->accountStatusChanged();
+
+        if (m_pBackupAccountDelegate)
+            return m_pBackupAccountDelegate->backupAccountFinished();
+    }
+}
+
 void GJAccountManager::handleIt(bool _requestSentSuccessfully, std::string _response, std::string _tag, GJHttpType _httpType)
 {
     std::string serverResponse = _response;
