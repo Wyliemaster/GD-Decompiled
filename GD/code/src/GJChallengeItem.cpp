@@ -74,7 +74,7 @@ GJChallengeItem *GJChallengeItem::create()
 
 GJChallengeItem *GJChallengeItem::createFromString(std::string _string)
 {
-  cocos2d::CCArray *challengeArray = RobertFuncs::splitToCCArray(_string, ",");
+  cocos2d::CCArray *challengeArray = RobTop::splitToCCArray(_string, ",");
   if (challengeArray->count() <= 4)
     return 0;
 

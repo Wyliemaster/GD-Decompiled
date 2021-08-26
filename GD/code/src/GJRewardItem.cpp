@@ -41,7 +41,7 @@ bool GJRewardItem::init(int _chestID, int _timeRemaining, std::string _rewardStr
     int ShardsTotal, bonusItem;
     m_nChestID = _chestID;
     m_nTimeRemaining = _timeRemaining;
-    cocos2d::CCArray *rewards = RobertFuncs::splitToCCArray(_rewardString, ",");
+    cocos2d::CCArray *rewards = RobTop::splitToCCArray(_rewardString, ",");
 
     if (rewards->count() > 3)
     {

@@ -1,6 +1,6 @@
 #include "includes.h"
 
-class RobertFuncs
+class RobTop
 {
 public:
     static cocos2d::CCArray *splitToCCArray(std::string _string, char *_splitter);

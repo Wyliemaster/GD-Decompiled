@@ -48,9 +48,9 @@ void GJAccountManager::dataLoaded(DS_Dictionary *_dict)
 
 void GJAccountManager::firstSetup() {}
 
-void GJAccountManager::onLoginAccountCompleted(std::string _response, std::string a3)
+void GJAccountManager::onLoginAccountCompleted(std::string _response, std::string _tag)
 {
-    removeDLFromActive("login_account");
+    removeDLFromActive(_tag.c_str());
     if (stoi(_response) == AccountError::kAccountErrorAccountDisabled || stoi(_response) == AccountError::kAccountErrorLinkedToDifferentSteamAccount || stoi(_response) == AccountError::kAccountErrorGeneric)
     {
     errorLabel:
@@ -58,7 +58,7 @@ void GJAccountManager::onLoginAccountCompleted(std::string _response, std::strin
             return;
         return m_pLoginAccountDelegate->loginAccountFailed(static_cast<AccountError>(std::stoi(_response)));
     }
-    cocos2d::CCArray *resArr = RobertFuncs::splitToCCArray(_response, ",");
+    cocos2d::CCArray *resArr = RobTop::splitToCCArray(_response, ",");
     if (resArr->count() <= 2)
         goto errorLabel;
 
@@ -70,4 +70,38 @@ void GJAccountManager::onLoginAccountCompleted(std::string _response, std::strin
 
     if (m_pLoginAccountDelegate)
         m_pLoginAccountDelegate->loginAccountFinished(accountID, playerID);
+}
+
+void GJAccountManager::handleIt(bool _requestSentSuccessfully, std::string _response, std::string _tag, GJHttpType _httpType)
+{
+    std::string serverResponse = _response;
+    if (!_requestSentSuccessfully)
+        serverResponse = "-1";
+
+    switch (_httpType)
+    {
+    case GJHttpType::kGJHttpTypeLoginAccount:
+        onLoginAccountCompleted(serverResponse, _tag);
+        break;
+    case GJHttpType::kGJHttpTypeRegisterAccount:
+        onRegisterAccountCompleted(serverResponse, _tag);
+        break;
+    case GJHttpType::kGJHttpTypeGetAccountBackupURL:
+        onGetAccountBackupURLCompleted(serverResponse, _tag);
+        break;
+    case GJHttpType::kGJHttpTypeGetAccountSyncURL:
+        onGetAccountSyncURLCompleted(serverResponse, _tag);
+        break;
+    case GJHttpType::kGJHttpTypeUpdateAccountSettings:
+        onUpdateAccountSettingsCompleted(serverResponse, _tag);
+        break;
+    case GJHttpType::kGJHttpTypeSyncAccount:
+        onSyncAccountCompleted(serverResponse, _tag);
+        break;
+    case GJHttpType::kGJHttpTypeBackupAccount:
+        onBackupAccountCompleted(serverResponse, _tag);
+        break;
+    default:
+        return;
+    }
 }

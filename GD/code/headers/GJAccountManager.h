@@ -32,5 +32,12 @@ public:
     void encodeDataTo(DS_Dictionary *_dict);
     void dataLoaded(DS_Dictionary *_dict);
     void firstSetup();
-    void GJAccountManager::onLoginAccountCompleted(std::string a2, std::string a3);
+    void handleIt(bool RequestSentSuccessfully, std::string _response, std::string _tag, GJHttpType _httpType);
+    void onLoginAccountCompleted(std::string _response, std::string _tag);
+    void onRegisterAccountCompleted(std::string _response, std::string _tag);
+    void onBackupAccountCompleted(std::string _response, std::string _tag);
+    void onSyncAccountCompleted(std::string _response, std::string _tag);
+    void onUpdateAccountSettingsCompleted(std::string _response, std::string _tag);
+    void onGetAccountSyncURLCompleted(std::string _response, std::string _tag);
+    void onGetAccountBackupURLCompleted(std::string _response, std::string _tag);
 };
