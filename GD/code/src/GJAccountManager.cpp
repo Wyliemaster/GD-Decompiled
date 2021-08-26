@@ -83,7 +83,7 @@ void GJAccountManager::onRegisterAccountCompleted(std::string _response, std::st
     }
     else if (!m_pRegisterAccountDelegate)
         return;
-    m_pRegisterAccountDelegate->registerAccountFinished();
+    return m_pRegisterAccountDelegate->registerAccountFinished();
 }
 
 void GJAccountManager::onBackupAccountCompleted(std::string _response, std::string _tag)
