@@ -72,6 +72,18 @@ void GJAccountManager::onLoginAccountCompleted(std::string _response, std::strin
         m_pLoginAccountDelegate->loginAccountFinished(accountID, playerID);
 }
 
+void GJAccountManager::onRegisterAccountCompleted(std::string _response, std::string _tag)
+{
+    removeDLFromActive(_tag.c_str());
+    if (stoi(_response) != 1)
+    {
+        if (m_pRegisterAccountDelegate)
+            return m_pRegisterAccountDelegate->registerAccountFailed(static_cast<AccountError>(stoi(_response)));
+    }
+    else if (m_pRegisterAccountDelegate)
+        return m_pRegisterAccountDelegate->registerAccountFinished();
+}
+
 void GJAccountManager::handleIt(bool _requestSentSuccessfully, std::string _response, std::string _tag, GJHttpType _httpType)
 {
     std::string serverResponse = _response;
