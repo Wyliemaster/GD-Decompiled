@@ -13,6 +13,7 @@
 #include "GJChallengeItem.h"
 #include "GJAccountManager.h"
 #include "delegates.h"
+#include "DialogObject.h"
 
 enum GJHttpType
 {
