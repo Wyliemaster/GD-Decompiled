@@ -1,5 +1,9 @@
 #include "../headers/includes.h"
 
+GJAccountManager::GJAccountManager() 
+{
+}
+
 cocos2d::CCObject *GJAccountManager::getDLObject(const char *_tag)
 {
     return m_pDLObject->objectForKey(_tag);
@@ -233,4 +237,28 @@ bool GJAccountManager::syncAccount(std::string _endpoint)
         synced = true;
     }
     return synced;
+}
+
+GJAccountManager* GJAccountManager::sharedState()
+{
+    auto pRet = new GJAccountManager;
+
+    if (pRet && pRet->init())
+    {
+        pRet->autorelease();
+        return pRet;
+    }
+
+    CC_SAFE_DELETE(pRet);
+    return nullptr;
+}
+
+bool GJAccountManager::init()
+{
+   bool init = cocos2d::CCNode::init();
+   if (init) {
+       m_pDLObject = cocos2d::CCDictionary::create();
+       m_pDLObject->retain();
+   }
+   return init;
 }

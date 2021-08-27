@@ -23,6 +23,10 @@ public:
     GJAccountSyncDelegate *m_pSyncAccountDelegate;
     GJAccountSettingsDelegate *m_pAccountSettingsDelegate;
 
+
+    GJAccountManager();
+    static GJAccountManager* sharedState();
+    bool init();
     cocos2d::CCObject *getDLObject(const char *_tag);
     bool isDLActive(const char *_tag);
     void addDLToActive(const char *_tag, cocos2d::CCObject *_obj);
