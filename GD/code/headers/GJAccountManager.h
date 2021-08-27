@@ -36,8 +36,9 @@ public:
     void onLoginAccountCompleted(std::string _response, std::string _tag);
     void onRegisterAccountCompleted(std::string _response, std::string _tag);
     void onBackupAccountCompleted(std::string _response, std::string _tag);
-    void onSyncAccountCompleted(std::string _response, std::string _tag);
     void onUpdateAccountSettingsCompleted(std::string _response, std::string _tag);
     void onGetAccountSyncURLCompleted(std::string _response, std::string _tag);
     void onGetAccountBackupURLCompleted(std::string _response, std::string _tag);
+    bool syncAccount(std::string _endpoint);
+    void ProcessHttpRequest(std::string _endpoint, std::string _params, std::string, _tag, GJHttpType _httpType);
 };

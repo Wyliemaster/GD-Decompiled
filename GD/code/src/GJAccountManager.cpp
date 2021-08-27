@@ -138,7 +138,7 @@ void GJAccountManager::onGetAccountSyncURLCompleted(std::string _response, std::
     if (stoi(_response) != -1)
     {
         std::string endpoint = cocos2d::CCString::createWithFormat("%s/database/accounts/syncGJAccountNew.php", _response)->m_sString;
-        bool synced = SyncAccount(endpoint);
+        bool synced = syncAccount(endpoint);
         if (!synced)
         {
             if (!m_pSyncAccountDelegate)
@@ -151,7 +151,7 @@ void GJAccountManager::onGetAccountSyncURLCompleted(std::string _response, std::
         if (!m_pBackupAccountDelegate)
             return;
         return m_pBackupAccountDelegate->backupAccountFailed(BackupAccountError::kBackupAccountErrorGeneric);
-        //this is a bug that RobTop added, bugfixed version can be found in the comment below 
+        //this is a bug that RobTop left in, bugfixed version can be found in the comment below 
         //  if (!m_pSyncAccountDelegate)
         //      return;
         //  return m_pSyncAccountDelegate->syncAccountFailed(BackupAccountError::kBackupAccountErrorGeneric);
@@ -179,7 +179,6 @@ void GJAccountManager::onGetAccountBackupURLCompleted(std::string _response, std
         return m_pBackupAccountDelegate->backupAccountFailed(BackupAccountError::kBackupAccountErrorGeneric);
     }
 }
-
 
 void GJAccountManager::handleIt(bool _requestSentSuccessfully, std::string _response, std::string _tag, GJHttpType _httpType)
 {
@@ -213,4 +212,25 @@ void GJAccountManager::handleIt(bool _requestSentSuccessfully, std::string _resp
     default:
         return;
     }
+}
+
+bool GJAccountManager::syncAccount(std::string _endpoint)
+{
+    bool synced = false;
+    const char* tag = "sync_account";
+    if (!isDLActive(tag))
+    {
+        addDLToActive(tag);
+        std::string params = cocos2d::CCString::createWithFormat("userName=%s&password=%s&secret=%s&gameVersion=%i&binaryVersion=%i&gdw=%i", 
+            m_sPlayerUsername, 
+            m_sPlayerPassword, 
+            "Wmfv3899gc9", 
+            21, 
+            35, 
+            0)->m_sString;
+
+        ProcessHttpRequest(_endpoint, params, tag, GJHttpType::kGJHttpTypeSyncAccount);
+        synced = true;
+    }
+    return synced;
 }
