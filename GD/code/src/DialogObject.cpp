@@ -24,6 +24,3 @@ bool DialogObject::init(std::string _title, std::string _text, int _type, float 
 	m_pColour = _colour;
 	return true;
 }
-
-
-
