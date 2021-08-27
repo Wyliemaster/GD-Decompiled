@@ -1,6 +1,6 @@
 #include "../headers/includes.h"
 
-DialogObject* DialogObject::create(std::string _title, std::string _text, int _type, float _width, bool _canSkip, cocos2d::_ccColor3B _colour)
+DialogObject* DialogObject::create(std::string _title, std::string _text, int _type, float _width, bool _canSkip, cocos2d::ccColor3B _colour)
 {
 	auto pRet = new DialogObject;
 
@@ -14,7 +14,7 @@ DialogObject* DialogObject::create(std::string _title, std::string _text, int _t
 	return nullptr;
 }
 
-bool DialogObject::init(std::string _title, std::string _text, int _type, float _width, bool _canSkip, cocos2d::_ccColor3B _colour)
+bool DialogObject::init(std::string _title, std::string _text, int _type, float _width, bool _canSkip, cocos2d::ccColor3B _colour)
 {
 	m_sTitle = _title;
 	m_sText = _text;
@@ -24,3 +24,6 @@ bool DialogObject::init(std::string _title, std::string _text, int _type, float 
 	m_pColour = _colour;
 	return true;
 }
+
+
+
