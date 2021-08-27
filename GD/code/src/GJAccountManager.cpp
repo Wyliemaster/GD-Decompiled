@@ -132,6 +132,55 @@ void GJAccountManager::onUpdateAccountSettingsCompleted(std::string _response, s
     }
 }
 
+void GJAccountManager::onGetAccountSyncURLCompleted(std::string _response, std::string _tag) 
+{
+    removeDLFromActive(_tag.c_str());
+    if (stoi(_response) != -1)
+    {
+        std::string endpoint = cocos2d::CCString::createWithFormat("%s/database/accounts/syncGJAccountNew.php", _response)->m_sString;
+        bool synced = SyncAccount(endpoint);
+        if (!synced)
+        {
+            if (!m_pSyncAccountDelegate)
+                return;
+            return m_pSyncAccountDelegate->syncAccountFailed(BackupAccountError::kBackupAccountErrorGeneric);
+        }
+    }
+    else
+    {
+        if (!m_pBackupAccountDelegate)
+            return;
+        return m_pBackupAccountDelegate->backupAccountFailed(BackupAccountError::kBackupAccountErrorGeneric);
+        //this is a bug that RobTop added, bugfixed version can be found in the comment below 
+        //  if (!m_pSyncAccountDelegate)
+        //      return;
+        //  return m_pSyncAccountDelegate->syncAccountFailed(BackupAccountError::kBackupAccountErrorGeneric);
+    }
+}
+
+void GJAccountManager::onGetAccountBackupURLCompleted(std::string _response, std::string _tag)
+{
+    removeDLFromActive(_tag.c_str());
+    if (stoi(_response) != -1)
+    {
+        std::string endpoint = cocos2d::CCString::createWithFormat("%s/database/accounts/backupGJAccountNew.php", _response)->m_sString;
+        bool backedUp = backupAccount(endpoint);
+        if (!backedUp)
+        {
+            if (!m_pBackupAccountDelegate)
+                return;
+            return m_pBackupAccountDelegate->backupAccountFailed(BackupAccountError::kBackupAccountErrorGeneric);
+        }
+    }
+    else
+    {
+        if (!m_pBackupAccountDelegate)
+            return;
+        return m_pBackupAccountDelegate->backupAccountFailed(BackupAccountError::kBackupAccountErrorGeneric);
+    }
+}
+
+
 void GJAccountManager::handleIt(bool _requestSentSuccessfully, std::string _response, std::string _tag, GJHttpType _httpType)
 {
     std::string serverResponse = _response;
