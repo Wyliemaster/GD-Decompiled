@@ -171,17 +171,14 @@ void GJAccountManager::onGetAccountBackupURLCompleted(std::string _response, std
         bool backedUp = backupAccount(endpoint);
         if (!backedUp)
         {
+        error_label:
             if (!m_pBackupAccountDelegate)
                 return;
             return m_pBackupAccountDelegate->backupAccountFailed(BackupAccountError::kBackupAccountErrorGeneric);
         }
     }
     else
-    {
-        if (!m_pBackupAccountDelegate)
-            return;
-        return m_pBackupAccountDelegate->backupAccountFailed(BackupAccountError::kBackupAccountErrorGeneric);
-    }
+        goto error_label;
 }
 
 void GJAccountManager::handleIt(bool _requestSentSuccessfully, std::string _response, std::string _tag, GJHttpType _httpType)
