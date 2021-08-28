@@ -25,6 +25,12 @@ public:
 
 
     GJAccountManager();
+    inline void setPlayerAccountID(int _accountID);
+    inline void setPlayerName(std::string _username);
+    inline void setPlayerPassword(std::string _password);
+    inline int getPlayerAccountID();
+    inline std::string getPlayerName();
+    inline std::string getPlayerPassword();
     static GJAccountManager* sharedState();
     bool init();
     cocos2d::CCObject *getDLObject(const char *_tag);
@@ -45,4 +51,5 @@ public:
     void onGetAccountBackupURLCompleted(std::string _response, std::string _tag);
     bool syncAccount(std::string _endpoint);
     void ProcessHttpRequest(std::string _endpoint, std::string _params, std::string, _tag, GJHttpType _httpType);
+    void linkToAccount(std::string _username, std::string _password, int _accountID, int _playerID);
 };

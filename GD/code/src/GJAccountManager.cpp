@@ -31,6 +31,38 @@ void GJAccountManager::removeDLFromActive(const char *_tag)
     m_pDLObject->removeObjectForKey(_tag);
 }
 
+void GJAccountManager::setPlayerName(std::string _username)
+{
+    m_sPlayerUsername = _username;
+}
+
+void GJAccountManager::setPlayerPassword(std::string _password)
+{
+    m_sPlayerPassword = _password;
+}
+
+void GJAccountManager::setPlayerAccountID(int _accountID)
+{
+    m_nPlayerAccountID = _accountID;
+    m_nPlayerAccountIDRand = rand();
+    m_nPlayerAccountIDSeed = m_nPlayerAccountIDRand + m_nPlayerAccountID;
+}
+
+int GJAccountManager::getPlayerAccountID()
+{
+    return m_nPlayerAccountIDSeed - m_nPlayerAccountIDRand;
+}
+
+std::string GJAccountManager::getPlayerName()
+{
+    return m_sPlayerUsername;
+}
+
+std::string GJAccountManager::getPlayerPassword()
+{
+    return m_sPlayerPassword;
+}
+
 std::string GJAccountManager::getGJP()
 {
     return cocos2d::ZipUtils::base64EncodeEnc(m_sPlayerPassword, Globals::XORAccountPassword);
@@ -258,4 +290,21 @@ bool GJAccountManager::init()
        m_pDLObject->retain();
    }
    return init;
+}
+
+
+void GJAccountManager::linkToAccount(std::string _username, std::string _password, int _accountID, int _playerID)
+{
+    GameManager* GM = GameManager::sharedState();
+
+    setPlayerName(_username);
+    setPlayerPassword(_password);
+    setPlayerAccountID(_accountID);
+
+    GM->setPlayerName(_username);
+    GM->setPlayerID(_playerID);
+
+    if (m_pAccountDelegate)
+        m_pAccountDelegate->accountStatusChanged();
+    GM->accountStatusChanged();
 }
