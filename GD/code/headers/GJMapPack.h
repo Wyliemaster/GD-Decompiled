@@ -15,7 +15,7 @@ enum GJDifficulty
 	kGJDifficultyDemonExtreme = 10,
 };
 
-class GJMapPack : cocos2d::CCNode
+class GJMapPack : public cocos2d::CCNode
 {
 public:
 	cocos2d::CCArray* m_pLevels;
