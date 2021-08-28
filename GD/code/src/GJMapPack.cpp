@@ -168,7 +168,7 @@ int GJMapPack::completedMaps()
 		int completedMap = 0;
 		while (idx < m_pLevels->count())
 		{
-		bool levelCompleted = false;
+			bool levelCompleted = false;
 			int level = static_cast<cocos2d::CCString*>(m_pLevels->objectAtIndex(idx))->intValue();
 			if (m_bIsGauntlet)
 				levelCompleted = GameStatsManager::sharedState()->hasCompletedGauntletLevel(level);
