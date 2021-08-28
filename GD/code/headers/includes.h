@@ -14,6 +14,8 @@
 #include "GJAccountManager.h"
 #include "delegates.h"
 #include "DialogObject.h"
+#include "GJMapPack.h"
+
 
 enum GJHttpType
 {
