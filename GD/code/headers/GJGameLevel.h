@@ -231,10 +231,6 @@ public:
 	inline int getLastBuildPage();
 	inline GJLevelType getLevelType();
 	inline int getM_ID();
-	inline int getCapacity001();
-	inline int getCapacity002();
-	inline int getCapacity003();
-	inline int getCapacity004();
 	inline std::string getTempName();
 	inline std::string getRateUser();
 	inline std::string getUpdateDate();
@@ -248,11 +244,14 @@ public:
 	inline GJLength getLengthKey();
 	inline int getAverageDifficulty();
 	inline std::string getSongName();
-	inline std::string getExtraString();
+	inline std::string getCapacityString();
 	inline bool getVfDChk();
 	inline int getLevelSeed();
 	inline std::string getLevelProgress();
 	inline int getDailyID();
+	inline bool getCoin1();
+	inline bool getCoin2();
+	inline bool getCoin3();
 
 
 	inline void setLevelID(int _LevelID);
@@ -311,10 +310,6 @@ public:
 	inline void setLastBuildPage(int _LastBuildPage);
 	inline void setLevelType(GJLevelType _LevelType);
 	inline void setM_ID(int _M_ID);
-	inline void setCapacity001(int _Capacity001);
-	inline void setCapacity002(int _Capacity002);
-	inline void setCapacity003(int _Capacity003);
-	inline void setCapacity004(int _Capacity004);
 	inline void setTempName(std::string _TempName);
 	inline void setRateUser(std::string _RateUser);
 	inline void setUpdateDate(std::string _UpdateDate);
@@ -328,12 +323,17 @@ public:
 	inline void setLengthKey(GJLength _LengthKey);
 	inline void setAverageDifficulty(int _AverageDifficulty);
 	inline void setSongName(std::string _SongName);
-	inline void setExtraString(std::string _ExtraString);
+	inline void setCapacityString(std::string _capacityString);
 	inline void setVfDChk(bool _vfDChk);
 	inline void setLevelSeed(int _seed);
 	inline void setLevelProgress(std::string _progress);
 	inline void setDailyID(int _dailyID);
+	inline void setCoin1(bool _coin);
+	inline void setCoin2(bool _coin);
+	inline void setCoin3(bool _coin);
 
-
+	bool areCoinsVerified();
+	void levelWasAltered();
+	void unverifyCoins();
 	void savePercentage(int _percentage, bool _practice, int _clicks, int _attemptTime, bool _vfDChk)
 };
