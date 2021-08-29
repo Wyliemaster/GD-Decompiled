@@ -1,5 +1,17 @@
 #include "includes.h"
 
+enum GJSong;
+
+enum GJLength {
+	kGJLengthTiny = 0x0,
+	kGJLengthShort = 0x1,
+	kGJLengthMedium = 0x2,
+	kGJLengthLong = 0x3,
+	kGJLengthXL = 0x4
+};
+
+enum GJLevelType;
+
 class GJGameLevel : public cocos2d::CCNode
 {
 public:
@@ -163,5 +175,165 @@ public:
 
 
 	GJGameLevel();
+	inline int getLevelID();
+	inline int getUserID();
+	inline int getDifficulty();
+	inline GJSong getAudioTrack();
+	inline int getSongID();
+	inline int getLevelRev();
+	inline int getObjectCount();
+	inline int getOrder();
+	inline int getRatings();
+	inline int getRatingSum();
+	inline int getDownloads();
+	inline int getCompletes();
+	inline bool getIsEditable();
+	inline bool getIsVerified();
+	inline bool getIsUploaded();
+	inline bool getHasBeenModified();
+	inline int getLevelVersion();
+	inline int getGameVersion();
+	inline int getAttempts();
+	inline int getJumps();
+	inline int getClicks();
+	inline int getAttemptTime();
+	inline int getNormalPercent();
+	inline int getNewNormalPercent();
+	inline int getNewNormalPercent2();
+	inline int getPracticePercent();
+	inline int getLikes();
+	inline int getDislikes();
+	inline GJLength getLevelLength();
+	inline int getFeatured();
+	inline bool getEpic();
+	inline bool getDemon();
+	inline int getStars();
+	inline bool getAutoLevel();
+	inline int getCoins();
+	inline int getPassword();
+	inline int getOriginalLevel();
+	inline bool getTwoPlayerMode();
+	inline int getFailedPasswordAttempts();
+	inline bool getShowedSongWarning();
+	inline int getStarRatings();
+	inline int getStarRatingsSum();
+	inline int getMaxStarRatings();
+	inline int getMinStarRatings();
+	inline int getDemonVotes();
+	inline int getRateStars();
+	inline int getRateFeature();
+	inline bool getDontSave();
+	inline bool getIsHidden();
+	inline int getRequiredCoins();
+	inline bool getIsUnlocked();
+	inline float getLastEditorZoom();
+	inline int getLastBuildTab();
+	inline int getLastBuildPage();
+	inline GJLevelType getLevelType();
+	inline int getM_ID();
+	inline int getCapacity001();
+	inline int getCapacity002();
+	inline int getCapacity003();
+	inline int getCapacity004();
+	inline std::string getTempName();
+	inline std::string getRateUser();
+	inline std::string getUpdateDate();
+	inline std::string getUploadDate();
+	inline std::string getRecordString();
+	inline std::string getUserName();
+	inline std::string getLevelString();
+	inline std::string getLevelDesc();
+	inline std::string getLevelName();
+	inline cocos2d::CCPoint getLastCameraPos();
+	inline GJLength getLengthKey();
+	inline int getAverageDifficulty();
+	inline std::string getSongName();
+	inline std::string getExtraString();
+	inline bool getVfDChk();
+	inline int getLevelSeed();
+	inline std::string getLevelProgress();
+	inline int getDailyID();
+
+
+	inline void setLevelID(int _LevelID);
+	inline void setUserID(int _UserID);
+	inline void setDifficulty(int _Difficulty);
+	inline void setAudioTrack(GJSong _AudioTrack);
+	inline void setSongID(int _SongID);
+	inline void setLevelRev(int _LevelRev);
+	inline void setObjectCount(int _ObjectCount);
+	inline void setOrder(int _Order);
+	inline void setRatings(int _Ratings);
+	inline void setRatingSum(int _RatingSum);
+	inline void setDownloads(int _Downloads);
+	inline void setCompletes(int _Completes);
+	inline void setIsEditable(bool _IsEditable);
+	inline void setIsVerified(bool _IsVerified);
+	inline void setIsUploaded(bool _IsUploaded);
+	inline void setHasBeenModified(bool _HasBeenModified);
+	inline void setLevelVersion(int _LevelVersion);
+	inline void setGameVersion(int _GameVersion);
+	inline void setAttempts(int _Attempts);
+	inline void setJumps(int _Jumps);
+	inline void setClicks(int _Clicks);
+	inline void setAttemptTime(int _AttemptTime);
+	inline void setNormalPercent(int _NormalPercent);
+	inline void setNewNormalPercent(int _NewNormalPercent);
+	inline void setNewNormalPercent2(int _NewNormalPercent2);
+	inline void setPracticePercent(int _PracticePercent);
+	inline void setLikes(int _Likes);
+	inline void setDislikes(int _Dislikes);
+	inline void setLevelLength(GJLength _LevelLength);
+	inline void setFeatured(int _Featured);
+	inline void setEpic(bool _Epic);
+	inline void setDemon(bool _Demon);
+	inline void setStars(int _Stars);
+	inline void setAutoLevel(bool _AutoLevel);
+	inline void setCoins(int _Coins);
+	inline void setPassword(int _Password);
+	inline void setOriginalLevel(int _OriginalLevel);
+	inline void setTwoPlayerMode(bool _TwoPlayerMode);
+	inline void setFailedPasswordAttempts(int _FailedPasswordAttempts);
+	inline void setShowedSongWarning(bool _ShowedSongWarning);
+	inline void setStarRatings(int _StarRatings);
+	inline void setStarRatingsSum(int _StarRatingsSum);
+	inline void setMaxStarRatings(int _MaxStarRatings);
+	inline void setMinStarRatings(int _MinStarRatings);
+	inline void setDemonVotes(int _DemonVotes);
+	inline void setRateStars(int _RateStars);
+	inline void setRateFeature(int _RateFeature);
+	inline void setDontSave(bool _DontSave);
+	inline void setIsHidden(bool _IsHidden);
+	inline void setRequiredCoins(int _RequiredCoins);
+	inline void setIsUnlocked(bool _IsUnlocked);
+	inline void setLastEditorZoom(float _LastEditorZoom);
+	inline void setLastBuildTab(int _LastBuildTab);
+	inline void setLastBuildPage(int _LastBuildPage);
+	inline void setLevelType(GJLevelType _LevelType);
+	inline void setM_ID(int _M_ID);
+	inline void setCapacity001(int _Capacity001);
+	inline void setCapacity002(int _Capacity002);
+	inline void setCapacity003(int _Capacity003);
+	inline void setCapacity004(int _Capacity004);
+	inline void setTempName(std::string _TempName);
+	inline void setRateUser(std::string _RateUser);
+	inline void setUpdateDate(std::string _UpdateDate);
+	inline void setUploadDate(std::string _UploadDate);
+	inline void setRecordString(std::string _RecordString);
+	inline void setUserName(std::string _UserName);
+	inline void setLevelString(std::string _LevelString);
+	inline void setLevelDesc(std::string _LevelDesc);
+	inline void setLevelName(std::string _LevelName);
+	inline void setLastCameraPos(cocos2d::CCPoint _LastCameraPos);
+	inline void setLengthKey(GJLength _LengthKey);
+	inline void setAverageDifficulty(int _AverageDifficulty);
+	inline void setSongName(std::string _SongName);
+	inline void setExtraString(std::string _ExtraString);
+	inline void setVfDChk(bool _vfDChk);
+	inline void setLevelSeed(int _seed);
+	inline void setLevelProgress(std::string _progress);
+	inline void setDailyID(int _dailyID);
+
+
 	void savePercentage(int _percentage, bool _practice, int _clicks, int _attemptTime, bool _vfDChk)
 };
