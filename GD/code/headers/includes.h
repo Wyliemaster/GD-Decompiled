@@ -16,6 +16,7 @@
 #include "DialogObject.h"
 #include "GJMapPack.h"
 #include "GJGameLevel.h"
+#include "GJBaseGameLayer.h"
 
 
 enum GJHttpType
