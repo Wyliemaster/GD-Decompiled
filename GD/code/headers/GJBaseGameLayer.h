@@ -5,12 +5,13 @@ class OBB2D;
 class GJEffectManager;
 class PlayerObject;
 class LevelSettingsObject;
+class TriggerEffectDelegate;
 
 // size is 0x2CC
 class GJBaseGameLayer : public cocos2d::CCLayer
 {
 public:
-    BYTE PAD1[4];
+    TriggerEffectDelegate *m_pTriggerEffectDelegate;
     OBB2D* m_pOBB2D;
     GJEffectManager* m_pEffectManager;
     cocos2d::CCLayer* m_pObjectLayer;
