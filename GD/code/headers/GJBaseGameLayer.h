@@ -6,6 +6,7 @@ class GJEffectManager;
 class PlayerObject;
 class LevelSettingsObject;
 
+// size is 0x2CC
 class GJBaseGameLayer : public cocos2d::CCLayer
 {
 public:
