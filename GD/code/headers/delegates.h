@@ -67,3 +67,12 @@ public:
     virtual void updateSettingsFinished();
     virtual void updateSettingsFailed();
 };
+
+class TriggerEffectDelegate
+{
+public:
+    bool defaultEnterEffect_;
+
+    virtual void toggleGroupTriggered(int _idx, bool _toggle);
+    virtual void spawnGroup(int _idx);
+};

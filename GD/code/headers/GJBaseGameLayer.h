@@ -8,10 +8,9 @@ class LevelSettingsObject;
 class TriggerEffectDelegate;
 
 // size is 0x2CC
-class GJBaseGameLayer : public cocos2d::CCLayer
+class GJBaseGameLayer : public cocos2d::CCLayer, TriggerEffectDelegate
 {
 public:
-    TriggerEffectDelegate *m_pTriggerEffectDelegate;
     OBB2D* m_pOBB2D;
     GJEffectManager* m_pEffectManager;
     cocos2d::CCLayer* m_pObjectLayer;
@@ -43,7 +42,7 @@ public:
     cocos2d::CCSpriteBatchNode* m_pEffectBatchNodeAddTop1;
     cocos2d::CCSpriteBatchNode* m_pBatchNodePlayer;
     cocos2d::CCSpriteBatchNode* m_pBatchNodeAddPlayer;
-    cocos2d::CCSpriteBatchNode* m_pUnknownBatchNode;
+    cocos2d::CCSpriteBatchNode* m_pBatchNodePlayerGlow;
     cocos2d::CCSpriteBatchNode* m_pBatchNodeAddMid;
     cocos2d::CCSpriteBatchNode* m_pBatchNodeBot;
     cocos2d::CCSpriteBatchNode* m_pBatchNodeAddBot;
@@ -82,14 +81,14 @@ public:
     LevelSettingsObject* m_pLevelSettings;
     cocos2d::CCDictionary* m_pDisabledGroupsDictMaybe;
     cocos2d::CCArray* m_pObjects;
-    cocos2d::CCArray* m_pObjectCointainers;
-    cocos2d::CCArray* m_pUnkCollisionBlockArray2;
-    cocos2d::CCArray* m_pUnkCollisionBlockArray;
+    cocos2d::CCArray* m_pSectionObjectsArray;
+    cocos2d::CCArray* m_pSections;
+    cocos2d::CCArray* m_pCollisionBlocksArray;
     cocos2d::CCArray* m_pSpawnObjectsArray;
     cocos2d::CCArray* m_pUnkArr4;
     cocos2d::CCNode* m_pGroupNodes;
-    std::vector<void*> m_pUnkVec1;
-    std::vector<void*> m_pUnkVec2;
+    std::vector<GameObject*> m_pGameObjects;
+    std::vector<GameObject*> m_pDisabledObjects;
     cocos2d::CCDictionary* m_pGroupDict;
     cocos2d::CCDictionary* m_pStaticGroupDict;
     cocos2d::CCDictionary* m_pOptimisedGroupDict;
@@ -97,16 +96,16 @@ public:
     std::vector<cocos2d::CCArray*> m_pStaticGroups;
     std::vector<cocos2d::CCArray*> m_pOptimisedGroups;
     cocos2d::CCArray* m_pBatchNodeArray;
-    cocos2d::CCArray* m_pUnkArr6;
+    cocos2d::CCArray* m_pProcessedGroups;
     cocos2d::CCDictionary* m_pCounterDict;
-    cocos2d::CCDictionary* m_pUnkGroupDict;
+    cocos2d::CCDictionary* m_pSpawnedGroups;
     bool m_bUpdatedNormalCapacity;
     bool m_bTwoPlayer;
     int m_nUnk;
     bool m_bActiveDualTouch;
     int m_nPushedButtons;
     int m_nCurrentSection;
-    int m_nOldSectionMaybe;
+    int m_nOldSection;
     bool m_bDisabledObjects;
     bool m_bBlending;
     BYTE PAD2[10];
