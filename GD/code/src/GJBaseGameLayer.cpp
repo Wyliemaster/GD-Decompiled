@@ -211,7 +211,7 @@ void GJBaseGameLayer::updateLayerCapacity(std::string _capacityString)
 	if (batchNodes->count() > 0xF)
 	{
 		m_bUpdatedNormalCapacity = true;
-
+		//2.0
 		m_pBatchNodeAddTop2->increaseAtlasCapacity(batchNodes->stringAtIndex(0x0)->intValue());
 		m_pBatchNode->increaseAtlasCapacity(batchNodes->stringAtIndex(0x1)->intValue());
 		m_pBatchNodeAdd->increaseAtlasCapacity(batchNodes->stringAtIndex(0x2)->intValue());
@@ -225,12 +225,13 @@ void GJBaseGameLayer::updateLayerCapacity(std::string _capacityString)
 		m_pBatchNodeBot2->increaseAtlasCapacity(batchNodes->stringAtIndex(0xA)->intValue());
 		m_pBatchNodeAddBot2->increaseAtlasCapacity(batchNodes->stringAtIndex(0xB)->intValue());
 		m_pBatchNodeAddGlow->increaseAtlasCapacity(batchNodes->stringAtIndex(0xC)->intValue());
-		//Robert seems to have accidentally skipped an index so the batch nodes after this arent optimised
+		//Robert seems to have accidentally skipped index 0xD so the batch nodes after this arent optimised
 		//as they are misaligned with the capacity string
 		m_pBatchNodeAddBotGlow->increaseAtlasCapacity(batchNodes->stringAtIndex(0xE)->intValue());
 		m_pBatchNodeAddBot2Glow->increaseAtlasCapacity(batchNodes->stringAtIndex(0xF)->intValue());
 		if (batchNodes->count() > 0x36)
 		{
+			//2.1
 			m_bUpdatedNormalCapacity = false;
 
 			m_pBatchNodeBot4->increaseAtlasCapacity(batchNodes->stringAtIndex(0x10)->intValue());
@@ -278,6 +279,7 @@ void GJBaseGameLayer::updateLayerCapacity(std::string _capacityString)
 	}
 	else
 	{
+		//1.9
 		updateLegacyLayerCapacity(
 			batchNodes->stringAtIndex(0x0)->intValue(),
 			batchNodes->stringAtIndex(0x1)->intValue(),
