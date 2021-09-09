@@ -156,8 +156,8 @@ cocos2d::CCArray* GJBaseGameLayer::getStaticGroup(int _idx)
 	if (!group)
 	{
 		group = cocos2d::CCArray::create();
-		m_pGroupDict->setObject(group, index);
-		m_pStaticGroups[index] = group;
+		m_pGroupDict->setObject(group, _idx);
+		m_pStaticGroups[_idx] = group;
 	}
 	return group;
 }
@@ -168,8 +168,8 @@ cocos2d::CCArray* GJBaseGameLayer::getOptimizedGroup(int _idx)
 	if (!group)
 	{
 		group = cocos2d::CCArray::create();
-		m_pGroupDict->setObject(group, index);
-		m_pOptimisedGroups[index] = group;
+		m_pGroupDict->setObject(group, _idx);
+		m_pOptimisedGroups[_idx] = group;
 	}
 	return group;
 }
