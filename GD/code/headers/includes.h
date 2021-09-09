@@ -17,6 +17,8 @@
 #include "GJMapPack.h"
 #include "GJGameLevel.h"
 #include "GJBaseGameLayer.h"
+#include "LevelSettingsLayer.h"
+
 
 
 enum GJHttpType
