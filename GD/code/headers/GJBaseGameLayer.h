@@ -120,4 +120,5 @@ public:
     void updateLegacyLayerCapacity(int _top, int _topBlending, int _bot, int _botBlending);
     void updateLayerCapacity(std::string _capacityString);
     void createTextLayers();
+    void setupLayers();
 };
