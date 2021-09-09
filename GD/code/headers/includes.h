@@ -18,6 +18,7 @@
 #include "GJGameLevel.h"
 #include "GJBaseGameLayer.h"
 #include "LevelSettingsLayer.h"
+#include "LevelSettingsObject.h"
 
 
 
