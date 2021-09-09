@@ -207,7 +207,7 @@ void GJBaseGameLayer::updateLegacyLayerCapacity(int _top, int _topBlending, int 
 
 void GJBaseGameLayer::updateLayerCapacity(std::string _capacityString)
 {
-	cocos2d::CCArray batchNodes = RobTop::splitToCCArray(_capacityString, "_");
+	cocos2d::CCArray *batchNodes = RobTop::splitToCCArray(_capacityString, "_");
 	if (batchNodes->count() > 0xF)
 	{
 		m_bUpdatedNormalCapacity = true;
