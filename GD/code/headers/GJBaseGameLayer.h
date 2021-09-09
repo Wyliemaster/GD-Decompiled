@@ -119,5 +119,5 @@ public:
     cocos2d::CCArray* getOptimizedGroup(int _idx);
     void updateLegacyLayerCapacity(int _top, int _topBlending, int _bot, int _botBlending);
     void updateLayerCapacity(std::string _capacityString);
-
+    void createTextLayers();
 };

@@ -288,3 +288,59 @@ void GJBaseGameLayer::updateLayerCapacity(std::string _capacityString)
 		);
 	}
 }
+
+void GJBaseGameLayer::createTextLayers()
+{
+	GameManager* GM = GameManager::sharedState();
+	cocos2d::CCTexture2D* texture = cocos2d::CCTextureCache::sharedTextureCache()->addImage(GM->getFontTexture(GM->m_nFontID));
+	cocos2d::ccBlendFunc blendFunc = {302, 1};
+
+	m_pBatchNodeTextTop3 = cocos2d::CCSpriteBatchNode::createWithTexture(texture);
+	m_pObjectLayer->addChild(m_pBatchNodeTextTop3, 21);
+
+	m_pBatchNodeTextAddTop3 = cocos2d::CCSpriteBatchNode::createWithTexture(texture);
+	m_pBatchNodeTextAddTop3->setBlendFunc(blendFunc);
+	m_pObjectLayer->addChild(m_pBatchNodeTextAddTop3, 22);
+
+	m_pBatchNodeTextTop2 = cocos2d::CCSpriteBatchNode::createWithTexture(texture);
+	m_pObjectLayer->addChild(m_pBatchNodeTextTop2, 13);
+
+	m_pBatchNodeTextAddTop2 = cocos2d::CCSpriteBatchNode::createWithTexture(texture);
+	m_pBatchNodeTextAddTop2->setBlendFunc(blendFunc);
+	m_pObjectLayer->addChild(m_pBatchNodeTextAddTop2, 14);
+
+	m_pBatchNodeTextTop1 = cocos2d::CCSpriteBatchNode::createWithTexture(texture);
+	m_pObjectLayer->addChild(m_pBatchNodeTextTop1, 6);
+
+	m_pBatchNodeTextAddTop1 = cocos2d::CCSpriteBatchNode::createWithTexture(texture);
+	m_pBatchNodeTextAddTop1->setBlendFunc(blendFunc);
+	m_pObjectLayer->addChild(m_pBatchNodeTextAddTop1, 7);
+
+	m_pBatchNodeText = cocos2d::CCSpriteBatchNode::createWithTexture(texture);
+	m_pObjectLayer->addChild(m_pBatchNodeText, -5);
+
+	m_pBatchNodeAddText = cocos2d::CCSpriteBatchNode::createWithTexture(texture);
+	m_pBatchNodeAddText->setBlendFunc(blendFunc);
+	m_pObjectLayer->addChild(m_pBatchNodeAddText, -5);
+
+	m_pBatchNodeTextBot2 = cocos2d::CCSpriteBatchNode::createWithTexture(texture);
+	m_pObjectLayer->addChild(m_pBatchNodeTextBot2, -12);
+
+	m_pBatchNodeAddTextBot2 = cocos2d::CCSpriteBatchNode::createWithTexture(texture);
+	m_pBatchNodeAddTextBot2->setBlendFunc(blendFunc);
+	m_pObjectLayer->addChild(m_pBatchNodeAddTextBot2, -11);
+
+	m_pBatchNodeTextBot3 = cocos2d::CCSpriteBatchNode::createWithTexture(texture);
+	m_pObjectLayer->addChild(m_pBatchNodeTextBot3, -19);
+
+	m_pBatchNodeAddTextBot3 = cocos2d::CCSpriteBatchNode::createWithTexture(texture);
+	m_pBatchNodeAddTextBot3->setBlendFunc(blendFunc);
+	m_pObjectLayer->addChild(m_pBatchNodeAddTextBot3, -18);
+
+	m_pBatchNodeTextBot4 = cocos2d::CCSpriteBatchNode::createWithTexture(texture);
+	m_pObjectLayer->addChild(m_pBatchNodeTextBot4, -26);
+
+	m_pBatchNodeAddTextBot4 = cocos2d::CCSpriteBatchNode::createWithTexture(texture);
+	m_pBatchNodeAddTextBot4->setBlendFunc(blendFunc);
+	m_pObjectLayer->addChild(m_pBatchNodeAddTextBot4, -25);
+}
