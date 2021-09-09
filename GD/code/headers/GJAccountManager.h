@@ -54,5 +54,4 @@ public:
 
 private:
     static GJAccountManager* g_accountManager = nullptr;
-
 };
