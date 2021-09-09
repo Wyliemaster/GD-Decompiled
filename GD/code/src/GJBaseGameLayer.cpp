@@ -273,8 +273,6 @@ void GJBaseGameLayer::updateLayerCapacity(std::string _capacityString)
 			m_pBatchNodeTextBot4->increaseAtlasCapacity(batchNodes->stringAtIndex(0x34)->intValue());
 			m_pBatchNodeAddTextBot4->increaseAtlasCapacity(batchNodes->stringAtIndex(0x35)->intValue());
 			m_pEffectBatchNodeAddTop4->increaseAtlasCapacity(batchNodes->stringAtIndex(0x36)->intValue());
-
-
 		}
 	}
 	else
