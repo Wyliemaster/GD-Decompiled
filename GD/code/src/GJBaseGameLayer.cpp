@@ -138,7 +138,7 @@ int GJBaseGameLayer::atlasValue(int _capacity);
 
 cocos2d::CCArray* GJBaseGameLayer::getGroup(int _idx)
 {
-	index = _idx;
+	int index = _idx;
 	if (_idx >= 999) index = 999;
 	cocos2d::CCArray *group = m_pGroups[index];
 	if (!group)
