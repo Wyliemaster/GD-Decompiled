@@ -114,4 +114,9 @@ public:
     void enableHighCapacityMode();
     std::string getCapacityString();
     int atlasValue(int _batchNodeCapacity);
+    cocos2d::CCArray* getGroup(int _idx);
+    cocos2d::CCArray* getStaticGroup(int _idx);
+    cocos2d::CCArray* getOptimizedGroup(int _idx);
+
+
 };

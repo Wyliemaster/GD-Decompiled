@@ -135,3 +135,41 @@ int GJBaseGameLayer::atlasValue(int _capacity);
 	if (_capacity <= 29) return 0;
 	return std::min(_capacity * 1.1, 9999);
 }
+
+cocos2d::CCArray* GJBaseGameLayer::getGroup(int _idx)
+{
+	index = _idx;
+	if (_idx >= 999) index = 999;
+	cocos2d::CCArray *group = m_pGroups[index];
+	if (!group)
+	{
+		group = cocos2d::CCArray::create();
+		m_pGroupDict->setObject(group, index);
+		m_pGroups[index] = group;
+	}
+	return group;
+}
+
+cocos2d::CCArray* GJBaseGameLayer::getStaticGroup(int _idx)
+{
+	cocos2d::CCArray* group = m_pStaticGroups[_idx];
+	if (!group)
+	{
+		group = cocos2d::CCArray::create();
+		m_pGroupDict->setObject(group, index);
+		m_pStaticGroups[index] = group;
+	}
+	return group;
+}
+
+cocos2d::CCArray* GJBaseGameLayer::getOptimizedGroup(int _idx)
+{
+	cocos2d::CCArray* group = m_pOptimisedGroups[_idx];
+	if (!group)
+	{
+		group = cocos2d::CCArray::create();
+		m_pGroupDict->setObject(group, index);
+		m_pOptimisedGroups[index] = group;
+	}
+	return group;
+}
