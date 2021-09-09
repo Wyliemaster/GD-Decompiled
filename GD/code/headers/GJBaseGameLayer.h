@@ -109,4 +109,9 @@ public:
     bool m_bDisabledObjects;
     bool m_bBlending;
     BYTE PAD2[10];
+
+    GJBaseGameLayer();
+    void enableHighCapacityMode();
+    std::string getCapacityString();
+    int atlasValue(int _batchNodeCapacity);
 };
