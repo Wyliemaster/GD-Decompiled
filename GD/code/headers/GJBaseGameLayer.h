@@ -117,6 +117,7 @@ public:
     cocos2d::CCArray* getGroup(int _idx);
     cocos2d::CCArray* getStaticGroup(int _idx);
     cocos2d::CCArray* getOptimizedGroup(int _idx);
-
+    void updateLegacyLayerCapacity(int _top, int _topBlending, int _bot, int _botBlending);
+    void updateLayerCapacity(std::string _capacityString);
 
 };

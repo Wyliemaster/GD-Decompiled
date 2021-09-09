@@ -74,6 +74,7 @@ void GJBaseGameLayer::enableHighCapacityMode()
 std::string GJBaseGameLayer::getCapacityString()
 {
 	return cocos2d::CCString::createWithFormat("%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i_%i",
+		atlasValue(m_pBatchNodeAddTop2->getUsedAtlasCapacity()),
 		atlasValue(m_pBatchNode->getUsedAtlasCapacity()),
 		atlasValue(m_pBatchNodeAdd->getUsedAtlasCapacity()),
 		atlasValue(m_pBatchNodePlayer->getUsedAtlasCapacity()),
@@ -172,4 +173,116 @@ cocos2d::CCArray* GJBaseGameLayer::getOptimizedGroup(int _idx)
 		m_pOptimisedGroups[_idx] = group;
 	}
 	return group;
+}
+
+void GJBaseGameLayer::updateLegacyLayerCapacity(int _top, int _topBlending, int _bot, int _botBlending)
+{
+	int topBlend = std::min(_topBlending, 100);
+	int top = std::min(_top, 100);
+	int botBlending = std::min(_botBlending, 100);
+	int bot = std::min(_bot, 100);
+	int player = 50;
+
+	//top nodes
+	m_pBatchNode->increaseAtlasCapacity(top);
+	m_pBatchNodeAdd->increaseAtlasCapacity(topBlend);
+
+	//playerNodes
+	m_pBatchNodePlayer->increaseAtlasCapacity(player);
+	m_pBatchNodeAddPlayer->increaseAtlasCapacity(player);
+
+	//B1 Nodes
+	m_pBatchNodeBot->increaseAtlasCapacity(bot);
+	m_pBatchNodeAddBot->increaseAtlasCapacity(botBlending);
+
+	//B2 Nodes
+	m_pBatchNodeBot2->increaseAtlasCapacity(bot);
+	m_pBatchNodeAddBot2->increaseAtlasCapacity(botBlending);
+
+	//Glow Nodes
+	m_pBatchNodeAddGlow->increaseAtlasCapacity(topBlend >> 1);
+	m_pBatchNodeAddBotGlow->increaseAtlasCapacity(botBlending >> 1);
+	m_pBatchNodeAddBot2Glow->increaseAtlasCapacity(botBlending >> 1);
+}
+
+void GJBaseGameLayer::updateLayerCapacity(std::string _capacityString)
+{
+	cocos2d::CCArray batchNodes = RobTop::splitToCCArray(_capacityString, "_");
+	if (batchNodes->count() > 0xF)
+	{
+		m_bUpdatedNormalCapacity = true;
+
+		m_pBatchNodeAddTop2->increaseAtlasCapacity(batchNodes->stringAtIndex(0x0)->intValue());
+		m_pBatchNode->increaseAtlasCapacity(batchNodes->stringAtIndex(0x1)->intValue());
+		m_pBatchNodeAdd->increaseAtlasCapacity(batchNodes->stringAtIndex(0x2)->intValue());
+		m_pBatchNodePlayer->increaseAtlasCapacity(batchNodes->stringAtIndex(0x3)->intValue());
+		m_pBatchNodeAddPlayer->increaseAtlasCapacity(batchNodes->stringAtIndex(0x4)->intValue());
+		m_pBatchNodeAddMid->increaseAtlasCapacity(batchNodes->stringAtIndex(0x5)->intValue());
+		m_pBatchNodeBot->increaseAtlasCapacity(batchNodes->stringAtIndex(0x6)->intValue());
+		m_pBatchNodeAddBot->increaseAtlasCapacity(batchNodes->stringAtIndex(0x7)->intValue());
+		m_pEffectBatchNode->increaseAtlasCapacity(batchNodes->stringAtIndex(0x8)->intValue());
+		m_pEffectBatchNodeAdd->increaseAtlasCapacity(batchNodes->stringAtIndex(0x9)->intValue());
+		m_pBatchNodeBot2->increaseAtlasCapacity(batchNodes->stringAtIndex(0xA)->intValue());
+		m_pBatchNodeAddBot2->increaseAtlasCapacity(batchNodes->stringAtIndex(0xB)->intValue());
+		m_pBatchNodeAddGlow->increaseAtlasCapacity(batchNodes->stringAtIndex(0xC)->intValue());
+		//Robert seems to have accidentally skipped an index so the batch nodes after this arent optimised
+		//as they are misaligned with the capacity string
+		m_pBatchNodeAddBotGlow->increaseAtlasCapacity(batchNodes->stringAtIndex(0xE)->intValue());
+		m_pBatchNodeAddBot2Glow->increaseAtlasCapacity(batchNodes->stringAtIndex(0xF)->intValue());
+		if (batchNodes->count() > 0x36)
+		{
+			m_bUpdatedNormalCapacity = false;
+
+			m_pBatchNodeBot4->increaseAtlasCapacity(batchNodes->stringAtIndex(0x10)->intValue());
+			m_pBatchNodeAddBot4->increaseAtlasCapacity(batchNodes->stringAtIndex(0x11)->intValue());
+			m_pBatchNodeAddBot4Glow->increaseAtlasCapacity(batchNodes->stringAtIndex(0x12)->intValue());
+			m_pBatchNodeBot3->increaseAtlasCapacity(batchNodes->stringAtIndex(0x13)->intValue());
+			m_pBatchNodeAddBot3->increaseAtlasCapacity(batchNodes->stringAtIndex(0x14)->intValue());
+			m_pBatchNodeAddBot3Glow->increaseAtlasCapacity(batchNodes->stringAtIndex(0x15)->intValue());
+			m_pBatchNodeTop2->increaseAtlasCapacity(batchNodes->stringAtIndex(0x16)->intValue());
+			m_pBatchNodeAddGlowTop2->increaseAtlasCapacity(batchNodes->stringAtIndex(0x17)->intValue());
+			m_pBatchNodeTop3->increaseAtlasCapacity(batchNodes->stringAtIndex(0x18)->intValue());
+			m_pBatchNodeAddTop3->increaseAtlasCapacity(batchNodes->stringAtIndex(0x19)->intValue());
+			m_pBatchNodeAddGlowTop3->increaseAtlasCapacity(batchNodes->stringAtIndex(0x1A)->intValue());
+			m_pBatchNodeAddTop4->increaseAtlasCapacity(batchNodes->stringAtIndex(0x1B)->intValue());
+			m_pEffectBatchNodeTop3->increaseAtlasCapacity(batchNodes->stringAtIndex(0x1C)->intValue());
+			m_pEffectBatchNodeAddTop3->increaseAtlasCapacity(batchNodes->stringAtIndex(0x1D)->intValue());
+			m_pEffectBatchNodeTop2->increaseAtlasCapacity(batchNodes->stringAtIndex(0x1E)->intValue());
+			m_pEffectBatchNodeAddTop2->increaseAtlasCapacity(batchNodes->stringAtIndex(0x1F)->intValue());
+			m_pEffectBatchNodeTop1->increaseAtlasCapacity(batchNodes->stringAtIndex(0x20)->intValue());
+			m_pEffectBatchNodeAddTop1->increaseAtlasCapacity(batchNodes->stringAtIndex(0x21)->intValue());
+			m_pEffectBatchNodeBot2->increaseAtlasCapacity(batchNodes->stringAtIndex(0x22)->intValue());
+			m_pEffectBatchNodeAddBot2->increaseAtlasCapacity(batchNodes->stringAtIndex(0x23)->intValue());
+			m_pEffectBatchNodeBot3->increaseAtlasCapacity(batchNodes->stringAtIndex(0x24)->intValue());
+			m_pEffectBatchNodeAddBot3->increaseAtlasCapacity(batchNodes->stringAtIndex(0x25)->intValue());
+			m_pEffectBatchNodeBot4->increaseAtlasCapacity(batchNodes->stringAtIndex(0x26)->intValue());
+			m_pEffectBatchNodeAddBot4->increaseAtlasCapacity(batchNodes->stringAtIndex(0x27)->intValue());
+			m_pBatchNodeTextTop3->increaseAtlasCapacity(batchNodes->stringAtIndex(0x28)->intValue());
+			m_pBatchNodeAddTextTop3->increaseAtlasCapacity(batchNodes->stringAtIndex(0x29)->intValue());
+			m_pBatchNodeTextTop2->increaseAtlasCapacity(batchNodes->stringAtIndex(0x2A)->intValue());
+			m_pBatchNodeAddTextTop2->increaseAtlasCapacity(batchNodes->stringAtIndex(0x2B)->intValue());
+			m_pBatchNodeTextTop1->increaseAtlasCapacity(batchNodes->stringAtIndex(0x2C)->intValue());
+			m_pBatchNodeAddTextTop1->increaseAtlasCapacity(batchNodes->stringAtIndex(0x2D)->intValue());
+			m_pBatchNodeText->increaseAtlasCapacity(batchNodes->stringAtIndex(0x2E)->intValue());
+			m_pBatchNodeAddText->increaseAtlasCapacity(batchNodes->stringAtIndex(0x2F)->intValue());
+			m_pBatchNodeTextBot2->increaseAtlasCapacity(batchNodes->stringAtIndex(0x30)->intValue());
+			m_pBatchNodeAddTextBot2->increaseAtlasCapacity(batchNodes->stringAtIndex(0x31)->intValue());
+			m_pBatchNodeTextBot3->increaseAtlasCapacity(batchNodes->stringAtIndex(0x32)->intValue());
+			m_pBatchNodeAddTextBot3->increaseAtlasCapacity(batchNodes->stringAtIndex(0x33)->intValue());
+			m_pBatchNodeTextBot4->increaseAtlasCapacity(batchNodes->stringAtIndex(0x34)->intValue());
+			m_pBatchNodeAddTextBot4->increaseAtlasCapacity(batchNodes->stringAtIndex(0x35)->intValue());
+			m_pEffectBatchNodeAddTop4->increaseAtlasCapacity(batchNodes->stringAtIndex(0x36)->intValue());
+
+
+		}
+	}
+	else
+	{
+		updateLegacyLayerCapacity(
+			batchNodes->stringAtIndex(0x0)->intValue(),
+			batchNodes->stringAtIndex(0x1)->intValue(),
+			batchNodes->stringAtIndex(0x2)->intValue(),
+			batchNodes->stringAtIndex(0x3)->intValue()
+		);
+	}
 }
