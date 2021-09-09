@@ -293,7 +293,7 @@ void GJBaseGameLayer::createTextLayers()
 {
 	GameManager* GM = GameManager::sharedState();
 	cocos2d::CCTexture2D* texture = cocos2d::CCTextureCache::sharedTextureCache()->addImage(GM->getFontTexture(GM->m_nFontID));
-	cocos2d::ccBlendFunc blendFunc = {302, 1};
+	cocos2d::ccBlendFunc blendFunc = {770, 1};
 
 	m_pBatchNodeTextTop3 = cocos2d::CCSpriteBatchNode::createWithTexture(texture);
 	m_pObjectLayer->addChild(m_pBatchNodeTextTop3, 21);
