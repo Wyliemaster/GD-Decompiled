@@ -23,7 +23,6 @@ public:
     GJAccountSyncDelegate *m_pSyncAccountDelegate;
     GJAccountSettingsDelegate *m_pAccountSettingsDelegate;
 
-
     GJAccountManager();
     inline void setPlayerAccountID(int _accountID);
     inline void setPlayerName(std::string _username);
@@ -52,4 +51,8 @@ public:
     bool syncAccount(std::string _endpoint);
     void ProcessHttpRequest(std::string _endpoint, std::string _params, std::string, _tag, GJHttpType _httpType);
     void linkToAccount(std::string _username, std::string _password, int _accountID, int _playerID);
+
+private:
+    static GJAccountManager* g_accountManager = nullptr;
+
 };

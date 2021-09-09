@@ -270,16 +270,12 @@ bool GJAccountManager::syncAccount(std::string _endpoint)
 
 GJAccountManager* GJAccountManager::sharedState()
 {
-    auto pRet = new GJAccountManager;
-
-    if (pRet && pRet->init())
+    if (g_accountManager == nullptr)
     {
-        pRet->autorelease();
-        return pRet;
+        g_accountManager = new GJAccountManager;
+        g_accountManager->init();
     }
-
-    CC_SAFE_DELETE(pRet);
-    return nullptr;
+    return g_accountManager;
 }
 
 bool GJAccountManager::init()
