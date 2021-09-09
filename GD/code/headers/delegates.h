@@ -68,6 +68,7 @@ public:
     virtual void updateSettingsFailed();
 };
 
+// credits to 13laze for this
 class TriggerEffectDelegate
 {
 public:
