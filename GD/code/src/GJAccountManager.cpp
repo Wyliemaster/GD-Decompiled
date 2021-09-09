@@ -272,7 +272,7 @@ GJAccountManager* GJAccountManager::sharedState()
 {
     if (g_accountManager == nullptr)
     {
-        g_accountManager = new GJAccountManager;
+        g_accountManager = new GJAccountManager();
         g_accountManager->init();
     }
     return g_accountManager;
