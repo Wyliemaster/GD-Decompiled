@@ -1,5 +1,27 @@
 #include "../headers/includes.h"
 
+ObjectToolbox::ObjectToolbox()
+{
+	v1->m_pframeToKey = nullptr;
+	v1->m_pkeyToFrame = nullptr;
+}
+
+cocos2d::CCArray* ObjectToolbox::allKeys()
+{
+	return m_pkeyToFrame->allKeys();
+}
+
+ObjectToolbox* ObjectToolbox::sharedState()
+{
+	if (g_toolbox == nullptr)
+	{
+		cocos2d::CCNode::CCNode();
+		g_toolbox = new ObjectToolbox();
+		g_toolbox->init();
+	}
+	return g_toolbox;
+}
+
 bool ObjectToolbox::init()
 {
 	// Generated Programatically using a dump of the toolbox provided by Absolute (https://gist.github.com/absoIute/c8fa23c9b2cb39252755465345bc6e35)
