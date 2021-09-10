@@ -2,12 +2,14 @@
 
 bool ObjectToolbox::init()
 {
+	// Generated Programatically using a dump of the toolbox provided by Absolute (https://gist.github.com/absoIute/c8fa23c9b2cb39252755465345bc6e35)
 	bool init = cocos2d::CCNode::init();
 
 	if (!init)
 	{
 		m_pframeToKey = cocos2d::CCDictionary::create();
 		m_pframeToKey->retain();
+
 		m_pkeyToFrame = cocos2d::CCDictionary::create();
 		m_pkeyToFrame->retain();
 
