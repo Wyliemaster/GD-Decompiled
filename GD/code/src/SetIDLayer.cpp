@@ -93,5 +93,5 @@ SetIDLayer* SetIDLayer::create(GameObject* obj)
 void SetIDLayer::onClose(cocos2d::CCObject* btn)
 {
 	setKeypadEnabled(false);
-	6removeFromParentAndCleanup(true);
+	removeFromParentAndCleanup(true);
 }
