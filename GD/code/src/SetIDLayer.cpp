@@ -58,18 +58,18 @@ bool SetIDLayer::init(GameObject* obj)
 		// to lazy to double check so convertToNodeSpace it is!
 		cocos2d::CCMenuItemSpriteExtra* okBtn = cocos2d::CCMenuItemSpriteExtra::create(ButtonSprite::create("OK"), this, onClose);
 		m_pButtonMenu->addChild(okBtn);
-		okBtn->convertToNodeSpace(m_pButtonMenu, { winSize.width / 2, (winSize.height / 2) - 100.0f });
+		okBtn->setScale(convertToNodeSpace( { winSize.width / 2, (winSize.height / 2) - 100.0f } ));
 
 		cocos2d::CCMenuItemSpriteExtra* downBtn = cocos2d::CCMenuItemSpriteExtra::create(cocos2d::CCSprite::createWithSpriteFrameName("GJ_arrow_02_001.png"), this, onDown);
 		m_pButtonMenu->addChild(downBtn);
-		downBtn->setScale(convertToNodeSpace({ (winSize.width / 2) - 100.0f, winSize.height / 2 }));
+		downBtn->setScale(convertToNodeSpace({ (winSize.width / 2) - 100.0f, winSize.height / 2 } ));
 		downBtn->setSizeMulti(4.0f);
 		downBtn->setRotation(-90.0f);
 
 
 		cocos2d::CCMenuItemSpriteExtra* upBtn = cocos2d::CCMenuItemSpriteExtra::create(cocos2d::CCSprite::createWithSpriteFrameName("GJ_arrow_02_001.png"), this, onUp);
 		m_pButtonMenu->addChild(upBtn);
-		upBtn->setScale(convertToNodeSpace({ (winSize.width / 2) + 100.0f, winSize.height / 2 }));
+		upBtn->setScale(convertToNodeSpace({ (winSize.width / 2) + 100.0f, winSize.height / 2 } ));
 		upBtn->setSizeMulti(4.0f);
 		upBtn->setRotation(90.0f);
 
