@@ -20,6 +20,8 @@
 #include "LevelSettingsLayer.h"
 #include "LevelSettingsObject.h"
 #include "ObjectToolbox.h"
+#include "SetIDLayer.h"
+#include "GameObject.h"
 
 
 
