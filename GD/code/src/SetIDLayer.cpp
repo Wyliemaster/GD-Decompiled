@@ -55,7 +55,6 @@ bool SetIDLayer::init(GameObject* obj)
 
 		m_pButtonMenu->addChild(title);
 
-		// to lazy to double check so convertToNodeSpace it is!
 		cocos2d::CCMenuItemSpriteExtra* okBtn = cocos2d::CCMenuItemSpriteExtra::create(ButtonSprite::create("OK"), this, onClose);
 		m_pButtonMenu->addChild(okBtn);
 		okBtn->setScale(convertToNodeSpace( { winSize.width / 2, (winSize.height / 2) - 100.0f } ));
