@@ -75,3 +75,23 @@ bool SetIDLayer::init(GameObject* obj)
 	}
 	return init;
 }
+
+SetIDLayer* SetIDLayer::create(GameObject* obj)
+{
+	auto pRet = new SetIDLayer;
+
+	if (pRet && pRet->init(obj))
+	{
+		pRet->autorelease();
+		return pRet;
+	}
+
+	CC_SAFE_DELETE(pRet);
+	return nullptr;
+}
+
+void SetIDLayer::onClose(cocos2d::CCObject* btn)
+{
+	setKeypadEnabled(false);
+	6removeFromParentAndCleanup(true);
+}
