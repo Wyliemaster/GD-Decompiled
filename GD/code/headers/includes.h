@@ -22,6 +22,8 @@
 #include "ObjectToolbox.h"
 #include "SetIDLayer.h"
 #include "GameObject.h"
+#include "EffectGameObject.h"
+
 
 
 
