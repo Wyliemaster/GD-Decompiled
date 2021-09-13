@@ -226,7 +226,7 @@ void EffectGameObject::customObjectSetup(std::map<std::string, std::string> _sav
 		m_nColourIdx = atoi(_saveString["23"]);
 
 		m_fOpacity = 1.0f;
-		if(strtod(_saveString["36"], nullptr) <= 0)
+		if(strtod(_saveString["36"], nullptr) > 0)
 			m_fOpacity = strtod(_saveString["35"], nullptr); // i can't tell if this was intentional or not?
 
 		m_CopiedHSV = GameToolbox::hsvFromString(_saveString["49"], "a");
