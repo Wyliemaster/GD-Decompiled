@@ -92,7 +92,7 @@ void EffectGameObject::customObjectSetup(std::map<std::string, std::string> _sav
 	m_fOpacity = 1.0;
 
 	switch (objID) {
-	case 1347:// Follow Trigger	{
+	case 1347:// Follow Trigger
 		m_nTargetGroupID = atoi(_saveString["51"]);
 		m_nSecondaryGroupID = atoi(_saveString["71"]);
 		m_fDuration = strtod(_saveString["10"], nullptr);
