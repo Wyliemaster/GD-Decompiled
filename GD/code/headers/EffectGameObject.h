@@ -40,6 +40,8 @@ enum TouchToggleMode {
 	kTouchToggleModeToggleOff = 2,
 };
 
+enum PickupMode;
+
 class EffectGameObject : public GameObject
 {
 public:
@@ -97,7 +99,7 @@ public:
 	int m_nBBlockID;
 	bool m_bDynamicBlock;
 	int m_nItemID;
-	int m_ePickupMode;
+	PickupMode m_ePickupMode;
 	int PAD[9];
 
 	virtual void customObjectSetup();
@@ -108,4 +110,5 @@ public:
 	void resetSpawnTrigger();
 	virtual std::string getSaveString();
 	int getTargetColorIndex();
+	virtual void customObjectSetup(std::map<std::string, std::string> _saveString);
 };
