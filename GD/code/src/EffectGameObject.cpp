@@ -111,7 +111,7 @@ void EffectGameObject::customObjectSetup(std::map<std::string, std::string> _sav
 		m_nTargetGroupID = atoi(_saveString["51"]);
 		m_bActivateGroup = atoi(_saveString["56"]) != 0;
 		m_bHoldMode = atoi(_saveString["81"]) != 0;
-		m_eToggleMode = static_cast<TouchToggleMode>(atoi(_saveString["82"]);
+		m_eToggleMode = static_cast<TouchToggleMode>(atoi(_saveString["82"]));
 		m_bDualMode = atoi(_saveString["89"]) != 0;
 		break;
 	case 1585:  // Animate Trigger
