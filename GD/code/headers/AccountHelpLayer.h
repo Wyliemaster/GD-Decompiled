@@ -1,11 +1,8 @@
 #include "includes.h"
 
 class GJAccountDelegate;
-class GJAccountBackupDelegate;
-class GJAccountSyncDelegate;
 class FLAlertLayerProtocol;
 class TextArea;
-class LoadingCircle;
 
 class AccountHelpLayer : public GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtocol
 {
