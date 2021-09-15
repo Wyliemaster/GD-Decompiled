@@ -26,6 +26,7 @@
 #include "MenuLayer.h"
 #include "GJDropDownLayer.h"
 #include "AccountLayer.h"
+#include "AccountHelpLayer.h"
 
 
 
