@@ -27,6 +27,8 @@
 #include "GJDropDownLayer.h"
 #include "AccountLayer.h"
 #include "AccountHelpLayer.h"
+#include "AccountLoginLayer.h"
+
 
 
 

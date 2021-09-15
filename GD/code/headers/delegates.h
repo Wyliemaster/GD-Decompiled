@@ -77,3 +77,7 @@ public:
     virtual void toggleGroupTriggered(int _idx, bool _toggle);
     virtual void spawnGroup(int _idx);
 };
+
+class TextInputDelegate {
+
+};

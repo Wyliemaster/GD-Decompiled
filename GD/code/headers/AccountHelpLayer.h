@@ -3,6 +3,7 @@
 class GJAccountDelegate;
 class FLAlertLayerProtocol;
 class TextArea;
+class LoadingCircle;
 
 class AccountHelpLayer : public GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtocol
 {
