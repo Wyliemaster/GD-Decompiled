@@ -24,6 +24,8 @@
 #include "GameObject.h"
 #include "EffectGameObject.h"
 #include "MenuLayer.h"
+#include "GJDropDownLayer.h"
+#include "AccountLayer.h"
 
 
 
