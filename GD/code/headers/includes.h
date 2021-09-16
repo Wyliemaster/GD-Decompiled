@@ -28,7 +28,10 @@
 #include "AccountLayer.h"
 #include "AccountHelpLayer.h"
 #include "AccountLoginLayer.h"
-
+#include "AccountRegisterLayer.h"
+#include "GJGarageLayer.h"
+#include "SecretLayer.h"
+#include "CCTextInputNode.h"
 
 
 
