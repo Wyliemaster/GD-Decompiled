@@ -32,7 +32,7 @@
 #include "GJGarageLayer.h"
 #include "SecretLayer.h"
 #include "CCTextInputNode.h"
-
+#include "AchievementManager.h"
 
 
 

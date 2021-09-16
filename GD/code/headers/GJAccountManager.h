@@ -48,6 +48,7 @@ public:
     void onUpdateAccountSettingsCompleted(std::string _response, std::string _tag);
     void onGetAccountSyncURLCompleted(std::string _response, std::string _tag);
     void onGetAccountBackupURLCompleted(std::string _response, std::string _tag);
+    void onSyncAccountCompleted(serverResponse, _tag);
     bool syncAccount(std::string _endpoint);
     void ProcessHttpRequest(std::string _endpoint, std::string _params, std::string, _tag, GJHttpType _httpType);
     void linkToAccount(std::string _username, std::string _password, int _accountID, int _playerID);

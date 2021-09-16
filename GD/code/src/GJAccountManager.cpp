@@ -304,3 +304,49 @@ void GJAccountManager::linkToAccount(std::string _username, std::string _passwor
         m_pAccountDelegate->accountStatusChanged();
     GM->accountStatusChanged();
 }
+
+void GJAccountManager::onSyncAccountCompleted(std::string _response, std::string _tag)
+{
+    removeDLFromActive(_tag.c_str());
+    if (_response != "-1" || _response != "-2")
+    {
+        cocos2d::CCArray* saveData = RobTop::splitToCCArray(_reqsponse, ";");
+        GameManager* GM = GameManager::sharedState();
+        AchievementManager* AM = AchievementManager::sharedState();
+        AM->m_bNotifiedAchievement = true;
+
+        GM->loadFromCompressedString(saveData->stringAtIndex(0)->m_sString);
+        GM->loadFromCompressedString(saveData->stringAtIndex(1)->m_sString);
+
+        int gameVersion = saveData->stringAtIndex(2)->m_sString;
+        int binaryVersion = saveData->stringAtIndex(3)->m_sString;
+
+        std::string completedLevels = saveData->stringAtIndex(4)->m_sString;
+        if(strlen(completedLevels) > 0x28)
+            std::string decompressedLevels = cocos2d::ZipUtils::decompressString(completedLevels.substr(0x14), false, 0xB);
+
+        std::string completedMappacks = saveData->stringAtIndex(5)->m_sString;
+        if (strlen(completedMappacks) > 0x28)
+            std::string decompressedMappacks = cocos2d::ZipUtils::decompressString(completedMappacks.substr(0x14), false, 0xB);
+
+        /*
+        * too lazy, will do these later
+        *
+        * // parse mappacks
+        *
+        *
+        *
+        *
+        * // parse levels
+        * 
+        * 
+        * 
+        * 
+        */
+    }
+    if (m_pAccountDelegate)
+        m_pAccountDelegate->accountStatusChanged();
+
+    if (m_pSyncAccountDelegate)
+        m_pSyncAccountDelegate->syncAccountFinished();
+}
