@@ -343,10 +343,14 @@ void GJAccountManager::onSyncAccountCompleted(std::string _response, std::string
         * 
         * 
         */
+
+        if (m_pSyncAccountDelegate)
+            m_pSyncAccountDelegate->syncAccountFinished();
+        return;
     }
     if (m_pAccountDelegate)
         m_pAccountDelegate->accountStatusChanged();
 
     if (m_pSyncAccountDelegate)
-        m_pSyncAccountDelegate->syncAccountFinished();
+        m_pSyncAccountDelegate->syncAccountFailed(static_cast<BackupAccountError>(_response);
 }
