@@ -18,7 +18,7 @@ public:
 	float dword2C;
 	DWORD dword30;
 	BYTE dword34;
-	char m_bDisableShake2;
+	bool m_bDisableShake2;
 	bool m_bDisableShake;
 	BYTE PAD1[25];
 	StartPosObject* m_pStartPos;
@@ -83,7 +83,7 @@ public:
 	cocos2d::CCArray* m_pGravitySprites;
 	bool m_bJustDont;
 	bool m_bIsLocalLevel;
-	char m_bPlayer1PushedButtonMaybe;
+	bool m_bPlayer1PushedButtonMaybe;
 	bool m_bPaused;
 	bool m_bPlayer2PushedButtonMaybe;
 	bool m_bPlayer2Frozen;
