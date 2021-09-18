@@ -1,5 +1,6 @@
 #include "includes.h"
 
+// still a WIP many members may be incorrect as i might have missed something
 class PlayLayer : public GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate
 {
 public:
