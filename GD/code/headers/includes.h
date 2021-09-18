@@ -33,6 +33,8 @@
 #include "SecretLayer.h"
 #include "CCTextInputNode.h"
 #include "AchievementManager.h"
+#include "CheckpointObject.h"
+#include "PlayerCheckpoint.h"
 
 
 
