@@ -35,6 +35,7 @@
 #include "AchievementManager.h"
 #include "CheckpointObject.h"
 #include "PlayerCheckpoint.h"
+#include "GJGroundLayer.h"
 
 
 
