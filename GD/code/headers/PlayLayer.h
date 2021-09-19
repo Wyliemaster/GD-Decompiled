@@ -6,7 +6,7 @@
 /* align. Also keep in mind that a couple members could be incorrect. PlayLayer is quite a difficult class to    */
 /* understand.   																								 */		
 
-// Unknown Members: 28
+// Unknown Members: 28 - most of them are in PlayLayer::update() and PlayLayer::UpdateCamera() if anyone is interesting in trying to find them
 class PlayLayer : public GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate
 {
 public:
