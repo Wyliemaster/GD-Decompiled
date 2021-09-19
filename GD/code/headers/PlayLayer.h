@@ -1,23 +1,28 @@
 #include "includes.h"
 
-// still a WIP many members may be incorrect as i might have missed something
+/* ================================================ IMPORTANT ================================================== */
+/* This was reversed engineered on GD version 2.111 which is roughly 6 days behind the PC Release (2.113) it may */
+/* be unlikely however there is a chance robert added a member during those 6 days causing the members to mis-   */
+/* align. Also keep in mind that a couple members could be incorrect. PlayLayer is quite a difficult class to    */
+/* understand.   																								 */		
+
+// Unknown Members: 28
 class PlayLayer : public GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate
 {
 public:
 	DWORD dwordC;
-	BYTE gap2DC;
+	bool gap2DC;
 	bool m_bCheated;
 	bool m_bStartGame;
 	bool field_2DF;
 	float dword14;
 	bool dword18;
 	cocos2d::CCDrawNode* m_pUnkDrawNode;
-	// floats here all related to updating camera, very weird
-	float m_fY;
-	float dword24;
-	float m_fY1;
-	float dword2C;
-	float dword30;
+	float m_fToCameraY;
+	float m_fVisibleHeightMaybe;
+	float m_fDoubleGroundFixedYPos;
+	float m_fPlayerToTopStartYDifference;
+	float m_fDeathHeightMaybe;
 	bool m_bDeactivateSectionObjects;
 	bool m_bDisableShake2;
 	bool m_bDisableShake;
@@ -28,10 +33,10 @@ public:
 	cocos2d::CCArray* m_pCheckpointArray;
 	cocos2d::CCArray* m_pSpeedObjects;
 	cocos2d::CCArray* m_pSpeedPortalArray;
-	cocos2d::CCArray* m_pSomeArray;
+	cocos2d::CCArray* m_pSomeCollisionsArray;
 	cocos2d::CCSprite* m_pBackground;
 	cocos2d::CCRect m_obBackgroundRect;
-	cocos2d::CCArray* m_pSomeArray2;
+	cocos2d::CCArray* m_pSomeGroupArray;
 	cocos2d::CCArray* m_pActiveObjects;
 	cocos2d::CCArray* m_pUnkVisibleObjArr;
 	cocos2d::CCArray* m_pMoveActionsArr;
@@ -43,19 +48,19 @@ public:
 	cocos2d::CCArray* m_pCircleWaves;
 	cocos2d::CCArray* m_pTriggeredObjects;
 	AudioEffectsLayer* m_pAudioEffectsLayer;
-	float dwordA8;
-	float dwordAC;
+	float m_fGroundBottomYPos;
+	float m_fGroundTopYPos;
 	GJGroundLayer* m_pBottomGround;
 	GJGroundLayer* m_pTopGround;
 	BYTE PAD3[8];
 	bool m_bDead;
-	bool field_38D;
-	bool field_38E;
-	bool field_38F;
+	bool m_bFullLevelReset2;
+	bool m_bUnkCameraX;
+	bool m_bUnkCameraY;
 	BYTE PAD4[4];
 	int m_nRand;
-	DWORD dwordCC;
-	bool dwordD0;
+	float dwordCC;
+	bool m_bGroundsNotEqual;
 	float m_fTimeMod;
 	cocos2d::CCSize m_obLevelSize;
 	cocos2d::CCLabelBMFont* m_pAttemptLabel;
@@ -67,9 +72,9 @@ public:
 	cocos2d::CCPoint m_obCameraShake;
 	bool m_bShowedHint;
 	float m_fCameraXMaybe;
-	float m_fUnkMirrorPortalFloat;
-	bool dword110;
-	DWORD dword114;
+	float m_fMirrorTransition2;
+	bool m_bFlipping;
+	int m_nTotalUnkSprites;
 	cocos2d::CCDictionary* m_pClaimedParticles;
 	cocos2d::CCDictionary* m_pParticleDict;
 	cocos2d::CCArray* m_pClaimedParticlesArray;
@@ -84,21 +89,19 @@ public:
 	cocos2d::CCArray* m_pGravitySprites;
 	bool m_bJustDont;
 	bool m_bIsLocalLevel;
-	//related to replays, very inconsistent, frozen ones are triggered with start pos, button pushes only work some of the time
-	bool m_bPlayer1PushedButtonMaybe;
+	char m_bPlayer1PushedButtonMaybe;
 	bool m_bPlayerFrozen;
 	bool m_bPlayer2PushedButtonMaybe;
 	bool m_bPlayer2Frozen;
-
 	std::string m_sReplayData;
 	cocos2d::CCArray* m_pReplayArray;
 	double m_dTime;
-	bool dword164;
+	float m_fGroundBottomYPos2;
 	BYTE PAD5[4];
-	bool dword16C;
-	bool field_439;
+	bool m_bUnkMirrorFloatStepping;
+	bool m_bUseSoundManager;
 	cocos2d::CCDictionary* m_pColourDict;
-	std::map<short,bool> m_sBlending; // an index is put in then the blending state is returned
+	std::map<short, bool> m_sBlending; // an index is passed through and the blending state is returned
 	DWORD dword184;
 	DWORD dword188;
 	bool dword18C;
@@ -115,19 +118,19 @@ public:
 	bool field_47E;
 	bool field_47F;
 	cocos2d::CCArray* m_pSomeArray3;
-	bool dword1B8;
+	bool m_bFullLevelReset;
 	cocos2d::CCPoint m_obPlayerPosition;
 	int m_nAttempts;
-	DWORD m_nJumpCount;
+	int m_nJumpCount;
 	bool m_bHasClicked;
 	float m_fTime;
 	int m_nAttemptJumps;
 	bool m_bLeaderboardPercent;
 	bool m_bShowUI;
-	bool field_4A6;
+	bool m_bTriggeredEvent;
 	bool field_4A7;
 	int m_nBestPercent;
-	bool m_bhasNotCompletedStarLevel;
+	bool m_bStarRatedLevel;
 	int m_nAwardedCurrency;
 	int m_nAwardedDiamonds;
 	bool m_bAwardedSecretKey;

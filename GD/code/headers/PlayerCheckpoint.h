@@ -19,3 +19,5 @@ public:
 	float m_fTimeMod;
 	bool m_bVisibility;
 };
+
+
