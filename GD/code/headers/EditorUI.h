@@ -1,12 +1,12 @@
 #include "includes.h"
 
+
 enum EditorTabType
 {
 	kEditorTabTypeDelete = 0x1,
 	kEditorTabTypeCreate = 0x2,
 	kEditorTabTypeEdit = 0x3,
 };
-
 
 class EditorUI : public cocos2d::CCLayer, public FLAlertLayerProtocol, public ColorSelectDelegate, public GJRotationControlDelegate, public GJScaleControlDelegate, public MusicDownloadDelegate {
 public:
