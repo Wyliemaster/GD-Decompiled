@@ -37,6 +37,7 @@
 #include "PlayerCheckpoint.h"
 #include "GJGroundLayer.h"
 #include "DialogLayer.h"
+#include "LevelEditorLayer.h"
 
 
 
