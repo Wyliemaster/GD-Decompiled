@@ -38,6 +38,7 @@
 #include "GJGroundLayer.h"
 #include "DialogLayer.h"
 #include "LevelEditorLayer.h"
+#include "EditorUI.h"
 
 
 
