@@ -1,5 +1,13 @@
 #include "includes.h"
 
+enum EditorTabType
+{
+	kEditorTabTypeDelete = 0x1,
+	kEditorTabTypeCreate = 0x2,
+	kEditorTabTypeEdit = 0x3,
+};
+
+
 class EditorUI : public cocos2d::CCLayer, public FLAlertLayerProtocol, public ColorSelectDelegate, public GJRotationControlDelegate, public GJScaleControlDelegate, public MusicDownloadDelegate {
 public:
 	bool m_bStopMusic;
@@ -32,7 +40,7 @@ public:
 	float m_fEditBarHeight;
 	bool m_bSwipe;
 	bool m_bCanDrawSwipeGrid;
-	char field_19E;
+	bool field_19E;
 	bool field_19F;
 	bool m_bFreeMove;
 	bool field_1A1;
