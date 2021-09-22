@@ -121,7 +121,7 @@ public:
 		bool m_bFullLevelReset;
 		cocos2d::CCPoint m_obPlayerPosition;
 		int m_nAttempts;
-		DWORD m_nJumpCount;
+		int m_nJumpCount;
 		bool m_bHasClicked;
 		float m_fTime;
 		int m_nAttemptJumps;
