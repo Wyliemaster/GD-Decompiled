@@ -156,6 +156,4 @@ public:
 		GameObject* m_pCollidedObject;
 		bool m_bVfDChk;
 		bool m_bDisableGravityEffect;
-	};
-
 };
