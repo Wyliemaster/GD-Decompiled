@@ -15,7 +15,7 @@ class SetGroupIDLayer : public FLAlertLayer, TextInputDelegate
 	int m_nEditorLayer2;
 	int m_nZOrder;
 	int m_nZLayer;
-	bool m_bExecutingFunction;
+	bool m_bExecutingFunction; // Unsure about this
 	bool m_bRemovedGroup;
 	bool m_bHighDetail;
 	bool m_bDontFade;

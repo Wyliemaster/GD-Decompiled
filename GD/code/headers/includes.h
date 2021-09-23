@@ -41,6 +41,7 @@
 #include "EditorUI.h"
 #include "SimpleLayer.h"
 #include "SetGroupIDLayer.h"
+#include "DrawGridLayer.h"
 
 
 enum GJHttpType
