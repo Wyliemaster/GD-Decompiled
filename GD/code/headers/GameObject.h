@@ -1,11 +1,5 @@
 #include "includes.h"
 
-
-// ========== IMPORTANT ========== //
-//   Still a WIP and will likely   //
-//   change. please keep this in   //
-//			    mind			   //
-
 class GameObject : public CCSpritePlus
 {
 	bool m_bUnk3;
