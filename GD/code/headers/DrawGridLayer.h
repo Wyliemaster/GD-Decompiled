@@ -3,7 +3,7 @@
 class DrawGridLayer : public cocos2d::CCLayer
 {
 	// no idea what type these guidelines will be. they're used with the ccDraw Functions in the cocos2d namespace
-	void* m_pOrangeGuidelines;
+	void* m_pCommonLines;
 	void* m_pYellowGuidelines;
 	void* m_pGreenGuidelines;
 	float m_fSongOffset1;
@@ -31,3 +31,6 @@ class DrawGridLayer : public cocos2d::CCLayer
 	bool m_bUpdatingSpeedObjects;
 	float m_fGridSquareSize;
 };
+
+
+
