@@ -79,7 +79,7 @@ public:
 	bool m_bPreviewMode;
 	GJGroundLayer* m_pGround;
 	std::string m_sRawLevelString;
-	void* m_pUnkDrawAlloc;
+	void* m_pTriggerHitbox;
 	std::vector<GameObject*> m_pObjectVector;
 	std::vector<GameObject*> m_pGroupVector;
 	std::vector<cocos2d::CCArray*> m_pNestedObjects;
