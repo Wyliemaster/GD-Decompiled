@@ -8,8 +8,8 @@ class DrawGridLayer : public cocos2d::CCLayer
 	void* m_pGreenGuidelines;
 	float m_fSongOffset1;
 	float m_fSongOffset2;
-	float m_fXPos;
-	bool m_bDrawEffects;
+	float m_fLastMusicXPosition;
+	bool m_bEffectSortDirty;
 	LevelEditorLayer* m_pEditor;
 	std::string m_sGuidelineString;
 	cocos2d::CCNode* m_pGrid;
@@ -28,8 +28,8 @@ class DrawGridLayer : public cocos2d::CCLayer
 	float m_fFasterGuidelineSpacing;
 	float m_fFastestGuidelineSpacing;
 	bool m_pUpdatingTimeMarkers;
-	bool m_bUpdatingSpeedObjects;
-	float m_fGridSquareSize;
+	bool m_bTimeNeedsUpdate;
+	float m_fActiveGridNodeSize;
 };
 
 
