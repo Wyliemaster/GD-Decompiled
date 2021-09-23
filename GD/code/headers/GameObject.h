@@ -51,11 +51,11 @@ class GameObject : public CCSpritePlus
 	bool m_bUnkCustomRing;
 	cocos2d::CCPoint m_obPortalPosition;
 	bool m_bUnkParticleSystem;
-	cocos2d::CCRect m_pObjectTextureRect;
+	cocos2d::CCRect m_obObjectTextureRect;
 	BYTE PAD[12];
 	bool m_bTextureRectDirty;
 	float m_fRectXCenterMaybe;
-	cocos2d::CCRect m_pObjectRect2;
+	cocos2d::CCRect m_obObjectRect2;
 	bool m_bIsObjectRectDirty;
 	bool m_bIsOrientedRectDirty;
 	bool m_bHasBeenActivated;
