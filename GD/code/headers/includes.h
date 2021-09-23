@@ -43,6 +43,7 @@
 #include "SetGroupIDLayer.h"
 #include "DrawGridLayer.h"
 #include "GJComment.h"
+#include "NumberInputLayer.h"
 
 
 enum GJHttpType
