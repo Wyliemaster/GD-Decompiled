@@ -16,7 +16,7 @@ class DrawGridLayer : public cocos2d::CCLayer
 	cocos2d::CCArray* m_pGuidelines;
 	cocos2d::CCArray* m_pEffects;
 	cocos2d::CCArray* m_pGuides;
-	cocos2d::CCArray* m_pSpeedObjects1;
+	cocos2d::CCArray* m_pSpeedObjects1; // one is with checked speed objects, one is without
 	cocos2d::CCArray* m_pSpeedObjects2;
 	cocos2d::CCArray* m_pPlayerNodePoints;
 	cocos2d::CCArray* m_pPlayer2NodePoints;
