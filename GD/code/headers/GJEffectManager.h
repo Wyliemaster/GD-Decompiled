@@ -1,8 +1,10 @@
 #include "includes.h"
 
+// alk1m123's header used as a base. still unfinished
+
 class GJEffectManager : public cocos2d::CCNode
 {
-	GJBaseGameLayer* m_pBaseGameLayer;
+	GJBaseGameLayer* m_pBaseGameLayer; // in 2.0 this is `SpawnTriggerDelegate`, needs investigating
 	cocos2d::CCDictionary* m_pColourActions;
 	cocos2d::CCDictionary* m_pColourActionSprites;
 	cocos2d::CCDictionary* m_pPulseEffectForGroupID;
