@@ -39,7 +39,7 @@
 #include "DialogLayer.h"
 #include "LevelEditorLayer.h"
 #include "EditorUI.h"
-
+#include "SimpleLayer.h"
 
 
 enum GJHttpType
