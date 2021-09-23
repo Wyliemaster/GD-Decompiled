@@ -40,6 +40,7 @@
 #include "LevelEditorLayer.h"
 #include "EditorUI.h"
 #include "SimpleLayer.h"
+#include "SetGroupIDLayer.h"
 
 
 enum GJHttpType
