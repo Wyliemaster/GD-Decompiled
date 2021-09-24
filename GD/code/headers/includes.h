@@ -39,7 +39,7 @@
 #include "DialogLayer.h"
 #include "LevelEditorLayer.h"
 #include "EditorUI.h"
-#include "SimpleLayer.h"
+#include "SimplePlayer.h"
 #include "SetGroupIDLayer.h"
 #include "DrawGridLayer.h"
 #include "GJComment.h"
