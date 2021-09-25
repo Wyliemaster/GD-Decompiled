@@ -52,7 +52,6 @@ class GameObject : public CCSpritePlus
 	cocos2d::CCPoint m_obPortalPosition;
 	bool m_bUnkParticleSystem;
 	cocos2d::CCRect m_obObjectTextureRect;
-	BYTE PAD[12];
 	bool m_bTextureRectDirty;
 	float m_fRectXCenterMaybe;
 	cocos2d::CCRect m_obObjectRect2;
