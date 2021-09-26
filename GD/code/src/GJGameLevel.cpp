@@ -31,7 +31,7 @@ bool GJGameLevel::getCoin2()
 
 bool GJGameLevel::getCoin3()
 {
-	return m_nCoin31Seed - m_nCoin3Rand;
+	return m_nCoin3Seed - m_nCoin3Rand;
 }
 
 
