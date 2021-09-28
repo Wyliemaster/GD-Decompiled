@@ -16,6 +16,7 @@ public:
 
 
 	cocos2d::CCPoint g_obUnknownGlobal;
+	cocos2d::CCRect g_UnkRect;
 
 
 	SimplePlayer();
