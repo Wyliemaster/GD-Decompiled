@@ -39,7 +39,7 @@ bool SimplePlayer::init(int _iconID)
 	std::string layer2 = cocos2d::CCString::createWithFormat("player_%02d_2_001.png", id)->m_sString;
 	std::string layerGlow = cocos2d::CCString::createWithFormat("player_%02d_glow_001.png", id)->m_sString;
 
-	setTextureRect(g_Unk75843C);
+	setTextureRect(g_UnkRect);
 
 	m_pPlayerSpriteLayer1 = cocos2d::CCSprite::createWithSpriteFrameName(layer1);
 	m_pPlayerSpriteLayer2 = cocos2d::CCSprite::createWithSpriteFrameName(layer2);
