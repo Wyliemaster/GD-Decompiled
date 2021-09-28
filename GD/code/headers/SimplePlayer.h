@@ -12,4 +12,13 @@ public:
 	GJSpiderSprite* m_pSpiderSprite;
 	DWORD m_unk;
 	bool m_bGlow;
+
+
+
+	cocos2d::CCPoint g_obUnknownGlobal;
+
+
+	SimplePlayer();
+	static SimplePlayer* create(int _iconID);
+	bool init(int _iconID)
 };
