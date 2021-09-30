@@ -56,6 +56,8 @@
 #include "GJUserCell.h"
 #include "GJUserScore.h"
 #include "MapPackCell.h"
+#include "CustomSongCell.h"
+#include "SongInfoObject.h"
 
 
 enum GJHttpType
