@@ -61,8 +61,10 @@
 #include "GJRequestCell.h"
 #include "GJMessageCell.h"
 #include "GJUserMessage.h"
-
-
+#include "GJLevelScoreCell.h"
+#include "ArtistCell.h"
+#include "GameCell.h"
+#include "ListCell.h"
 enum GJHttpType
 {
     kGJHttpTypeUploadLevel = 0x1,
