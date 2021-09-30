@@ -78,6 +78,7 @@ public:
     virtual void spawnGroup(int _idx);
 };
 
-class TextInputDelegate {
-
-};
+class TextInputDelegate;
+class UploadPopupDelegate;
+class UploadActionDelegate;
+class LikeItemDelegate;

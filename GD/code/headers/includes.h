@@ -47,6 +47,9 @@
 #include "BoomListView.h"
 #include "TableViewCell.h"
 #include "CommentCell.h"
+#include "GJUserCell.h"
+#include "StatsCell.h"
+#include "AchievementCell.h"
 
 
 enum GJHttpType
