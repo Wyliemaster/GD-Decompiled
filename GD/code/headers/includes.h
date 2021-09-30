@@ -53,6 +53,8 @@
 #include "LevelCell.h"
 #include "SongCell.h"
 #include "SongObject.h"
+#include "GJUserCell.h"
+#include "GJUserScore.h"
 
 
 enum GJHttpType

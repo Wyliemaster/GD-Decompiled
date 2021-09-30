@@ -149,7 +149,7 @@ public:
 	_DWORD dword1AC;
 	_DWORD dword1B0;
 	bool m_bIsChallenge;
-	bool m_bIsPlayable;
+	bool m_bDownloadable;
 	char field_2A2;
 	char field_2A3;
 	int m_nRequiredCoins;
