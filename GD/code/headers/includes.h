@@ -44,6 +44,9 @@
 #include "DrawGridLayer.h"
 #include "GJComment.h"
 #include "NumberInputLayer.h"
+#include "BoomListView.h"
+#include "TableViewCell.h"
+#include "CommentCell.h"
 
 
 enum GJHttpType
