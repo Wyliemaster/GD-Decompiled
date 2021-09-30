@@ -50,6 +50,7 @@
 #include "GJUserCell.h"
 #include "StatsCell.h"
 #include "AchievementCell.h"
+#include "LevelCell.h"
 
 
 enum GJHttpType
