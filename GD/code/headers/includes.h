@@ -1,7 +1,7 @@
 #pragma once
 
 #define WIN32_LEAN_AND_MEAN
-#include <windows.h>
+#include <windows.h>playLayer
 #include <string>
 #include <cstdlib>
 #include <cocos2d.h>
@@ -15,64 +15,68 @@
 #include "DialogObject.h"
 #include "GJMapPack.h"
 #include "GJGameLevel.h"
-#include "GJBaseGameLayer.h"
-#include "LevelSettingsLayer.h"
 #include "LevelSettingsObject.h"
 #include "ObjectToolbox.h"
-#include "SetIDLayer.h"
 #include "GameObject.h"
 #include "EffectGameObject.h"
-#include "MenuLayer.h"
-#include "GJDropDownLayer.h"
-#include "AccountLayer.h"
-#include "AccountHelpLayer.h"
-#include "AccountLoginLayer.h"
-#include "AccountRegisterLayer.h"
-#include "GJGarageLayer.h"
-#include "SecretLayer.h"
 #include "CCTextInputNode.h"
 #include "CheckpointObject.h"
 #include "PlayerCheckpoint.h"
-#include "GJGroundLayer.h"
-#include "DialogLayer.h"
-#include "LevelEditorLayer.h"
-#include "EditorUI.h"
 #include "SimplePlayer.h"
-#include "SetGroupIDLayer.h"
-#include "DrawGridLayer.h"
 #include "GJComment.h"
-#include "NumberInputLayer.h"
 #include "SongObject.h"
 #include "GJUserScore.h"
 #include "SongInfoObject.h"
 #include "GJUserMessage.h"
 
+// Layer Related Classes
+
+#include "Layers/AccountLayer.h"
+#include "Layers/AccountHelpLayer.h"
+#include "Layers/AccountLoginLayer.h"
+#include "Layers/AccountRegisterLayer.h"
+#include "Layers/DialogLayer.h"
+#include "Layers/DrawGridLayer.h"
+#include "Layers/EditorUI.h"
+#include "Layers/GJBaseGameLayer.h"
+#include "Layers/GJDropDownLayer.h"
+#include "Layers/GJGarageLayer.h"
+#include "Layers/GJGroundLayer.h"
+#include "Layers/LevelEditorLayer.h"
+#include "Layers/LevelSettingsLayer.h"
+#include "Layers/MenuLayer.h"
+#include "Layers/NumberInputLayer.h"
+#include "Layers/PlayLayer.h"
+#include "Layers/SecretLayer.h"
+#include "Layers/SetGroupIDLayer.h"
+#include "Layers/SetIDLayer.h"
+
+// Manager related classes
 
 #include "Managers/AchievementManager.h"
 #include "Managers/GameLevelManager.h"
 #include "Managers/GJAccountManager.h"
 #include "Managers/GJEffectManager.h"
 
-// Cell related class
+// Cell related classes
 
-#include "cells/AchievementCell.h"
-#include "cells/ArtistCell.h"
-#include "cells/BoomListView.h"
-#include "cells/CommentCell.h"
-#include "cells/CustomSongCell.h"
-#include "cells/GameCell.h"
-#include "cells/GJLevelScoreCell.h"
-#include "cells/GJMessageCell.h"
-#include "cells/GJRequestCell.h"
-#include "cells/GJScoreCell.h"
-#include "cells/GJUserCell.h"
-#include "cells/LevelCell.h"
-#include "cells/ListCell.h"
-#include "cells/MapPackCell.h"
-#include "cells/SongCell.h"
-#include "cells/StatsCell.h"
-#include "cells/TableViewCell.h"
-
+#include "Cells/AchievementCell.h"
+#include "Cells/ArtistCell.h"
+#include "Cells/BoomListView.h"
+#include "Cells/CommentCell.h"
+#include "Cells/CustomSongCell.h"
+#include "Cells/GameCell.h"
+#include "Cells/GJLevelScoreCell.h"
+#include "Cells/GJMessageCell.h"
+#include "Cells/GJRequestCell.h"
+#include "Cells/GJScoreCell.h"
+#include "Cells/GJUserCell.h"
+#include "Cells/LevelCell.h"
+#include "Cells/ListCell.h"
+#include "Cells/MapPackCell.h"
+#include "Cells/SongCell.h"
+#include "Cells/StatsCell.h"
+#include "Cells/TableViewCell.h"
 
 enum GJHttpType
 {
