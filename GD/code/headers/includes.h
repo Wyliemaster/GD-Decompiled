@@ -11,7 +11,6 @@
 #include "GJRewardObject.h"
 #include "GJObjectDecoder.h"
 #include "GJChallengeItem.h"
-#include "GJAccountManager.h"
 #include "delegates.h"
 #include "DialogObject.h"
 #include "GJMapPack.h"
@@ -32,7 +31,6 @@
 #include "GJGarageLayer.h"
 #include "SecretLayer.h"
 #include "CCTextInputNode.h"
-#include "AchievementManager.h"
 #include "CheckpointObject.h"
 #include "PlayerCheckpoint.h"
 #include "GJGroundLayer.h"
@@ -48,6 +46,12 @@
 #include "GJUserScore.h"
 #include "SongInfoObject.h"
 #include "GJUserMessage.h"
+
+
+#include "Managers/AchievementManager.h"
+#include "Managers/GameLevelManager.h"
+#include "Managers/GJAccountManager.h"
+#include "Managers/GJEffectManager.h"
 
 // Cell related class
 
