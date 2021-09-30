@@ -58,6 +58,9 @@
 #include "MapPackCell.h"
 #include "CustomSongCell.h"
 #include "SongInfoObject.h"
+#include "GJRequestCell.h"
+#include "GJMessageCell.h"
+#include "GJUserMessage.h"
 
 
 enum GJHttpType
