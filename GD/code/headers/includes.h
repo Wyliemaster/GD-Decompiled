@@ -51,6 +51,8 @@
 #include "StatsCell.h"
 #include "AchievementCell.h"
 #include "LevelCell.h"
+#include "SongCell.h"
+#include "SongObject.h"
 
 
 enum GJHttpType
