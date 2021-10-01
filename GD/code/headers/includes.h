@@ -30,6 +30,7 @@
 #include "GJUserMessage.h"
 #include "PlayerObject.h"
 #include "GhostTrailEffect.h"
+#include "UndoObject.h"
 
 // Layer Related Classes
 
