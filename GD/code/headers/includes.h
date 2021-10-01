@@ -28,6 +28,7 @@
 #include "GJUserScore.h"
 #include "SongInfoObject.h"
 #include "GJUserMessage.h"
+#include "PlayerObject.h"
 
 // Layer Related Classes
 

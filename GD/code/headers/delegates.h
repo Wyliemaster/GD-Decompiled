@@ -84,3 +84,4 @@ class UploadActionDelegate;
 class LikeItemDelegate;
 class LevelCommentDelegate;
 class CommentUploadDelegate;
+class AnimatedSpriteDelegate;
