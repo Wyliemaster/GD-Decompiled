@@ -29,6 +29,7 @@
 #include "SongInfoObject.h"
 #include "GJUserMessage.h"
 #include "PlayerObject.h"
+#include "GhostTrailEffect.h"
 
 // Layer Related Classes
 
