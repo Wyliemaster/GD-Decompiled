@@ -32,6 +32,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate
 	bool m_bGlow;
 	bool m_bVisibility;
 	bool m_bIsHidden;
+	int m_eGhostTrailType;
 	GhostTrailEffect* m_pGhostTrail;
 	cocos2d::CCSprite* m_pIcon;
 	cocos2d::CCSprite* m_pIconSecondary;
@@ -41,7 +42,6 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate
 	cocos2d::CCSprite* m_pVehicleSecondary;
 	cocos2d::CCSprite* m_pVehicleExtras;
 	cocos2d::CCSprite* m_pVehicleWhitener;
-	cocos2d::CCSprite* m_pVehicleExtra;
 	cocos2d::CCSprite* m_pShipGlow;
 	cocos2d::CCMotionStreak* m_pTrail;
 	HardStreak* m_pWaveTrail;
@@ -109,6 +109,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate
 	float m_fCollisionTop;
 	float m_fCollisionBottom;
 	bool dword19C;
+	bool field_5C9;
 	cocos2d::ccColor3B m_cFirstColourCopy;
 	cocos2d::ccColor3B m_cSecondColourCopy;
 	bool m_bTookDamage;
