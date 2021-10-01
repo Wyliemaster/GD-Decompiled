@@ -61,6 +61,7 @@
 #include "Managers/GameLevelManager.h"
 #include "Managers/GJAccountManager.h"
 #include "Managers/GJEffectManager.h"
+#include "Managers/GameManager.h"
 
 // Cell related classes
 
