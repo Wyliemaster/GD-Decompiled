@@ -106,11 +106,11 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate
 	bool field_5BD;
 	bool m_bBumpPlayer;
 	bool m_bSlopeFlippedX;
-	float m_fTop;
-	float m_fBottom;
+	float m_fCollisionTop;
+	float m_fCollisionBottom;
 	bool dword19C;
 	cocos2d::ccColor3B m_cFirstColourCopy;
-	cocos2d::ccColor3B m_cSeoncColourCopy;
+	cocos2d::ccColor3B m_cSecondColourCopy;
 	bool m_bTookDamage;
 	bool m_bUpKeyDown;
 	bool m_bUpKeyPressed;
