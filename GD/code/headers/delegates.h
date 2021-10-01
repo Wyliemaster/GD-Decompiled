@@ -82,3 +82,5 @@ class TextInputDelegate;
 class UploadPopupDelegate;
 class UploadActionDelegate;
 class LikeItemDelegate;
+class LevelCommentDelegate;
+class CommentUploadDelegate;
