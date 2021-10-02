@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <cocos2d.h>
 
+// unorganised
 #include "custom.h"
 #include "GJRewardItem.h"
 #include "GJRewardObject.h"
@@ -31,6 +32,7 @@
 #include "PlayerObject.h"
 #include "GhostTrailEffect.h"
 #include "UndoObject.h"
+#include "GJSearchObject.h"
 
 // Layer Related Classes
 
