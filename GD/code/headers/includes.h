@@ -55,6 +55,7 @@
 #include "Layers/LevelSettingsLayer.h"
 #include "Layers/MenuLayer.h"
 #include "Layers/NumberInputLayer.h"
+#include "Layers/PauseLayer.h"
 #include "Layers/PlayLayer.h"
 #include "Layers/SecretLayer.h"
 #include "Layers/SetGroupIDLayer.h"
