@@ -1,5 +1,7 @@
 # GD-Decompiled
- an attempt to get the source code for Geometry Dash through reverse engineering and decompiling the game
+ an attempt to get the source code for Geometry Dash through reverse engineering and decompiling the game.  
+
+- Intended to be used for reference. Not compilable
 
 ## Buy GD
 
