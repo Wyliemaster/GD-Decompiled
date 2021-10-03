@@ -35,6 +35,7 @@
 #include "GJSearchObject.h"
 #include "AchievementBar.h"
 #include "AchievementNotifier.h"
+#include "GJStoreItem.h"
 
 // Layer Related Classes
 
