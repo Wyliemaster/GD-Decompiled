@@ -59,6 +59,7 @@
 #include "Layers/SecretLayer.h"
 #include "Layers/SetGroupIDLayer.h"
 #include "Layers/SetIDLayer.h"
+#include "Layers/UILayer.h"
 
 // Manager related classes
 
