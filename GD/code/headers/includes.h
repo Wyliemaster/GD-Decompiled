@@ -33,6 +33,8 @@
 #include "GhostTrailEffect.h"
 #include "UndoObject.h"
 #include "GJSearchObject.h"
+#include "AchievementBar.h"
+#include "AchievementNotifier.h"
 
 // Layer Related Classes
 
