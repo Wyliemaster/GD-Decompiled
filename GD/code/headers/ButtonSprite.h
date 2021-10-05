@@ -1,12 +1,17 @@
 #include "includes.h"
 
+enum ButtonType {
+	kButtonTypeImage = 0,
+	kButtonTypeString = 1
+};
+
 class ButtonSprite : public cocos2d::CCSprite
 {
-	int m_eStringState;
+	ButtonType m_eButtonType;
 	float m_fAbsoluteWidth;
 	float m_fCustomWidth;
 	float m_fScale;
-	float m_fContentSizeHeight;
+	float m_fHeight;
 	bool m_bAbsolute;
 	cocos2d::CCLabelBMFont* m_pLabel;
 	cocos2d::CCSprite* m_pCustomTexture;
@@ -17,8 +22,10 @@ class ButtonSprite : public cocos2d::CCSprite
 	std::string m_sString;
 
 	ButtonSprite();
+
 	static ButtonSprite* create(cocos2d::CCSprite* _customTexture, int _width, int _customWidth, float _unk, float _scale, bool _absolute, const char* _btnName, bool _unk2);
 	static ButtonSprite* create(const char* _string, int _absoluteWidth, int _customWidth, float _scale, bool _absolute, const char* _font, const char* _background, float _height);
+
 	bool init(cocos2d::CCSprite* _customTexture, int _width, int _customWidth, float _unk, float _scale, bool _absolute, const char* _btnName, bool _unk2);
 	bool init(const char* _string, int _absoluteWidth, int _customWidth, float _scale, bool _absolute, const char* _font, const char* _background, float _height);
 	void updateSpriteOffset(cocos2d::CCPoint _offset);

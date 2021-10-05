@@ -39,3 +39,26 @@ void ButtonSprite::updateSpriteOffset(cocos2d::CCPoint _offset)
 	m_obSpriteOffset = _offset;
 	updateSpriteBGSize();
 }
+
+bool ButtonSprite::init(const char* _string, int _absoluteWidth, int _customWidth, float _scale, bool _absolute, const char* _font, const char* _background, float _height)
+{
+	if (!cocos2d::CCSprite::init()) return false;
+	m_eButtonType = kButtonTypeString;
+	m_fScale = _scale;
+	m_fAbsoluteWidth = _absoluteWidth;
+	m_bAbsolute = _absolute;
+	m_fHeight = _height;
+	m_fCustomWidth = _customWidth;
+
+	m_obTextPosition = { 0.0f, 2.0f };
+	if (_font != "bigFont.fnt") m_obTextPosition = { -1.0f, 2.0f };
+
+	m_pLabel = cocos2d::CCLabelBMFont::create("", _font);
+	this->addChild(m_pLabel, 1);
+
+	m_pBackgroundImage = cocos2d::extension::CCScale9Sprite::create(_background);
+	m_pBackgroundImage->setContentSize({ 16.0f, 16.0f });
+	this->addChild(m_pBackgroundImage, 0);
+
+	this->setString(_string);
+}
