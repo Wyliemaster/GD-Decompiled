@@ -36,6 +36,7 @@
 #include "AchievementBar.h"
 #include "AchievementNotifier.h"
 #include "GJStoreItem.h"
+#include "ButtonSprite.h"
 
 // Layer Related Classes
 
