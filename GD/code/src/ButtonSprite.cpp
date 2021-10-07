@@ -87,20 +87,18 @@ void ButtonSprite::updateSpriteBGSize()
 
 		m_pBackgroundImage->setContentSize({ width + 8.0f, height });
 
-		cocos2d::CCSize size = m_pBackgroundImage->getContentSize();
+		size = m_pBackgroundImage->getContentSize();
 	}
 	else
 	{
 		if(m_pBtnTextureName)
 			size = m_pBtnTextureName->getContentSize();
 	}
-	
+	setContentSize(size);
 
 
 	// will finish later, going to bed
 
-//LABEL_14:
-//  (*(void(__fastcall**)(ButtonSprite*, cocos2d::CCSize*))(this->vtable_ptr + 152))(this, &v37);
 //  v17 = this->m_pCustomTexture;
 //  v18 = *(void(__fastcall**)(cocos2d::CCSprite*, float*))(v17->vtable_ptr + 92);
 //  v19 = *(float*)(*(int(__fastcall**)(ButtonSprite*))(this->vtable_ptr + 156))(this) * 0.5;
