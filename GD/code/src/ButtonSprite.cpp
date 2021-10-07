@@ -67,6 +67,7 @@ void ButtonSprite::updateSpriteBGSize()
 {
 	float width;
 	float height;
+	cocos2d::CCSize size;
 	if (m_bAbsolute) width = m_fAbsoluteWidth;
 	else
 	{
@@ -85,23 +86,19 @@ void ButtonSprite::updateSpriteBGSize()
 			height = m_pCustomTexture->getContentSize().height * m_pCustomTexture->getScale() + 8.0f;
 
 		m_pBackgroundImage->setContentSize({ width + 8.0f, height });
+
+		cocos2d::CCSize size = m_pBackgroundImage->getContentSize();
 	}
+	else
+	{
+		if(m_pBtnTextureName)
+			size = m_pBtnTextureName->getContentSize();
+	}
+	
+
+
 	// will finish later, going to bed
 
-//	v13 = *(float*)(*(int(__fastcall**)(cocos2d::extension::CCScale9Sprite*))(*(_DWORD*)this->m_pBackgroundImage
-//		+ 156))(this->m_pBackgroundImage);
-//	v14 = (*(int(__fastcall**)(cocos2d::extension::CCScale9Sprite*))(*(_DWORD*)this->m_pBackgroundImage + 156))(this->m_pBackgroundImage);
-//	cocos2d::CCSize::CCSize(&v39, v13, *(float*)(v14 + 4));
-//	v15 = &v39;
-//}
-//  else
-//  {
-//  v16 = this->m_pBtnTextureName;
-//  if (!v16)
-//	  goto LABEL_14;
-//  v15 = (cocos2d::CCSize*)(*(int(__fastcall**)(cocos2d::CCSprite*))(v16->vtable_ptr + 156))(v16);
-//  }
-//  cocos2d::CCSize::operator=(&v37, v15);
 //LABEL_14:
 //  (*(void(__fastcall**)(ButtonSprite*, cocos2d::CCSize*))(this->vtable_ptr + 152))(this, &v37);
 //  v17 = this->m_pCustomTexture;
