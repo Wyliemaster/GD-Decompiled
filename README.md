@@ -1,4 +1,4 @@
-# GD-Decompiled
+# GD-Descompilado
 Esto no es compilable por el momento... Pero se puede crear un proyecto e intentar compilando
 
 ## Compra GD
