@@ -64,7 +64,7 @@ bool SimplePlayer::init(int _iconID)
 	m_pRobotSprite->setVisible(false);
 	addChild(m_pRobotSprite);
 
-	m_pSpiderSprite = m_pSpiderSprite::create();
+	m_pSpiderSprite = GJSpiderSprite::create();
 	m_pSpiderSprite->setVisible(false);
 	addChild(m_pSpiderSprite);
 
