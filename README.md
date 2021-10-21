@@ -1,22 +1,22 @@
-# GD-Decompiled
- an attempt to get the source code for Geometry Dash through reverse engineering and decompiling the game.  
+# GD-Dekompilováno
+ snaha získat zdrojový kód ke hře Geometry Dash za pomocí reverzního inženýrství a dekompilování hry.  
 
-- Intended to be used for reference. Not compilable
+- Má sloužit jako reference. Nelze zkompilovat
 
-## Buy GD
+## Koupit GD
 
-if for some reason you haven't already i recommend you go and buy GD
+pokud už jste tak z nějakého důvodu neučinili, doporučuji vám jít si koupit GD
 
 - [Android](https://play.google.com/store/apps/details?id=com.robtopx.geometryjump&hl=en_GB&gl=US)
 - [IOS](https://apps.apple.com/us/app/geometry-dash/id625334537)
 - [windows/mac](https://store.steampowered.com/app/322170/Geometry_Dash/)
 
-## IMPORTANT
+## DŮLEŽITÉ
 
-This repository is subject to change at any moment. It is not recommended that you actually use this for anything yet as it is still in its infancy. ~~Theres also the fact that i have no idea what on earth i am doing~~  
+Tento repozitář se může změnit každou chvíli. Rozhodně není doporučováno jej využívat k čemukoliv, protože je ještě v počátcích. ~~A pak tady je taky to, že absolutně netuším co to vlastně dělám.~~  
 
-Classes that ive pushed but haven't finished will be found in [Issues](https://github.com/Wyliemaster/GD-Decompiled/issues).
+Třídy, které jsem přidal, ale ještě nedokončil, můžete najít v [Issues](https://github.com/Wyliemaster/GD-Decompiled/issues).
 
-## want to know more about the game?
+## chcete vědět více o hře?
 
-if you want to know about the game and how various aspects work, you can find documentation [here](https://github.com/Wyliemaster/gddocs)
+jestli chcete vědět více o hře a jak tam různé věci fungují, [zde](https://github.com/Wyliemaster/gddocs) můžete najít dokumentaci
