@@ -4,7 +4,7 @@
 
 class GJEffectManager : public cocos2d::CCNode
 {
-	GJBaseGameLayer* m_pBaseGameLayer; // in 2.0 this is `SpawnTriggerDelegate`, needs investigating
+	TriggerEffectDelegate* m_pTriggerEffectDelegate;
 	cocos2d::CCDictionary* m_pColourActions;
 	cocos2d::CCDictionary* m_pColourActionSprites;
 	cocos2d::CCDictionary* m_pPulseEffectForGroupID;
