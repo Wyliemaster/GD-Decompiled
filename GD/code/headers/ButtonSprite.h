@@ -1,9 +1,6 @@
 #include "includes.h"
 
-enum ButtonType {
-	kButtonTypeImage = 0,
-	kButtonTypeString = 1
-};
+
 
 class ButtonSprite : public cocos2d::CCSprite
 {

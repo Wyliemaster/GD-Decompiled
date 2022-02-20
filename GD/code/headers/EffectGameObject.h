@@ -1,46 +1,6 @@
 #include "includes.h"
 // enums stolen from HJfod
-enum EasingType {
-	kEasingTypeNone = 0,
-	kEasingTypeEaseInOut = 1,
-	kEasingTypeEaseIn = 2,
-	kEasingTypeEaseOut = 3,
-	kEasingTypeElasticInOut = 4,
-	kEasingTypeElasticIn = 5,
-	kEasingTypeElasticOut = 6,
-	kEasingTypeBounceInOut = 7,
-	kEasingTypeBounceIn = 8,
-	kEasingTypeBounceOut = 9,
-	kEasingTypeExponentialInOut = 10,
-	kEasingTypeExponentialIn = 11,
-	kEasingTypeExponentialOut = 12,
-	kEasingTypeSineInOut = 13,
-	kEasingTypeSineIn = 14,
-	kEasingTypeSineOut = 15,
-	kEasingTypeBackInOut = 16,
-	kEasingTypeBackIn = 17,
-	kEasingTypeBackOut = 18,
-};
 
-enum ComparisonType {
-	kComparisonTypeEquals = 0,
-	kComparisonTypeLarger = 1,
-	kComparisonTypeSmaller = 2,
-};
-
-enum MoveTargetType {
-	kMoveTargetTypeBoth = 0,
-	kMoveTargetTypeXOnly = 1,
-	kMoveTargetTypeYOnly = 2,
-};
-
-enum TouchToggleMode {
-	kTouchToggleModeNormal = 0,
-	kTouchToggleModeToggleOn = 1,
-	kTouchToggleModeToggleOff = 2,
-};
-
-enum PickupMode;
 
 class EffectGameObject : public GameObject
 {
