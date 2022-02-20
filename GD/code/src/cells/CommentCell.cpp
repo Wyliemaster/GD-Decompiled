@@ -177,3 +177,125 @@ void CommentCell::updateBGColor(int cellIdx)
 	}
 	m_pColourLayer->setColor(col);
 }
+
+void CommentCell::loadFromComment(GJComment* comment)
+{
+	m_pColourLayer->setOpacity(255);
+	comment->retain();
+	if (m_pComment)
+		m_pComment->release();
+
+	m_pComment = comment;
+
+	m_bAccountComment = comment->m_nLevelID ? false : comment->m_nAuthorAccountID > 0;
+
+	m_pLayer->removeAllChildrenWithCleanup(true);
+
+	GameLevelManager* GLM = GameLevelManager::sharedState();
+
+	if (!comment->m_bCommentDeleted)
+	{
+		bool isSmallRow = m_fCellHeight == 36.0f;
+		cocos2d::CCMenu* commentMenu = cocos2d::CCMenu::create();
+		m_pLayer->addChild(commentMenu, 2);
+
+		std::string username = GLM->userNameForUserID(comment->m_nAuthorPlayerID);
+
+		if (m_bAccountComment)
+			username = GLM->userNameForUserID(GLM->UserIDForAccountID(comment->m_nAuthorAccountID));
+		
+		m_pComment->m_sUsername = username;
+
+		if (!m_bAccountComment && !m_pComment->m_nAuthorAccountID)
+			m_pComment->m_nAuthorAccountID = GLM->accountIDForUserID(m_pComment->m_nAuthorPlayerID);
+
+		cocos2d::CCLabelBMFont* nameLabel = cocos2d::CCLabelBMFont::create(m_pComment->m_sUsername, "goldFont.fnt");
+
+		float width, defaultScale;
+
+		if (isSmallRow)
+		{
+			width = 150.0f;
+			defaultScale = 0.5f;
+		}
+		else
+		{
+			defaultScale = 0.7f;
+			width = m_pComment->m_nLevelID ? 100.0f : 150.0f;
+		}
+
+		nameLabel->limitLabelWidth(width, defaultScale, 0.0f);
+
+		float unk1, unk2, width, widthPad, heightPad;
+
+		if (m_bAccountComment)
+		{
+			unk1 = 0.0f;
+			goto label_1;
+		}
+		if (!m_pComment->m_pUserScore)
+		{
+			unk1 = 0.0f;
+		label_2:
+			if (m_pComment->m_nModBadge < 1)
+				unk2 = 0.0f;
+			else
+			{
+				widthPad = isSmallRow ? 8.0f : 12.0f;
+				heightPad = isSmallRow ? 11.5f : 19.5f;
+
+				xPos = ((unk1 + 10.0f) + (nameLabel->getContentSize() * nameLabel->getScale())) + widthPad;
+				cocos2d::CCPoint namePos = { xPos, m_fCellHeight - heightPad };
+
+				cocos2d::CCSprite badgeSprite = cocos2d::CCSprite::createWithSpriteFrameName(m_pComment->m_nModBadge == 2 ? "modBadge_02_001.png" : "modBadge_01_001.png");
+
+				float badgeScale = isSmallRow ? 0.55f : 0.75f;
+				badgeSprite->setScale(badgeScale);
+				m_pLayer->addChild(badgeSprite, 10);
+
+				unk2 = isSmallRow ? 15.0f : 22.0f;
+			}
+			if (m_pComment->m_nPercentage > 0)
+			{
+				std::string percentage = cocos2d::CCString::createWithFormat("%i%%", m_pComment->m_nPercentage)->m_sString;
+				cocos2d::CCLabelBMFont* percentageLabel = cocos2d::CCLabelBMFont::create(percentage, "chatFont.fnt");
+				m_pLayer->addChild(percentageLabel);
+				percentageLabel->setAnchorPoint({ 0.0f, 0.5f });
+
+				float percentScale = isSmallRow ? 0.48f : 0.6f;
+				percentageLabel->setScale(percentScale);
+				percentageLabel->setColor({ 0, 0, 0 });
+				percentageLabel->setOpacity(150.0f);
+
+				xPos = (((unk1 + 10.0f) + unk2) + (nameLabel->getContentSize() * nameLabel->getScale())) + 4.0f; // yes it uses the name rather than the percent
+				cocos2d::CCPoint percentPos = { xPos, m_fCellHeight - heightPad };
+				percentageLabel->setPosition(percentPos);
+			}
+		label_1:
+			heightPad = isSmallRow ? 10.0f : 18.0f;
+
+			if (!m_pComment->m_nAuthorAccountID || m_bAccountComment || comment->m_bHasLevelID) // unregistered account
+			{
+				m_pLayer->addChild(nameLabel);
+				nameLabel->setAnchorPoint({ 0.0f, 0.5f });
+				nameLabel->setPosition({ xPos, m_fCellHeight - heightPad });
+
+				if (m_pComment->m_nAuthorAccountID != 71 && !m_bAccountComment && m_pComment->m_nAuthorAccountID <= 0) // change colour to green if not robtop
+				{
+					nameLabel->setColor({ 0x5A, 0xFF, 0xFF });
+				}
+
+			}
+			else
+			{
+				cocos2d::CCMenuItemSpriteExtra* cName = CCMenuItemSpriteExtra::create(nameLabel, this, onViewProfile);
+				commentMenu->addChild(cName);
+				cocos2d::CCPoint pos = commentMenu->convertToNodeSpace(m_pLayer->convertToWorldSpace({ (unk1 + 10.0f) + ((nameLabel->getContentSize() / 2) * nameLabel->getScale()), m_fCellHeight - heightPad }));
+				cName->setPosition(pos);
+			}
+			// finish later - 474/982
+		}
+		
+
+	}
+}
