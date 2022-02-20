@@ -153,7 +153,7 @@ void CommentCell::updateBGColor(int cellIdx)
 {
 	cocos2d::ccColor3B col;
 
-	if (m_fCellHeight == 36.0f)
+	if (m_fCellHeight == 36.0f) // small rows
 	{
 		if (cellIdx & 1)
 		{
@@ -164,7 +164,7 @@ void CommentCell::updateBGColor(int cellIdx)
 			col = { 0x9C, 0x55, 0x2A };
 		}
 	}
-	else
+	else // big rows
 	{
 		if (cellIdx & 1)
 		{
@@ -175,7 +175,5 @@ void CommentCell::updateBGColor(int cellIdx)
 			col = { 0xA1 , 0x58, 0x2C };
 		}
 	}
-
-
 	m_pColourLayer->setColor(col);
 }
