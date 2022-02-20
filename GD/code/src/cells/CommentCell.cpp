@@ -161,21 +161,21 @@ void CommentCell::updateBGColor(int cellIdx)
 		}
 		else
 		{
-			col = { 0x9C, 0x55, 0x2A }
+			col = { 0x9C, 0x55, 0x2A };
 		}
 	}
 	else
 	{
 		if (cellIdx & 1)
 		{
-			col = {0xC2, 0x72, 0x3E }
+			col = { 0xC2, 0x72, 0x3E };
 		}
 		else
 		{
-			col = { 0xA1 , 0x58, 0x2C }
+			col = { 0xA1 , 0x58, 0x2C };
 		}
 	}
 
 
-	m_pColourLayer->setColor()
+	m_pColourLayer->setColor(col);
 }
