@@ -318,7 +318,7 @@ void CommentCell::loadFromComment(GJComment* comment)
 				m_pComment->m_sComment.replace(NSBP, 1, 1, '\x00'); // Robert removing all instances of 0xA0 (No-Break spaces) from comments
 			}
 
-			std::string comment = m_pComment->m_sComment;
+			std::string commentStr = m_pComment->m_sComment;
 
 			float scaleMod = isSmallRow ? 0.6f : 0.7f, scaleFactor = 1.0f, textSize, unkScale;
 			int commentCapacity = m_bAccountComment ? 140 : 100;
@@ -342,13 +342,13 @@ void CommentCell::loadFromComment(GJComment* comment)
 
 			if (m_pComment->m_bIsSpam)
 			{
-				comment = "Comment flagged as spam";
+				commentStr = "Comment flagged as spam";
 				if(!isSmallRow)
-					comment = "<cy>Comment flagged as spam</c>"
+					commentStr = "<cy>Comment flagged as spam</c>"
 			}
 			if (!isSmallRow)
 			{
-				TextArea* commentText = TextArea::create(comment, "chatFont.fnt", 1.0f, (m_fTableHeight - a - 45.0f) / scaleMod, { 0.0f, 1.0f }, !m_pComment->m_bIsSpam);
+				TextArea* commentText = TextArea::create(commentStr, "chatFont.fnt", 1.0f, (m_fTableHeight - a - 45.0f) / scaleMod, { 0.0f, 1.0f }, !m_pComment->m_bIsSpam);
 				m_pLayer->addChild(commentText);
 				commentText->setAnchorPoint({ 0.0f, 0.5f });
 				commentText->setPosition({ 10, m_fCellHeight / 2 });
