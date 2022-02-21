@@ -192,6 +192,8 @@ void CommentCell::loadFromComment(GJComment* comment)
 	m_pLayer->removeAllChildrenWithCleanup(true);
 
 	GameLevelManager* GLM = GameLevelManager::sharedState();
+	GJAccountManager* AM = GJAccountManager::sharedState();
+	GameManager* GM = GameManager::sharedState();
 
 	if (!comment->m_bCommentDeleted)
 	{
@@ -378,27 +380,176 @@ void CommentCell::loadFromComment(GJComment* comment)
 				}
 				commentText->colorAllCharactersTo(commentCol);
 			}
-
+label_3:
 			if (m_pComment->m_bHasLevelID)
 			{
 				std::string levelID = cocos2d::CCString::createWithFormat("%i", m_pComment->m_nLevelID)->m_sString;
 				ButtonSprite* idBtn = ButtonSprite::create(LevelID, 120, 0, 1.0f, 1, "bigFont.fnt", "GJ_button_01.png", 30.0f);
 				idBtn->setScale(isSmallRow ? 0.4f : 0.6f);
+
 				CCMenuItemSpriteExtra* idBtnClickable = CCMenuItemSpriteExtra::create(idBtn, this onGoToLevel);
-				idBtnClickable->setSizeMulti(1.2f);
+				idBtnClickable->setSizeMult(1.2f);
+
 				commentMenu->addChild(idBtnClickable);
 
 				cocos2d::CCPoint idPos = { m_fTableHeight - (isSmallRow ? 95.0f : 130.0f), m_fCellHeight - (isSmallRow ? 11.5f : 19.5f) };
 				idBtnClickable->setPosition(commentMenu->convertToNodeSpace(m_pLayer->convertToWorldSpace(idPos)));
 			}
-			// 665/995
+			if (m_pComment->m_bIsSpam)
+			{
+				ButtonSprite* spamSprite = ButtonSprite::create("Show", 40, 0, 0.6f, 1, "goldFont.fnt", "GJ_button_04.png", 30.0f);
+				if(isSmallRow)
+					spamSprite->setScale(0.8f);
 
+				CCMenuItemSpriteExtra* spamBtn = CCMenuItemSpriteExtra::create(spamSprite, this onUnhide);
+				spamBtn->setSizeMult(1.2f);
 
+				commentMenu->addChild(spamBtn);
 
+				cocos2d::CCPoint spamPos = { (m_fTableHeight - (spamSprite->getContentSize() / 2) - 9.0f), m_fCellHeight / 2 };
+				spamBtn->setPosition(commentMenu->convertToNodeSpace(m_pLayer->convertToWorldSpace(spamPos)));
 
+			}
+			else
+			{
+				m_pLikesIcon = cocos2d::CCSprite::createWithSpriteFrameName("GJ_likesIcon_001.png");
+				float likeX1 = 32.0f, likeX2 = 14.0f, likeY = 20.0f;
+				if (isSmallRow)
+				{
+					likeX1 = 35.0f;
+					likeX2 = 0.0f;;
+					likeY = 14.0f;
+				}
+
+				m_pLikesIcon->setPosition({ m_fTableHeight - likeX1 - likeX2, m_fCellHeight - likeY });
+				m_pLikesIcon->setScale(isSmallRow ? 0.6f : 0.8f);
+				cocos2d::CCSprite displayFrame = cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(m_pComment->m_nLikes < 0 ? "GJ_dislikesIcon_001.png" : "GJ_likesIcon_001.png");
+				m_pLikesIcon->setDisplayFrame(displayFrame);
+
+				std::string likes = cocos2d::CCString::createWithFormat("%i", m_pComment->m_nLikes)->m_sString;
+				m_pLikesLabel = cocos2d::CCLabelBMFont::create(likes, "bigFont.fnt");
+
+				m_pLayer->addChild(m_pLikesLabel);
+				m_pLikesLabel->setAnchorPoint({ 0.5f, 0.5f });
+
+				cocos2d::CCPoint labelPos = { (isSmallRow ? 8.0f : 14.0f) + (isSmallRow : 12.0f : 13.0f), isSmallRow ? 1.0f : 0.5f };
+				labelPos.x += m_pLikesIcon->getPosition().x;
+				labelPos.y += m_pLikesIcon->getPosition().y;
+
+				float labelScale = isSmallRow ? 0.3f : 0.4f;
+
+				m_pLikesLabel->setPosition(labelPos);
+				m_pLikesLabel->setScale(labelScale);
+				m_pLikesLabel->limitLabelWidth(isSmallRow ? 15.0f : 28.0f, labelScale, 0.0f);
+
+				cocos2d::CCPoint iconPos = { (0.0f, 0.2f };
+				iconPos.x += m_pLikesIcon->getPosition().x;
+				iconPos.y += m_pLikesIcon->getPosition().y;
+
+				m_pLikesIcon->setPosition(iconPos);
+
+				CCMenuItemSpriteExtra* likeBtn = CCMenuItemSpriteExtra::create(m_pLikesIcon, this, onLike);
+				likeBtn->setSizeMult(2.0f);
+
+				likeBtnPos = m_pLikesIcon->getPosition();
+
+				likeBtn->setPosition(commentMenu->convertToNodeSpace(m_pLayer->convertToWorldSpace(likeBtnPos)));
+
+				// holy fuck man
+				if (m_bAccountComment
+					&& AM->getPlayerAccountID() == m_pComment->m_nAuthorAccountID || GM->getPlayerID() > 0
+					&& GM->getPlayerID() == m_pComment->m_nAuthorPlayerID || m_pComment->m_nAuthorAccountID != 71
+					&& GLM->getSavedLevel(m_pComment->m_nLevelID)->getUserID() == m_pComment->m_nAuthorPlayerID
+					&& GM->getAccountID() > 0 || GM->getRatePower() == 2)
+				{
+					cocos2d::CCSprite* delIcon = cocos2d::CCSprite::createWithSpriteFrameName("GJ_deleteIcon_001.png");
+					delIcon->setScale((isSmallRow ? 0.6f : 0.8f) * 0.95f);
+					CCMenuItemSpriteExtra* delBtn = CCMenuItemSpriteExtra::create(delIcon, this, onConfirmDelete);
+					delBtn->setSizeMult(2.0f);
+					commentMenu->addChild(delBtn);
+
+					cocos2d::CCPoint delBtnPos = { isSmallRow ? -20.0f : -24.0f, -1.0f };
+					delBtnPos.x = m_pLikesIcon->getPosition().x;
+					delBtnPos.y = m_pLikesIcon->getPosition().y;
+
+					delBtn->setPosition(delBtnPos);
+				}
+
+				if (m_pComment->m_sCommentAge)
+				{
+					std::string age = cocos2d::CCString::createWithFormat("%s ago", m_pComment->m_sCommentAge)->m_sString;
+					cocos2d::CCLabelBMFont* ageLabel = cocos2d::CCLabelBMFont::create(age, "chatFont.fnt");
+					m_pLayer->addChild(ageLabel, 1);
+					ageLabel->setAnchorPoint({ 1.0f, 0.5f });
+					ageLabel->setScale(isSmallRow ? 0.35f : 0.5f);
+					ageLabel->setColor({ 0x00, 0x00, 0x00 });
+					ageLabel->setOpacity(125);
+
+					ageLabel->setPosition({ m_fTableHeight - (isSmallRow ? 8.0f : 11.0f), isSmallRow ? 7.0f : 14.0f });
+				}
+
+				cocos2d::CCLabelBMFont* actualComment = cocos2d::CCLabelBMFont::create(commentStr, "chatFont.fnt");
+				m_pLayer->addChild(actualComment);
+				actualComment->setAnchorPoint({ 0.0f, 0.5f });
+				actualComment->setPosition({ 10.0f, (m_fCellHeight / 2) - 9.0f });
+				actualComment->limitLabelWidth(270.0f, 0.7f, 0.0f);
+
+				if (m_pComment->m_nAuthorAccountID == 71) // again??
+				{
+					actualComment->setColor({ 0x32, 0xFF, 0xFF });
+				}
+				else
+				{
+					GJGameLevel lev = GLM->getSavedLevel(m_pComment->m_nLevelID);
+					if (lev || (lev = GLM->getSavedDailyLevelFromLevelID(m_pComment->m_nLevelID)) != 0 && lev->getUserID() == m_pComment->m_nAuthorPlayerID)
+					{
+						actualComment->setColor({ 0xFF, 0xFF, 0x4B });
+					}
+					else
+					{
+						if (m_pComment->m_nModBadge > 0 && !m_bAccountComment)
+						{
+							actualComment->setColor(m_pComment->m_cColor);
+						}
+					}
+				}
+
+			}
+			goto label_3;
 
 		}
-		
+		SimplePlayer* pIcon = SimplePlayer::create(1);
+		m_pLayer->addChild(pIcon, 1);
+		pIcon->setScale(isSmallRow ? 0.45f : 0.6f);
+		pIcon->setPosition({ 20.0f, m_fCellHeight - (isSmallRow ? 11.0f : 19.5f) });
+		pIcon->setColor(GM->colorForIdx(m_pComment->m_pUserScore->getMainColour()));
+		pIcon->setSecondColor(GM->colorForIdx(m_pComment->m_pUserScore->getSecondColour()));
+		pIcon->m_bGlow = m_pComment->m_pUserScore->m_nSpecial == 2;
+		pIcon->updatePlayerFrame(m_pComment->m_pUserScore->getIconID(), m_pComment->m_pUserScore->getIconType());
+		pIcon->updateColors();
 
+		float posMult;
+		switch (m_pComment->m_pUserScore->getIconType())
+		{
+		case 4:
+			pIcon->setScale(pIcon->getScale() * 1.15f);
+			pIcon->setPosition({ pIcon->getPosition().x + 1.0f, pIcon->getPosition().y });
+			unk1 = 26.0f;
+			goto label_2;
+		case 6:
+		case 1:
+			posMult = 0.9f;
+			break;
+		case 3:
+			posMult = 0.95f;
+			break;
+		default:
+			unk1 = 26.0f;
+			goto label_2;
+			break;
+		}
+		pIcon->setPosition({ pIcon->getPosition().x, pIcon->getPosition().y * posMult });
+		unk1 = 26.0f;
+		goto label_2;
 	}
 }
