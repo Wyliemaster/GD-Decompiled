@@ -293,7 +293,110 @@ void CommentCell::loadFromComment(GJComment* comment)
 				cocos2d::CCPoint pos = commentMenu->convertToNodeSpace(m_pLayer->convertToWorldSpace({ (unk1 + 10.0f) + ((nameLabel->getContentSize() / 2) * nameLabel->getScale()), m_fCellHeight - heightPad }));
 				cName->setPosition(pos);
 			}
-			// finish later - 474/982
+
+			float a = 10.0f, b = 12.0f;
+
+			if (isSmallRow)
+				a = b = 8.0f;
+			
+
+			if (!isSmallRow)
+			{
+				cocos2d::extension::CCScale9Sprite* bgSprite = cocos2d::extension::CCScale9Sprite::create("square02b_001.png", { 0.0f, 0.0f, 80.0f, 80.0f });
+				bgSprite->setContentSize({ m_fTableHeight - a, m_fCellHeight - b });
+				m_pLayer->addChild(bgSprite, -1);
+				bgSprite->setPosition({ m_fTableHeight / 2, m_fCellHeight / 2 });
+				bgSprite->setColor({ 0x82, 0x40, 0x21 });
+				bgSprite->setOpacity({ 100.0f });
+			}
+
+			while (true)
+			{
+				std::size_t NSBP = m_pComment->m_sComment.find('\xA0');
+				if (NSBP == -1)
+					break;
+				m_pComment->m_sComment.replace(NSBP, 1, 1, '\x00'); // Robert removing all instances of 0xA0 (No-Break spaces) from comments
+			}
+
+			std::string comment = m_pComment->m_sComment;
+
+			float scaleMod = isSmallRow ? 0.6f : 0.7f, scaleFactor = 1.0f, textSize, unkScale;
+			int commentCapacity = m_bAccountComment ? 140 : 100;
+			int commentLen = std::min(m_pComment->m_sComment.size(), commentCapacity);
+
+			bool lessThanHalf = commentLen <= (commentCapacity / 2);
+
+			if (commentLen > (commentCapacity / 2))
+			{
+				textSize = static_cast<float>(commentCapacity - commentLen);
+				unkScale = textSize / commentCapacity;
+			}
+
+			if (lessThanHalf)
+				scaleMod = 1.0f;
+			else
+			{
+				scaleFactor = 1.0f - scaleMod;
+				scaleMod = scaleMod + (unkScale * scaleFactor);
+			}
+
+			if (m_pComment->m_bIsSpam)
+			{
+				comment = "Comment flagged as spam";
+				if(!isSmallRow)
+					comment = "<cy>Comment flagged as spam</c>"
+			}
+			if (!isSmallRow)
+			{
+				TextArea* commentText = TextArea::create(comment, "chatFont.fnt", 1.0f, (m_fTableHeight - a - 45.0f) / scaleMod, { 0.0f, 1.0f }, !m_pComment->m_bIsSpam);
+				m_pLayer->addChild(commentText);
+				commentText->setAnchorPoint({ 0.0f, 0.5f });
+				commentText->setPosition({ 10, m_fCellHeight / 2 });
+				commentText->setScale(scaleMod);
+
+				cocos2d::ccColor3B commentCol;
+
+				if (m_pComment->m_nAuthorAccountID == 71) // Roberts blue comment
+				{
+					commentCol = { 0x32,0xFF,0xFF };
+				}
+				else
+				{
+					GJGameLevel* level = GLM->getSavedLevel(m_pComment->m_nLevelID);
+
+					if (level || (level = GLM->getSavedDailyLevelFromLevelID(m_pComment->m_nLevelID)) != 0 && level->getUserID() == m_pComment->getUserID())
+					{
+						commentCol = { 0xFF, 0xFF, 0x4B };
+					}
+					else
+					{
+						if (m_pComment->m_nModBadge > 0 && !m_bAccountComment)
+						{
+							commentCol = m_pComment->m_cColor;
+						}
+					}
+				}
+				commentText->colorAllCharactersTo(commentCol);
+			}
+
+			if (m_pComment->m_bHasLevelID)
+			{
+				std::string levelID = cocos2d::CCString::createWithFormat("%i", m_pComment->m_nLevelID)->m_sString;
+				ButtonSprite* idBtn = ButtonSprite::create(LevelID, 120, 0, 1.0f, 1, "bigFont.fnt", "GJ_button_01.png", 30.0f);
+				idBtn->setScale(isSmallRow ? 0.4f : 0.6f);
+				CCMenuItemSpriteExtra* idBtnClickable = CCMenuItemSpriteExtra::create(idBtn, this onGoToLevel);
+				idBtnClickable->setSizeMulti(1.2f);
+				commentMenu->addChild(idBtnClickable);
+
+				cocos2d::CCPoint idPos = { m_fTableHeight - (isSmallRow ? 95.0f : 130.0f), m_fCellHeight - (isSmallRow ? 11.5f : 19.5f) };
+				idBtnClickable->setPosition(commentMenu->convertToNodeSpace(m_pLayer->convertToWorldSpace(idPos)));
+			}
+			// 665/995
+
+
+
+
+
 		}
 		
 
