@@ -1,3 +1,5 @@
+[Russian](README-RU.md) | [Czech](README-CZ.md)
+
 # GD-Decompiled
  An attempt to get the source code for Geometry Dash through reverse engineering and decompiling the game.  
 
