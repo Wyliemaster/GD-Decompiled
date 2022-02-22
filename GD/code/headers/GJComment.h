@@ -17,4 +17,17 @@ class GJComment : public cocos2d::CCNode
 	cocos2d::ccColor3B m_cColor;
 	bool m_bHasLevelID;
 	GJUserScore* m_pUserScore;
+
+	GJComment();
+	static GJComment* create();
+	static GJComment* create(cocos2d::CCDictionary*);
+	virtual bool init();
+
+	int getUserID();
+	int getAccountID();
+	int getPercentage();
+	int getBadge();
+	cocos2d::ccColor3B getColour();
+	std::string getUsername();
+	std::string getComment();
 };
