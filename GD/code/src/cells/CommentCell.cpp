@@ -25,7 +25,7 @@ void CommentCell::draw()
 void CommentCell::onViewProfile(cocos2d::CCObject* pSender)
 {
 	if (m_pComment)
-		ProfilePage::create(m_pComment->m_nAuthorAccountID, false)->show();
+		ProfilePage::create(m_pComment->getAccountID(), false)->show();
 }
 
 void CommentCell::onConfirmDelete(cocos2d::CCObject* pSender)
@@ -120,7 +120,7 @@ void CommentCell::onLike(cocos2d::CCObject* pSender)
 	int special;
 	if (m_bAccountComment)
 	{
-		special = m_pComment->m_nAuthorAccountID; // no check D: would crash if comment wasn't defined
+		special = m_pComment->getAccountID(); // no check D: would crash if comment wasn't defined
 		type = kLikeItemTypeAccComment;
 	}
 	else
@@ -135,10 +135,10 @@ void CommentCell::onLike(cocos2d::CCObject* pSender)
 		if (!liked)
 		{
 			GameManager* GM = GameManager::sharedState();
-			if (m_pComment->m_nAuthorPlayerID != GM->getPlayerID())
+			if (m_pComment->getUserID() != GM->getPlayerID())
 			{
 				GJAccountManager* AM = GJAccountManager::sharedState();
-				if (!m_pComment->m_nAuthorAccountID || m_pComment->m_nAuthorAccountID != AM->getPlayerAccountID())
+				if (!m_pComment->getAccountID() || m_pComment->getAccountID() != AM->getPlayerAccountID())
 				{
 					LikeItemLayer* layer = LikeItemLayer::create(type, m_pComment->m_nCommentID, special);
 					layer->LikeItemDelegate = dynamic_cast<LikeItemDelegate*>(this);
@@ -187,7 +187,7 @@ void CommentCell::loadFromComment(GJComment* comment)
 
 	m_pComment = comment;
 
-	m_bAccountComment = comment->m_nLevelID ? false : comment->m_nAuthorAccountID > 0;
+	m_bAccountComment = comment->m_nLevelID ? false : comment->getAccountID() > 0;
 
 	m_pLayer->removeAllChildrenWithCleanup(true);
 
@@ -201,17 +201,17 @@ void CommentCell::loadFromComment(GJComment* comment)
 		cocos2d::CCMenu* commentMenu = cocos2d::CCMenu::create();
 		m_pLayer->addChild(commentMenu, 2);
 
-		std::string username = GLM->userNameForUserID(comment->m_nAuthorPlayerID);
+		std::string username = GLM->userNameForUserID(comment->getUserID());
 
 		if (m_bAccountComment)
-			username = GLM->userNameForUserID(GLM->UserIDForAccountID(comment->m_nAuthorAccountID));
+			username = GLM->userNameForUserID(GLM->UserIDForAccountID(comment->getAccountID()));
 		
 		m_pComment->m_sUsername = username;
 
-		if (!m_bAccountComment && !m_pComment->m_nAuthorAccountID)
-			m_pComment->m_nAuthorAccountID = GLM->accountIDForUserID(m_pComment->m_nAuthorPlayerID);
+		if (!m_bAccountComment && !m_pComment->getAccountID())
+			m_pComment->m_nAuthorAccountID = GLM->accountIDForUserID(m_pComment->getUserID());
 
-		cocos2d::CCLabelBMFont* nameLabel = cocos2d::CCLabelBMFont::create(m_pComment->m_sUsername, "goldFont.fnt");
+		cocos2d::CCLabelBMFont* nameLabel = cocos2d::CCLabelBMFont::create(m_pComment->getUsername(), "goldFont.fnt");
 
 		float width, defaultScale;
 
@@ -239,7 +239,7 @@ void CommentCell::loadFromComment(GJComment* comment)
 		{
 			unk1 = 0.0f;
 		label_2:
-			if (m_pComment->m_nModBadge < 1)
+			if (m_pComment->getBadge() < 1)
 				unk2 = 0.0f;
 			else
 			{
@@ -249,7 +249,7 @@ void CommentCell::loadFromComment(GJComment* comment)
 				xPos = ((unk1 + 10.0f) + (nameLabel->getContentSize() * nameLabel->getScale())) + widthPad;
 				cocos2d::CCPoint namePos = { xPos, m_fCellHeight - heightPad };
 
-				cocos2d::CCSprite badgeSprite = cocos2d::CCSprite::createWithSpriteFrameName(m_pComment->m_nModBadge == 2 ? "modBadge_02_001.png" : "modBadge_01_001.png");
+				cocos2d::CCSprite badgeSprite = cocos2d::CCSprite::createWithSpriteFrameName(m_pComment->getBadge() == 2 ? "modBadge_02_001.png" : "modBadge_01_001.png");
 
 				float badgeScale = isSmallRow ? 0.55f : 0.75f;
 				badgeSprite->setScale(badgeScale);
@@ -257,9 +257,9 @@ void CommentCell::loadFromComment(GJComment* comment)
 
 				unk2 = isSmallRow ? 15.0f : 22.0f;
 			}
-			if (m_pComment->m_nPercentage > 0)
+			if (m_pComment->getPercentage() > 0)
 			{
-				std::string percentage = cocos2d::CCString::createWithFormat("%i%%", m_pComment->m_nPercentage)->m_sString;
+				std::string percentage = cocos2d::CCString::createWithFormat("%i%%", m_pComment->getPercentage())->m_sString;
 				cocos2d::CCLabelBMFont* percentageLabel = cocos2d::CCLabelBMFont::create(percentage, "chatFont.fnt");
 				m_pLayer->addChild(percentageLabel);
 				percentageLabel->setAnchorPoint({ 0.0f, 0.5f });
@@ -276,13 +276,13 @@ void CommentCell::loadFromComment(GJComment* comment)
 		label_1:
 			heightPad = isSmallRow ? 10.0f : 18.0f;
 
-			if (!m_pComment->m_nAuthorAccountID || m_bAccountComment || comment->m_bHasLevelID) // unregistered account
+			if (!m_pComment->getAccountID() || m_bAccountComment || comment->m_bHasLevelID) // unregistered account
 			{
 				m_pLayer->addChild(nameLabel);
 				nameLabel->setAnchorPoint({ 0.0f, 0.5f });
 				nameLabel->setPosition({ xPos, m_fCellHeight - heightPad });
 
-				if (m_pComment->m_nAuthorAccountID != 71 && !m_bAccountComment && m_pComment->m_nAuthorAccountID <= 0) // change colour to green if not robtop
+				if (m_pComment->getAccountID() != 71 && !m_bAccountComment && m_pComment->getAccountID() <= 0) // change colour to green if not robtop
 				{
 					nameLabel->setColor({ 0x5A, 0xFF, 0xFF });
 				}
@@ -320,7 +320,7 @@ void CommentCell::loadFromComment(GJComment* comment)
 				m_pComment->m_sComment.replace(NSBP, 1, 1, '\x00'); // Robert removing all instances of 0xA0 (No-Break spaces) from comments
 			}
 
-			std::string commentStr = m_pComment->m_sComment;
+			std::string commentStr = m_pComment->getComment();
 
 			float scaleMod = isSmallRow ? 0.6f : 0.7f, scaleFactor = 1.0f, textSize, unkScale;
 			int commentCapacity = m_bAccountComment ? 140 : 100;
@@ -358,7 +358,7 @@ void CommentCell::loadFromComment(GJComment* comment)
 
 				cocos2d::ccColor3B commentCol;
 
-				if (m_pComment->m_nAuthorAccountID == 71) // Roberts blue comment
+				if (m_pComment->getAccountID() == 71) // Roberts blue comment
 				{
 					commentCol = { 0x32,0xFF,0xFF };
 				}
@@ -372,9 +372,9 @@ void CommentCell::loadFromComment(GJComment* comment)
 					}
 					else
 					{
-						if (m_pComment->m_nModBadge > 0 && !m_bAccountComment)
+						if (m_pComment->getBadge() > 0 && !m_bAccountComment)
 						{
-							commentCol = m_pComment->m_cColor;
+							commentCol = m_pComment->getColour();
 						}
 					}
 				}
@@ -457,9 +457,9 @@ label_3:
 
 				// holy fuck man
 				if (m_bAccountComment
-					&& AM->getPlayerAccountID() == m_pComment->m_nAuthorAccountID || GM->getPlayerID() > 0
-					&& GM->getPlayerID() == m_pComment->m_nAuthorPlayerID || m_pComment->m_nAuthorAccountID != 71
-					&& GLM->getSavedLevel(m_pComment->m_nLevelID)->getUserID() == m_pComment->m_nAuthorPlayerID
+					&& AM->getPlayerAccountID() == m_pComment->getAccountID() || GM->getPlayerID() > 0
+					&& GM->getPlayerID() == m_pComment->getUserID() || m_pComment->getAccountID() != 71
+					&& GLM->getSavedLevel(m_pComment->m_nLevelID)->getUserID() == m_pComment->getUserID()
 					&& GM->getAccountID() > 0 || GM->getRatePower() == 2)
 				{
 					cocos2d::CCSprite* delIcon = cocos2d::CCSprite::createWithSpriteFrameName("GJ_deleteIcon_001.png");
@@ -494,22 +494,22 @@ label_3:
 				actualComment->setPosition({ 10.0f, (m_fCellHeight / 2) - 9.0f });
 				actualComment->limitLabelWidth(270.0f, 0.7f, 0.0f);
 
-				if (m_pComment->m_nAuthorAccountID == 71) // again??
+				if (m_pComment->getAccountID() == 71) // again??
 				{
 					actualComment->setColor({ 0x32, 0xFF, 0xFF });
 				}
 				else
 				{
 					GJGameLevel lev = GLM->getSavedLevel(m_pComment->m_nLevelID);
-					if (lev || (lev = GLM->getSavedDailyLevelFromLevelID(m_pComment->m_nLevelID)) != 0 && lev->getUserID() == m_pComment->m_nAuthorPlayerID)
+					if (lev || (lev = GLM->getSavedDailyLevelFromLevelID(m_pComment->m_nLevelID)) != 0 && lev->getUserID() == m_pComment->getUserID())
 					{
 						actualComment->setColor({ 0xFF, 0xFF, 0x4B });
 					}
 					else
 					{
-						if (m_pComment->m_nModBadge > 0 && !m_bAccountComment)
+						if (m_pComment->getBadge() > 0 && !m_bAccountComment)
 						{
-							actualComment->setColor(m_pComment->m_cColor);
+							actualComment->setColor(m_pComment->getColour());
 						}
 					}
 				}
