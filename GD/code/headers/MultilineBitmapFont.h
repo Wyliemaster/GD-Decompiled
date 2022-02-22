@@ -5,18 +5,18 @@ class MultilineBitmapFont : cocos2d::CCSprite
 	float m_fFontWidth[300];
 	cocos2d::CCArray* m_pColouredTextArray; // ColoredSection*
 	cocos2d::CCArray* m_pInstantTextArray;  // InstantSection*
-	cocos2d::CCArray* m_pDelayedTextArray;  // DelayedSection
+	cocos2d::CCArray* m_pDelayedTextArray;  // DelayedSection*
 	cocos2d::CCArray* m_pLetterArray;	    // cocos2d::CCSprite*
-	float m_funk3;
-	bool m_bUnk;
-	DWORD dword6AC;
-	DWORD unk1;
-	DWORD unk2;
-	cocos2d::CCPoint m_obUnkPos;
-	float m_fUnk1;
-	bool m_bColourEnabled;
+	float m_fHalfScaledFontWidth;
+	bool m_bUnkScaleBool;
+	int unk;
+	cocos2d::CCSize m_obTextureSize;
+	cocos2d::CCPoint m_obPosition;
+	float m_fContentSizeScaleMod;
+	bool m_bTagsDisabled;
 
 	std::string readColorInfo(std::string);
 	void moveSpecialDescriptors(int, int);
 	void setOpacity(unsigned __int8);
+	virtual bool init(const char* a2, int* a3, float a4, float a5, cocos2d::CCPoint a6, bool bColourEnabled) override;
 };
