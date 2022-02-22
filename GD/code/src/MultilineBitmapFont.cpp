@@ -8,8 +8,6 @@ std::string MultilineBitmapFont::readColorInfo(std::string str)
 		std::size_t colPos = newstr.find("<c");
 		cocos2d::ccColor3B col;
 		cocos2d::CCObject* textSection;
-		cocos2d::CCArray* arr;
-
 
 		if (colPos != -1)
 		{
@@ -53,8 +51,8 @@ std::string MultilineBitmapFont::readColorInfo(std::string str)
 			}
 
 			textSection = ColoredSection::create(col, colPos, endTag - 1);
-			arr = m_pColouredTextArray;
-			goto l_end;
+			m_pColouredTextArray->addObject(textSection);;
+			continue;
 		}
 
 		std::size_t iPos = newstr.find("<i>");
@@ -68,8 +66,8 @@ std::string MultilineBitmapFont::readColorInfo(std::string str)
 			moveSpecialDescriptors(iEnd, 4);
 
 			textSection = InstantSection::create(iPos, iEnd - 1);
-			arr = m_pInstantTextArray;
-			goto l_end;
+			m_pInstantTextArray->addObject(textSection);;
+			continue;
 		}
 
 		std::size_t dPos = newstr.find("<d");
@@ -81,12 +79,8 @@ std::string MultilineBitmapFont::readColorInfo(std::string str)
 		moveSpecialDescriptors(iPos, 6);
 
 		textSection = DelaySection::create(dPos, delay / 100.0f);
-		arr = m_pDelayedTextArray;
-		
-
-	l_end:
-		arr->addObject(textSection);
-		return newstr;
+		m_pDelayedTextArray->addObject(textSection);;
 
 	}
+		return newstr;
 }
