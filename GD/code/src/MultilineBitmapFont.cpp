@@ -84,3 +84,29 @@ std::string MultilineBitmapFont::readColorInfo(std::string str)
 	}
 		return newstr;
 }
+
+void MultilineBitmapFont::moveSpecialDescriptors(int tStart, int tSize)
+{
+
+	for (int i = 0; i < m_pColouredTextArray->count(); ++i)
+	{
+		ColoredSection* section = m_pColouredTextArray->objectAtIndex(i);
+		if (section->m_nStart <= tStart && section->m_nEnd <= tStart)
+			continue;
+		else
+			section->m_nStart -= tSize;
+
+		section->m_nEnd -= tSize;
+	}
+
+	for (int i = 0; i < m_pInstantTextArray->count(); ++i)
+	{
+		InstantSection* section = m_pInstantTextArray->objectAtIndex(i);
+		if (section->m_nStart <= tStart && section->m_nEnd <= tStart)
+			continue;
+		else
+			section->m_nStart -= tSize;
+
+		section->m_nEnd -= tSize;
+	}
+}

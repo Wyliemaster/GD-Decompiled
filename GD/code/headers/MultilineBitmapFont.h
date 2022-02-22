@@ -17,4 +17,5 @@ class MultilineBitmapFont : cocos2d::CCSprite
 	bool m_bColourEnabled;
 
 	std::string readColorInfo(std::string);
+	void moveSpecialDescriptors(int, int);
 };
