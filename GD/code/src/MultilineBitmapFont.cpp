@@ -93,9 +93,8 @@ void MultilineBitmapFont::moveSpecialDescriptors(int tStart, int tSize)
 		ColoredSection* section = m_pColouredTextArray->objectAtIndex(i);
 		if (section->m_nStart <= tStart && section->m_nEnd <= tStart)
 			continue;
-		else
-			section->m_nStart -= tSize;
-
+		
+		section->m_nStart -= tSize;
 		section->m_nEnd -= tSize;
 	}
 
@@ -104,9 +103,17 @@ void MultilineBitmapFont::moveSpecialDescriptors(int tStart, int tSize)
 		InstantSection* section = m_pInstantTextArray->objectAtIndex(i);
 		if (section->m_nStart <= tStart && section->m_nEnd <= tStart)
 			continue;
-		else
-			section->m_nStart -= tSize;
-
+		
+		section->m_nStart -= tSize;
 		section->m_nEnd -= tSize;
 	}
+}
+
+void MultilineBitmapFont::setOpacity(unsigned __int8 opacity)
+{
+	for (int i = 0; i < m_pLetterArray->count(); ++i)
+	{
+		static_cast<cocos2d::CCSprite*>(m_pLetterArray->objectAtIndex(i))->setOpacity(opacity);
+	}
+	this->setOpacity(opacity);
 }
