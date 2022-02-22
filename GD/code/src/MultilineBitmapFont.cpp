@@ -76,7 +76,7 @@ std::string MultilineBitmapFont::readColorInfo(std::string str)
 		if (dPos == -1)
 			break;
 
-		int delay = atoi(newstr.substr(dPos + 2), 3);
+		int delay = atoi(newstr.substr(dPos + 2, 3));
 		newstr.replace(dPos, 6, "");
 		moveSpecialDescriptors(iPos, 6);
 
