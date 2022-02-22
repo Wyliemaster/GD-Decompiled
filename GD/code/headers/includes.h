@@ -39,6 +39,9 @@
 #include "GJStoreItem.h"
 #include "ButtonSprite.h"
 #include "MultilineBitmapFont.h"
+#include "ColoredSection.h"
+#include "InstantSection.h"
+#include "DelaySection.h"
 
 // Layer Related Classes
 
