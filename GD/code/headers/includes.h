@@ -38,6 +38,7 @@
 #include "AchievementNotifier.h"
 #include "GJStoreItem.h"
 #include "ButtonSprite.h"
+#include "MultilineBitmapFont.h"
 
 // Layer Related Classes
 
