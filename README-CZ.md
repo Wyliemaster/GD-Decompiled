@@ -1,6 +1,6 @@
 [English](README.md) | [Russian](README-RU.md)
 
-**Translation was made by @Cvolton**
+**Translation was made by @Cvolton** ***[OUTDATED!!]***
 
 # GD-Dekompilováno
  snaha získat zdrojový kód ke hře Geometry Dash za pomocí reverzního inženýrství a dekompilování hry.  
