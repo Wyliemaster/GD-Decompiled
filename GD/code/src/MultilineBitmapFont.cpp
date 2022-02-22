@@ -76,7 +76,7 @@ std::string MultilineBitmapFont::readColorInfo(std::string str)
 
 		int delay = atoi(newstr.substr(dPos + 2, 3));
 		newstr.replace(dPos, 6, "");
-		moveSpecialDescriptors(iPos, 6);
+		moveSpecialDescriptors(dPos, 6);
 
 		textSection = DelaySection::create(dPos, delay / 100.0f);
 		m_pDelayedTextArray->addObject(textSection);;
