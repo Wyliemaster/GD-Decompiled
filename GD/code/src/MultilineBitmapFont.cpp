@@ -118,11 +118,11 @@ void MultilineBitmapFont::setOpacity(unsigned __int8 opacity)
 	this->setOpacity(opacity);
 }
 
-MultilineBitmapFont* MultilineBitmapFont::create(const char* fontName, int* str, float scale, float width, cocos2d::CCPoint anchorPoint, bool bColourEnabled)
+MultilineBitmapFont* MultilineBitmapFont::create(const char* fontName, int* str, float scale, float width, cocos2d::CCPoint anchorPoint, bool tagsDisabled)
 {
 	auto pRet = new MultilineBitmapFont;
 
-	if (pRet && pRet->initWithFont(fontName, str, scale, width, anchorPoint, bColourEnabled))
+	if (pRet && pRet->initWithFont(fontName, str, scale, width, anchorPoint, tagsDisabled))
 	{
 		pRet->autorelease();
 		return pRet;
@@ -130,4 +130,179 @@ MultilineBitmapFont* MultilineBitmapFont::create(const char* fontName, int* str,
 
 	CC_SAFE_DELETE(pRet);
 	return nullptr;
+}
+
+bool MultilineBitmapFont::initWithFont(const char* fontName, int* str, float scale, float width, cocos2d::CCPoint anchorPoint, bool tagsDisabled)
+{
+	bool init = this->init(); // inititialising CCSprite Stuff
+	if (init)
+	{
+		std::string modifiedStr = str;
+		m_bTagsDisabled = tagsDisabled;
+
+		cocos2d::CCDirector* director = cocos2d::CCDirector::sharedDirector();
+		float scaledWidth = width * director->getContentScaleFactor();
+
+		m_pColouredTextArray = cocos2d::CCArray::create();
+		m_pColouredTextArray->retain();
+
+		m_pInstantTextArray = cocos2d::CCArray::create();
+		m_pInstantTextArray->retain();
+
+		m_pDelayedTextArray = cocos2d::CCArray::create();
+		m_pDelayedTextArray->retain();
+
+		m_pLetterArray = cocos2d::CCArray::create();
+		m_pLetterArray->retain();
+
+		FontObject* font = BitmapFontCache::sharedFontCache()->fontWithConfigFile(fontName, scale);
+
+		for (int i = 0; i < 300; i++)
+			m_fFontWidth[i] = font->getFontWidth(i);
+
+		if (!m_bTagsDisabled)
+			modifiedStr = this->readColorInfo(str);
+
+
+
+		float yPos = 0.0f;
+		int strPos = 0;
+		int loops = 0;
+		while (modifiedStr)
+		{
+			modifiedStr = this->stringWithMaxWidth(modifiedStr, scaledWidth, scale);
+
+			cocos2d::CCLabelBMFont* label = cocos2d::CCLabelBMFont::create(modifiedStr, fontName);
+			label->setPosition({ 0.0f, yPos });
+			label->setScale(scale);
+
+			if (m_fContentSizeScaleMod < label->getContentSize().width * label->getScale())
+				m_fContentSizeScaleMod = label->getContentSize().width * label->getScale();
+
+			label->setAnchorPoint(anchorPoint);
+
+			if (label->getAnchorPoint().x == 0.5f)
+			{
+				label->setAnchorPoint({ 0.0f, label->getAnchorPoint().y });
+				cocos2d::CCPoint pos = label->getPosition();
+
+				label->setPosition({ roundf(pos.x - (label->getContentSize().width / 2)), pos.y });
+			}
+
+			if (label->getAnchorPoint().y == 0.5f)
+			{
+				label->setAnchorPoint({ label->getAnchorPoint().x, 0.0f });
+				cocos2d::CCPoint pos = label->getPosition();
+
+				label->setPosition({ pos.x, roundf(pos.y - (label->getContentSize().height / 2)) });
+			}
+
+			
+			std::size_t strSize = modifiedStr.size();
+			int currentIdx = strPos + strSize; // names may change
+
+			while (m_pColouredTextArray->count())
+			{
+				ColoredSection* section = m_pColouredTextArray->objectAtIndex(0);
+
+				if (section->m_nStart < strPos || section->m_nStart > currentIdx)
+					break;
+
+				if (section->m_nEnd <= currentIdx)
+					m_pColouredTextArray->removeObjectAtIndex(0, 1);
+				else
+					section->m_nStart = (section->m_nEnd = currentIdx) + 1;
+
+				int pos = section->m_nStart - strPos;
+				int limit = section->m_nEnd - strPos;
+
+				if (pos == 1)
+					pos = 0;
+
+				while (pos <= limit)
+				{
+					cocos2d::CCSprite* child = label->getChildByTag(pos);
+
+					if (child)
+						child->setColor(section->m_cColour);
+					++pos;
+				}
+			}
+
+			while (m_pInstantTextArray->count())
+			{
+				ColoredSection* section = m_pInstantTextArray->objectAtIndex(0);
+
+				if (section->m_nStart < strPos || section->m_nStart > currentIdx)
+					break;
+
+				if (section->m_nEnd <= currentIdx)
+					m_pInstantTextArray->removeObjectAtIndex(0, 1);
+				else
+					section->m_nStart = (section->m_nEnd = currentIdx) + 1;
+
+				int pos = section->m_nStart - strPos;
+				int limit = section->m_nEnd - strPos;
+
+				if (pos == 1)
+					pos = 0;
+
+				while (pos <= limit)
+				{
+					cocos2d::CCSprite* child = label->getChildByTag(pos);
+
+					if (child)
+						child->m_bVisible = true;
+					++pos;
+				}
+			}
+
+			while (m_pDelayedTextArray->count())
+			{
+				ColoredSection* section = m_pDelayedTextArray->objectAtIndex(0);
+
+				if (section->m_nStart < strPos || section->m_nStart > currentIdx)
+					break;
+
+					m_pDelayedTextArray->removeObjectAtIndex(0, 1);
+
+					int pos = section->m_nStart - strPos;
+					if (pos == 1)
+						pos = 0;
+
+					if (!label->getChildByTag(pos))
+					{
+						cocos2d::CCSprite* child = label->getChildByTag(pos - 1);
+						if (child)
+							child->m_fDelay = section->m_fDelay;
+					}
+			}
+
+			addChild(label);
+
+			for (size_t i = 0; i < label->getChildrenCount(); i++)
+				m_pLetterArray->addObject(label->getChildren()->objectAtIndex(i));
+			
+			modifiedStr = modifiedStr.erase(0, strLen);
+			strPos += strLen;
+			++loops;
+		}
+
+		m_pColouredTextArray->release();
+		m_pInstantTextArray->release();
+
+		m_obTextureSize.width = (loops - 1) * anchorPoint.y;
+		m_obTextureSize.height = scaledWidth + 0.0f;
+
+		float x = 0.0f;
+
+		if (anchorPoint.x != 0.0f)
+		{
+			if (anchorPoint.x != 1.0f)
+				x = m_obTextureSize.height / 2;
+		}
+
+		m_obPosition = { x, m_obTextureSize.width };
+	}
+	return init;
 }
