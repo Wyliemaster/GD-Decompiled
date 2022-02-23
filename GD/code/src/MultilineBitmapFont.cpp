@@ -163,8 +163,6 @@ bool MultilineBitmapFont::initWithFont(const char* fontName, int* str, float sca
 		if (!m_bTagsDisabled)
 			modifiedStr = this->readColorInfo(str);
 
-
-
 		float yPos = 0.0f;
 		int strPos = 0;
 		int loops = 0;
