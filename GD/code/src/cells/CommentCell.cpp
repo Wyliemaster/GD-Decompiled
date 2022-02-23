@@ -315,7 +315,7 @@ void CommentCell::loadFromComment(GJComment* comment)
 			while (true)
 			{
 				std::size_t NSBP = m_pComment->m_sComment.find('\xA0');
-				if (NSBP == -1)
+				if (NSBP == std::string::npos)
 					break;
 				m_pComment->m_sComment.replace(NSBP, 1, 1, '\x00'); // Robert removing all instances of 0xA0 (No-Break spaces) from comments
 			}

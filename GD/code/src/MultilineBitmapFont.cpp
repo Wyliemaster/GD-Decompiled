@@ -9,7 +9,7 @@ std::string MultilineBitmapFont::readColorInfo(std::string str)
 		cocos2d::ccColor3B col;
 		cocos2d::CCObject* textSection;
 
-		if (colPos != -1)
+		if (colPos != std::string::npos)
 		{
 			std::string tag = newstr.at(colPos + 2);
 
@@ -56,7 +56,7 @@ std::string MultilineBitmapFont::readColorInfo(std::string str)
 		}
 
 		std::size_t iPos = newstr.find("<i>");
-		if (iPos != -1)
+		if (iPos != std::string::npos)
 		{
 			newstr.replace(iPos, 3, "");
 			moveSpecialDescriptors(iPos, 3);
@@ -66,12 +66,12 @@ std::string MultilineBitmapFont::readColorInfo(std::string str)
 			moveSpecialDescriptors(iEnd, 4);
 
 			textSection = InstantSection::create(iPos, iEnd - 1);
-			m_pInstantTextArray->addObject(textSection);;
+			m_pInstantTextArray->addObject(textSection);
 			continue;
 		}
 
 		std::size_t dPos = newstr.find("<d");
-		if (dPos == -1)
+		if (dPos == std::string::npos)
 			break;
 
 		int delay = atoi(newstr.substr(dPos + 2, 3));
@@ -79,7 +79,7 @@ std::string MultilineBitmapFont::readColorInfo(std::string str)
 		moveSpecialDescriptors(dPos, 6);
 
 		textSection = DelaySection::create(dPos, delay / 100.0f);
-		m_pDelayedTextArray->addObject(textSection);;
+		m_pDelayedTextArray->addObject(textSection);
 
 	}
 		return newstr;
