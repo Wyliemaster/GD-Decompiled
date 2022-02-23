@@ -306,3 +306,63 @@ bool MultilineBitmapFont::initWithFont(const char* fontName, int* str, float sca
 	}
 	return init;
 }
+
+std::string MultilineBitmapFont::stringWithMaxWidth(std::string str, float scaledFontWidth, float scale)
+{
+	int pos = 0;
+	float fontWidthScale = 0.0f, unk = 0.0f;
+
+	std::string str2;
+
+	while (pos < str.size() && fontWidthScale < (2 * scaledFontWidth))
+	{
+		float fontWidth = m_fFontWidth[str.at(pos)];
+		std::string ch = str.substr(pos, 1);
+
+		if (ch == "\n")
+		{
+			fontWidthScale += scale * fontWidth;
+			pos = 1000;
+			break;
+		}
+
+		if (ch != '\xE2' && str.at(0) == ' ')
+		{
+			unk = fontWidthScale * (fontWidth * scale);
+		}
+
+		str2 += ch;
+		++pos;
+
+		fontWidthScale += scale * fontWidth;
+	}
+
+	float half = scaledFontWidth / 2;
+
+	if (!m_bUnkScaleBool && fontWidthScale < (2 * scaledFontWidth))
+		m_fHalfScaledFontWidth = (fontWidthScale / 2) - unk;
+
+	if (half > m_fHalfScaledFontWidth)
+		m_fHalfScaledFontWidth = half;
+
+	if (str.size() > pos)
+	{
+		int temp = 0, temp2 = pos;
+
+		while (temp <= str.size())
+		{
+			if (temp2 <= 0)
+				break;
+
+			if (str2.at(temp2 - 1) == ' ')
+				break;
+
+			++temp;
+			--temp2;
+		}
+
+		if (pos - temp > 1)
+			str2 = str2.substr(0, str2.size() - temp);
+	}
+	return cocos2d::CCString::create(str2)->m_sString;
+}
