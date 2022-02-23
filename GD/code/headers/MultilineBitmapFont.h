@@ -18,5 +18,7 @@ class MultilineBitmapFont : cocos2d::CCSprite
 	std::string readColorInfo(std::string);
 	void moveSpecialDescriptors(int, int);
 	void setOpacity(unsigned __int8);
-	virtual bool init(const char* fontName, int* str, float scale, float width, cocos2d::CCPoint anchorPoint, bool bColourEnabled) override;
+	virtual bool initWithFont(const char* fontName, int* str, float scale, float width, cocos2d::CCPoint anchorPoint, bool bColourEnabled) override;
+	static MultilineBitmapFont* create(const char* fontName, int* str, float scale, float width, cocos2d::CCPoint anchorPoint, bool bColourEnabled);
+
 };

@@ -117,3 +117,17 @@ void MultilineBitmapFont::setOpacity(unsigned __int8 opacity)
 	}
 	this->setOpacity(opacity);
 }
+
+MultilineBitmapFont* MultilineBitmapFont::create(const char* fontName, int* str, float scale, float width, cocos2d::CCPoint anchorPoint, bool bColourEnabled)
+{
+	auto pRet = new MultilineBitmapFont;
+
+	if (pRet && pRet->initWithFont(fontName, str, scale, width, anchorPoint, bColourEnabled))
+	{
+		pRet->autorelease();
+		return pRet;
+	}
+
+	CC_SAFE_DELETE(pRet);
+	return nullptr;
+}
