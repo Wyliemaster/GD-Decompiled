@@ -246,7 +246,7 @@ void CommentCell::loadFromComment(GJComment* comment)
 				widthPad = isSmallRow ? 8.0f : 12.0f;
 				heightPad = isSmallRow ? 11.5f : 19.5f;
 
-				xPos = ((unk1 + 10.0f) + (nameLabel->getContentSize() * nameLabel->getScale())) + widthPad;
+				xPos = ((unk1 + 10.0f) + (nameLabel->getContentSize().width * nameLabel->getScale())) + widthPad;
 				cocos2d::CCPoint namePos = { xPos, m_fCellHeight - heightPad };
 
 				cocos2d::CCSprite badgeSprite = cocos2d::CCSprite::createWithSpriteFrameName(m_pComment->getBadge() == 2 ? "modBadge_02_001.png" : "modBadge_01_001.png");
@@ -269,7 +269,7 @@ void CommentCell::loadFromComment(GJComment* comment)
 				percentageLabel->setColor({ 0, 0, 0 });
 				percentageLabel->setOpacity(150.0f);
 
-				xPos = (((unk1 + 10.0f) + unk2) + (nameLabel->getContentSize() * nameLabel->getScale())) + 4.0f; // yes it uses the name rather than the percent
+				xPos = (((unk1 + 10.0f) + unk2) + (nameLabel->getContentSize().width * nameLabel->getScale())) + 4.0f; // yes it uses the name rather than the percent
 				cocos2d::CCPoint percentPos = { xPos, m_fCellHeight - heightPad };
 				percentageLabel->setPosition(percentPos);
 			}
@@ -292,7 +292,7 @@ void CommentCell::loadFromComment(GJComment* comment)
 			{
 				cocos2d::CCMenuItemSpriteExtra* cName = CCMenuItemSpriteExtra::create(nameLabel, this, onViewProfile);
 				commentMenu->addChild(cName);
-				cocos2d::CCPoint pos = commentMenu->convertToNodeSpace(m_pLayer->convertToWorldSpace({ (unk1 + 10.0f) + ((nameLabel->getContentSize() / 2) * nameLabel->getScale()), m_fCellHeight - heightPad }));
+				cocos2d::CCPoint pos = commentMenu->convertToNodeSpace(m_pLayer->convertToWorldSpace({ (unk1 + 10.0f) + ((nameLabel->getContentSize().width / 2) * nameLabel->getScale()), m_fCellHeight - heightPad }));
 				cName->setPosition(pos);
 			}
 
@@ -406,7 +406,7 @@ label_3:
 
 				commentMenu->addChild(spamBtn);
 
-				cocos2d::CCPoint spamPos = { (m_fTableHeight - (spamSprite->getContentSize() / 2) - 9.0f), m_fCellHeight / 2 };
+				cocos2d::CCPoint spamPos = { (m_fTableHeight - (spamSprite->getContentSize().width / 2) - 9.0f), m_fCellHeight / 2 };
 				spamBtn->setPosition(commentMenu->convertToNodeSpace(m_pLayer->convertToWorldSpace(spamPos)));
 
 			}
