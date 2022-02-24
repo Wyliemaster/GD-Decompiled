@@ -500,7 +500,7 @@ label_3:
 				}
 				else
 				{
-					GJGameLevel lev = GLM->getSavedLevel(m_pComment->m_nLevelID);
+					GJGameLevel *lev = GLM->getSavedLevel(m_pComment->m_nLevelID);
 					if (lev || (lev = GLM->getSavedDailyLevelFromLevelID(m_pComment->m_nLevelID)) != 0 && lev->getUserID() == m_pComment->getUserID())
 					{
 						actualComment->setColor({ 0xFF, 0xFF, 0x4B });
