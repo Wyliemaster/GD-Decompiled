@@ -150,3 +150,35 @@ bool LevelSelectLayer::init(int page)
 	}	
 	return init;
 }
+
+cocos2d::ccColor3B LevelSelectLayer::getColorValue(int level, int level2, float a3)
+{
+	float mod = (a3 * (2 / 3)) - 0.2f;
+	if (mod < 1.0f)
+	{
+		if (mod < = 0.0f)
+			mod = 0.0f;
+	}
+	else
+		mod = 1.0f;
+
+	cocos2d::ccColor3B col1 = colorForPage(level1);
+	cocos2d::ccColor3B col2 = colorForPage(level2);
+
+	return ((col2.r * mod) + col1.r * (1.0f - mod)) | (((col2.g * mod) + col1.g * (1.0f - mod)) << 8) | (((col2.b * mod) + col1.b * (1.0f - mod)) << 16);
+}
+
+void LevelSelectLayer::updatePageWithObject(LevelPage* page, GJGameLevel *level)
+{
+	page->updateDynamicPage(level);
+	if (!m_bSecretMenuCoin && m_nLevel > 55 && level->getLevelID() == -1)
+	{
+		m_bSecretMenuCoin = true;
+		page->addSecretCoin();
+	}
+}
+
+bool LevelSelectLayer::tryShowAd()
+{
+	return GameManager::sharedState()->showInterstitial();
+}

@@ -2,6 +2,7 @@
 
 class BoomScrollLayerDelegate;
 class DynamicScrollDelegate;
+class LevelPage*
 
 class LevelSelectLayer : public cocos2d::CCLayer, public BoomScrollLayerDelegate, public DynamicScrollDelegate
 {
@@ -16,5 +17,19 @@ public:
 
 public:
 	cocos2d::ccColor3B colorForPage(int);
+	cocos2d::ccColor3B getColorValue(int, int, float);
 	bool init(int);
+	bool tryShowAd();
+	void onPrev(cocos2d::CCObject*);
+	void onNext(cocos2d::CCObject*);
+	void onDownload(cocos2d::CCObject*);
+	void onInfo(cocos2d::CCObject*);
+	void onPlay(cocos2d::CCObject*);
+	void onBack(cocos2d::CCObject*);
+	void backKeyClicked();
+	void scollLayerMove(cocos2d::CCPoint);
+	void keyDown(int);
+	static LevelSelectLayer* create(int);
+	cocos2d::CCScene* scene(int);
+	void updatePageWithObject(LevelPage*, GJGameLevel*)
 };
