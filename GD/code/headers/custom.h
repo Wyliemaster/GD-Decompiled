@@ -14,4 +14,6 @@ namespace Globals
     int ShardTypes[5] = {1, 2, 3, 4, 5};
 
     cocos2d::CCPoint *gScollLayerPos = { 0.0f , 0.0f };
+    cocos2d::ccColor3B gNormalBarCol = { 0x00, 0xFF, 0x00 };
+    cocos2d::ccColor3B gPracticeBarCol = { 0x00, 0xFF, 0xFF };
 }

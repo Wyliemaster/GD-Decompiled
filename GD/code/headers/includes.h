@@ -42,6 +42,7 @@
 #include "ColoredSection.h"
 #include "InstantSection.h"
 #include "DelaySection.h"
+#include "LevelPage.h"
 
 // Layer Related Classes
 

@@ -61,3 +61,4 @@ class LikeItemDelegate;
 class LevelCommentDelegate;
 class CommentUploadDelegate;
 class AnimatedSpriteDelegate;
+class DialogDelegate;
