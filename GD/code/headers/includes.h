@@ -58,6 +58,7 @@
 #include "Layers/GJGroundLayer.h"
 #include "Layers/InfoLayer.h
 #include "Layers/LevelEditorLayer.h"
+#include "Layers/LevelSelectLayer.h"
 #include "Layers/LevelSettingsLayer.h"
 #include "Layers/MenuLayer.h"
 #include "Layers/NumberInputLayer.h"

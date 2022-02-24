@@ -12,4 +12,6 @@ namespace Globals
     const std::string XORLevelPass = "26364";
     const std::string XORAccountPassword = "37526";
     int ShardTypes[5] = {1, 2, 3, 4, 5};
+
+    cocos2d::CCPoint *scollLayerPos;
 }
