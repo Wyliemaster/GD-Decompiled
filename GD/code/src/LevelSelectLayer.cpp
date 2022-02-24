@@ -113,7 +113,7 @@ bool LevelSelectLayer::init(int page)
 		leftBtn->setPosition(btnMenu->convertToNodeSpace( { director->getScreenLeft() + 25.0f, winSize.height / 2 }));
 
 
-		cocos2d::CCSprite* right = cocos2d::CCSprite::createWithSpriteFrameName(controller ? "controllerBtn_DPad_Right_001.png : "navArrowBtn_001.png");
+		cocos2d::CCSprite* right = cocos2d::CCSprite::createWithSpriteFrameName(controller ? "controllerBtn_DPad_Right_001.png" : "navArrowBtn_001.png");
 
 		CCMenuItemSpriteExtra* rightBtn = CCMenuItemSpriteExtra::create(right, this, LevelSelectLayer::onNext);
 		btnMenu->addChild(rightBtn);
