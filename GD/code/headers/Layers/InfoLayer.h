@@ -16,10 +16,10 @@ class InfoLayer : public FLAlertLayer, LevelCommentDelegate, CommentUploadDelega
 	CCMenuItemSpriteExtra* m_pReportBtn;
 	CCMenuItemSpriteExtra* m_pCommentsBtn;
 	CCMenuItemSpriteExtra* m_pRefreshCommentsBtn;
-	int m_nPageStartIdx;
-	int m_nPageEndIdx;
-	int m_nTotalItems;
-	int m_nPageNumber;
+  	int m_nTotalItems;
+  	int m_nPageStart;
+  	int m_nPageEnd;
+  	int m_nPage;
 	bool m_bCanUpdateUserScore;
 	bool m_bCommentHistory;
 };
