@@ -57,7 +57,7 @@
 #include "Layers/GJDropDownLayer.h"
 #include "Layers/GJGarageLayer.h"
 #include "Layers/GJGroundLayer.h"
-#include "Layers/InfoLayer.h
+#include "Layers/InfoLayer.h"
 #include "Layers/LevelEditorLayer.h"
 #include "Layers/LevelSelectLayer.h"
 #include "Layers/LevelSettingsLayer.h"
