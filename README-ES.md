@@ -2,6 +2,8 @@
 
 [[English]](README-EN.md) [[Czesh]](README-CZ.md) [[Russian]](README-RU.md)
 
+This translation was made by: @Adrikikicp
+
 Este es el intento de decompilación de Geometry Dash 2.113
 
 Importante:
@@ -26,4 +28,4 @@ Porfa no uses las versiones crackeadas de Geometry Dash. Puedes comprarlo aquí:
 # Documentación
 
 Puedes ver el siguiente repositorio que puede ayudar un poco a aprender qué clases hay en Geometry Dash 
-[aquí](https://github.com/Wyliemaster/gd-docs)
+[aquí](https://github.com/Wyliemaster/gd.docs)
