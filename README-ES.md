@@ -1,6 +1,6 @@
-# GD Decompiled
+[English](README.md) | [Russian](README-RU.md) | [Czech](README-CZ.md) | Spanish | [简体中文](README-CN.md)
 
-[[English]](README-EN.md) [[Czesh]](README-CZ.md) [[Russian]](README-RU.md)
+# GD Decompiled
 
 This translation was made by: @Adrikikicp
 
