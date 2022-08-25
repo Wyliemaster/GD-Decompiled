@@ -1,4 +1,4 @@
-[English](README.md) | [Russian](README-RU.md) | [Spanish](README-ES.md)
+[English](README.md) | [Russian](README-RU.md) | Czech | [Spanish](README-ES.md) | [简体中文](README-CN.md)
 
 **Translation was made by @Cvolton** ***[OUTDATED!!]***
 
