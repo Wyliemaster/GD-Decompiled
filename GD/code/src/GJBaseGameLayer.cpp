@@ -430,3 +430,9 @@ void GJBaseGameLayer::setupLayers()
 
 	//will finish the other 26 batch nodes later
 }
+
+int GJBaseGameLayer::sectionForPos(float pos) {
+    float div = pos / 100.0f;
+    int floor_div = static_cast<int>(div);
+    return abs(floor_div);
+}
