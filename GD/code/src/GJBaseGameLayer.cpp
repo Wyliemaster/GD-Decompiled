@@ -225,8 +225,10 @@ void GJBaseGameLayer::updateLayerCapacity(std::string _capacityString)
 		m_pBatchNodeBot2->increaseAtlasCapacity(batchNodes->stringAtIndex(0xA)->intValue());
 		m_pBatchNodeAddBot2->increaseAtlasCapacity(batchNodes->stringAtIndex(0xB)->intValue());
 		m_pBatchNodeAddGlow->increaseAtlasCapacity(batchNodes->stringAtIndex(0xC)->intValue());
-		//Robert seems to have accidentally skipped index 0xD so the batch nodes after this arent optimised
-		//as they are misaligned with the capacity string
+		// 0xD is missing. this is because rob decided to comment it out. Below is what it should be
+		// as shared by RobTop when questioned
+		// batchNodeAddMidGlow->increaseAtlasCapacity(capacity->stringAtIndex(13)->intValue());
+
 		m_pBatchNodeAddBotGlow->increaseAtlasCapacity(batchNodes->stringAtIndex(0xE)->intValue());
 		m_pBatchNodeAddBot2Glow->increaseAtlasCapacity(batchNodes->stringAtIndex(0xF)->intValue());
 		if (batchNodes->count() > 0x36)
