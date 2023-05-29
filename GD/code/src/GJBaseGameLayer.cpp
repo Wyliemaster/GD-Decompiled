@@ -597,3 +597,22 @@ void GJBaseGameLayer::updateOBB2D(cocos2d::CCRect rect)
 
 	m_pOBB2D->calculateWithCenter(center, rect.size.width, rect.size.height, 0);
 }
+
+void GJBaseGameLayer::collectItem(int itemID, int unknown)
+{
+	int temp = std::abs(unknown);
+
+	for (int i = 0; i < temp; i++)
+	{
+		if (unknown >= 0)
+		{
+			m_pEffectManager->incrementCountForItem(itemID);
+		}
+		else
+		{
+			m_pEffectManager->decrementCountForItem(itemID);
+		}
+	}
+	int count = decrementCountForItem->countForItem(itemID);
+	updateCounters(itemID, count);
+}

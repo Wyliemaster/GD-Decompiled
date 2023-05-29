@@ -122,4 +122,6 @@ public:
     void createTextLayers();
     void setupLayers();
     void updateOBB2D(cocos2d::CCRect);
+    void collectItem(int, int);
+    void updateCounters(int, int);
 };
