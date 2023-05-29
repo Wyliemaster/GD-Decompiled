@@ -346,10 +346,10 @@ void GJBaseGameLayer::createTextLayers()
 void GJBaseGameLayer::setupLayers()
 {
 	cocos2d::CCTextureCache* textureCache = cocos2d::CCTextureCache::sharedTextureCache();
-	cocos2d::CCTexture2D* gSheet1 = textureCache->addImage("GJ_GameSheet.png", false);
-	cocos2d::CCTexture2D* gSheet2 = textureCache->addImage("GJ_GameSheet02.png", false);
-	cocos2d::CCTexture2D* gSheetGlow = textureCache->addImage("GameSheetGlow.png", false);
-	cocos2d::CCTexture2D* gSheetFire = textureCache->addImage("FireSheet_01.png", false);
+	cocos2d::CCTexture2D* gSheet1 = textureCache->addImage("GJ_GameSheet.png", false); // R6
+	cocos2d::CCTexture2D* gSheet2 = textureCache->addImage("GJ_GameSheet02.png", false); // R9
+	cocos2d::CCTexture2D* gSheetGlow = textureCache->addImage("GameSheetGlow.png", false); // R8
+	cocos2d::CCTexture2D* gSheetFire = textureCache->addImage("FireSheet_01.png", false); // R7
 	cocos2d::ccBlendFunc blendFunc = { GL_SRC_ALPHA, GL_ONE };
 
 	m_pObjectLayer = cocos2d::CCLayer::create();
@@ -428,7 +428,75 @@ void GJBaseGameLayer::setupLayers()
 	m_pBatchNodeAddBot2->setTag(1009);
 	m_pBatchNodeArray->addObject(m_pBatchNodeAddBot2);
 
-	//will finish the other 26 batch nodes later
+	m_pBatchNodeAddGlow = cocos2d::CCSpriteBatchNode::createWithTexture(gSheetGlow);
+	m_pBatchNodeAddGlow->setBlendFunc(blendFunc);
+	m_pObjectLayer->addChild(m_pBatchNodeAddGlow, 9);
+	m_pBatchNodeAddGlow->setTag(1010);
+	m_pBatchNodeArray->addObject(m_pBatchNodeAddGlow);
+
+	m_pBatchNodeAddBotGlow = cocos2d::CCSpriteBatchNode::createWithTexture(gSheetGlow);
+	m_pBatchNodeAddBotGlow->setBlendFunc(blendFunc);
+	m_pObjectLayer->addChild(m_pBatchNodeAddBotGlow, -2);
+	m_pBatchNodeArray->addObject(m_pBatchNodeAddBotGlow);
+
+	m_pBatchNodeAddBot2Glow = cocos2d::CCSpriteBatchNode::createWithTexture(gSheetGlow);
+	m_pBatchNodeAddBot2Glow->setBlendFunc(blendFunc);
+	m_pObjectLayer->addChild(m_pBatchNodeAddBot2Glow, -9);
+	m_pBatchNodeAddBot2Glow->setTag(1013);
+	m_pBatchNodeArray->addObject(m_pBatchNodeAddBot2Glow);
+
+	m_pBatchNodeAddBot4Glow = cocos2d::CCSpriteBatchNode::createWithTexture(gSheetGlow);
+	m_pBatchNodeAddBot4Glow->setBlendFunc(blendFunc);
+	m_pObjectLayer->addChild(m_pBatchNodeAddBot4Glow, -23);
+	m_pBatchNodeArray->addObject(m_pBatchNodeAddBot4Glow);
+
+	m_pBatchNodeAddBot3Glow = cocos2d::CCSpriteBatchNode::createWithTexture(gSheetGlow);
+	m_pBatchNodeAddBot3Glow->setBlendFunc(blendFunc);
+	m_pObjectLayer->addChild(m_pBatchNodeAddBot3Glow, -16);
+	m_pBatchNodeArray->addObject(m_pBatchNodeAddBot3Glow);
+
+	m_pBatchNodeAddGlowTop2 = cocos2d::CCSpriteBatchNode::createWithTexture(gSheetGlow);
+	m_pBatchNodeAddGlowTop2->setBlendFunc(blendFunc);
+	m_pObjectLayer->addChild(m_pBatchNodeAddGlowTop2, 16);
+	m_pBatchNodeArray->addObject(m_pBatchNodeAddGlowTop2);
+
+	m_pBatchNodeAddGlowTop3 = cocos2d::CCSpriteBatchNode::createWithTexture(gSheetGlow);
+	m_pBatchNodeAddGlowTop3->setBlendFunc(blendFunc);
+	m_pObjectLayer->addChild(m_pBatchNodeAddGlowTop3, 24);
+	m_pBatchNodeArray->addObject(m_pBatchNodeAddGlowTop3);
+
+	m_pBatchNodeBot4 = cocos2d::CCSpriteBatchNode::createWithTexture(gSheet1);
+	m_pObjectLayer->addChild(m_pBatchNodeBot4, -22);
+	m_pBatchNodeArray->addObject(m_pBatchNodeBot4);
+
+	m_pBatchNodeAddBot4 = cocos2d::CCSpriteBatchNode::createWithTexture(gSheet1);
+	m_pBatchNodeAddBot4->setBlendFunc(blendFunc);
+	m_pObjectLayer->addChild(m_pBatchNodeAddBot4, -23);
+	m_pBatchNodeArray->addObject(m_pBatchNodeAddBot4);
+
+	m_pBatchNodeBot3 = cocos2d::CCSpriteBatchNode::createWithTexture(gSheet1);
+	m_pObjectLayer->addChild(m_pBatchNodeBot3, -15);
+	m_pBatchNodeArray->addObject(m_pBatchNodeBot3);
+
+	m_pBatchNodeAddBot3 = cocos2d::CCSpriteBatchNode::createWithTexture(gSheet1);
+	m_pBatchNodeAddBot3->setBlendFunc(blendFunc);
+	m_pObjectLayer->addChild(m_pBatchNodeAddBot3, -16);
+	m_pBatchNodeArray->addObject(m_pBatchNodeAddBot3);
+
+	m_pBatchNodeTop2 = cocos2d::CCSpriteBatchNode::createWithTexture(gSheet1);
+	m_pObjectLayer->addChild(m_pBatchNodeTop2, 17);
+	m_pBatchNodeArray->addObject(m_pBatchNodeTop2);
+
+	m_pBatchNodeTop3 = cocos2d::CCSpriteBatchNode::createWithTexture(gSheet1);
+	m_pObjectLayer->addChild(m_pBatchNodeTop3, 25);
+	m_pBatchNodeArray->addObject(m_pBatchNodeTop3);
+
+	m_pBatchNodeAddTop3 = cocos2d::CCSpriteBatchNode::createWithTexture(gSheet1);
+	m_pBatchNodeAddTop3->setBlendFunc(blendFunc);
+	m_pObjectLayer->addChild(m_pBatchNodeAddTop3, 24);
+	m_pBatchNodeArray->addObject(m_pBatchNodeAddTop3);
+
+
 }
 
 int GJBaseGameLayer::sectionForPos(float pos) {
