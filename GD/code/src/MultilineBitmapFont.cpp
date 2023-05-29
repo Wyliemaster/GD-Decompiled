@@ -321,6 +321,7 @@ std::string MultilineBitmapFont::stringWithMaxWidth(std::string str, float scale
 		{
 			fontWidthScale += scale * fontWidth;
 			pos = 1000;
+			str2.append(" ");
 			break;
 		}
 
