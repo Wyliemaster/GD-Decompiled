@@ -22,6 +22,8 @@ ObjectToolbox* ObjectToolbox::sharedState()
 	return g_toolbox;
 }
 
+
+// Due to the size of the toolbox, i've automated the creation of this method. The objects used were taken from absolute (https://gist.github.com/absoIute/c8fa23c9b2cb39252755465345bc6e35)
 bool ObjectToolbox::init()
 {
 	if (!cocos2d::CCNode::init())
