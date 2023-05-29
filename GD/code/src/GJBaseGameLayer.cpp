@@ -613,6 +613,6 @@ void GJBaseGameLayer::collectItem(int itemID, int unknown)
 			m_pEffectManager->decrementCountForItem(itemID);
 		}
 	}
-	int count = decrementCountForItem->countForItem(itemID);
+	int count = m_pEffectManager->countForItem(itemID);
 	updateCounters(itemID, count);
 }
