@@ -33,7 +33,6 @@ bool LevelSelectLayer::init(int page)
 		m_pBackground->setPosition({ -5.0f, -5.0f });
 		m_pBackground->setColor({ 0x28, 0x7D, 0xFF });
 
-		// why does game manager store the ground id? who knows!
 		m_pGround = GJGroundLayer::create(GM->m_nGroundID, 1);
 		m_pGround->PositionGround(std::min(128.0f, (winSize.height / 2) - 110.0f));
 

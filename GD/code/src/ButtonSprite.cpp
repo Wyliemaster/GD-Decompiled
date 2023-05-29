@@ -72,10 +72,10 @@ void ButtonSprite::updateSpriteBGSize()
 	else
 	{
 		if (m_fCustomWidth < (m_pCustomTexture->getContentSize().width * m_pCustomTexture->getScaleX()))
-			width = m_pCustomTexture->getContentSize().width * m_pCustomTexture->getScale() + 8.0f; 
+			width = m_pCustomTexture->getContentSize().width * m_pCustomTexture->getScale() + 8.0f;
 		else
 			width = m_fCustomWidth;
-	}	
+	}
 
 	if (m_pBackgroundImage)
 	{
@@ -91,68 +91,47 @@ void ButtonSprite::updateSpriteBGSize()
 	}
 	else
 	{
-		if(m_pBtnTextureName)
+		if (m_pBtnTextureName)
 			size = m_pBtnTextureName->getContentSize();
 	}
 	setContentSize(size);
 
+	cocos2d::CCSize HalfSize = getContentSize() * 0.5;
+	cocos2d::CCPoint TexturePos = { HalfSize.width + m_obSpriteOffset.x, HalfSize.height + 2 + m_obSpriteOffset.y };
 
-	// will finish later, going to bed
+	m_pCustomTexture->setPosition(TexturePos);
 
-//  v17 = this->m_pCustomTexture;
-//  v18 = *(void(__fastcall**)(cocos2d::CCSprite*, float*))(v17->vtable_ptr + 92);
-//  v19 = *(float*)(*(int(__fastcall**)(ButtonSprite*))(this->vtable_ptr + 156))(this) * 0.5;
-//  cocos2d::CCPoint::CCPoint(v40, 0.0, 2.0);
-//  v20 = (float)(v19 + v40[0]) + this->m_obSpriteOffset.x;
-//  v21 = *(float*)((*(int(__fastcall**)(ButtonSprite*))(this->vtable_ptr + 156))(this) + 4) * 0.5;
-//  cocos2d::CCPoint::CCPoint(v41, 0.0, 2.0);
-//  cocos2d::CCPoint::CCPoint(v42, v20, (float)(v21 + v41[1]) + this->m_obSpriteOffset.y);
-//  v18(v17, v42);
-//  v22 = this->m_pBackgroundImage;
-//  if (v22)
-//  {
-//	  v23 = *(void(__fastcall**)(cocos2d::extension::CCScale9Sprite*, float*))(*(_DWORD*)v22 + 92);
-//	  v24 = *(float*)(*(int(__fastcall**)(ButtonSprite*))(this->vtable_ptr + 156))(this) * 0.5;
-//	  v25 = (*(int(__fastcall**)(ButtonSprite*))(this->vtable_ptr + 156))(this);
-//	  cocos2d::CCPoint::CCPoint(v43, v24, *(float*)(v25 + 4) * 0.5);
-//	  v23(v22, v43);
-//  }
-//  else
-//  {
-//	  v26 = this->m_pBtnTextureName;
-//	  if (v26)
-//	  {
-//		  v27 = *(void(__fastcall**)(cocos2d::CCSprite*, float*))(v26->vtable_ptr + 92);
-//		  v28 = *(float*)(*(int(__fastcall**)(ButtonSprite*))(this->vtable_ptr + 156))(this) * 0.5;
-//		  v29 = (*(int(__fastcall**)(ButtonSprite*))(this->vtable_ptr + 156))(this);
-//		  cocos2d::CCPoint::CCPoint(v44, v28, *(float*)(v29 + 4) * 0.5);
-//		  v27(v26, v44);
-//	  }
-//  }
-//  result = (void*)(*(int(__fastcall**)(ButtonSprite*))(this->vtable_ptr + 248))(this);
-//  if (result)
-//  {
-//	  result = (void*)(*(int(__fastcall**)(ButtonSprite*))(this->vtable_ptr + 248))(this);
-//	  if (result)
-//	  {
-//		  result = _dynamic_cast(
-//			  result,
-//			  (const struct __class_type_info*)&`typeinfo for'cocos2d::CCNode,
-//			  (const struct __class_type_info*)&`typeinfo for'CCMenuItemSpriteExtra,
-//			  0);
-//		  if (result)
-//		  {
-//			  v31 = (*(int(__fastcall**)(ButtonSprite*))(this->vtable_ptr + 248))(this);
-//			  v32 = *(void(__fastcall**)(int, int))(*(_DWORD*)v31 + 152);
-//			  v33 = (*(int(__fastcall**)(ButtonSprite*))(this->vtable_ptr + 156))(this);
-//			  v32(v31, v33);
-//			  v34 = *(int(__fastcall**)(ButtonSprite*, float*))(this->vtable_ptr + 92);
-//			  v35 = *(float*)(*(int(__fastcall**)(ButtonSprite*))(this->vtable_ptr + 156))(this);
-//			  v36 = (*(int(__fastcall**)(ButtonSprite*))(this->vtable_ptr + 156))(this);
-//			  cocos2d::CCPoint::CCPoint(v45, v35 * 0.5, *(float*)(v36 + 4) * 0.5);
-//			  result = (void*)v34(this, v45);
-//		  }
-//	  }
-//  }
-//  return result;
+	// did i mess up somewhere?
+	if (m_pBackgroundImage)
+	{
+		m_pBackgroundImage->setPosition(HalfSize);
+	}
+	else
+	{
+		if (m_pBtnTextureName)
+		{
+			m_pBtnTextureName->setPosition(HalfSize);
+		}
+	}
+
+	cocos2d::CCNode* Parent = getParent();
+
+	if (Parent)
+	{
+		Parent = Parent->getParent();
+		if (Parent)
+		{
+			if (dynamic_cast<CCMenuItemSpriteExtra*>(Parent))
+			{
+				Parent = getParent();
+				Parent->setContentSize(getContentSize());
+
+				setPosition(HalfSize);
+
+			}
+		}
+	}
+
 }
+
+
