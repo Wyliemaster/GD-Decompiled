@@ -218,5 +218,56 @@ bool LevelPage::init(GJGameLevel* level)
 
 		}
 	}
-	return init;
+	return init;	
+}
+
+void LevelPage::dialogClosed(DialogLayer* layer)
+{
+	GameManager::sharedState()->setUGV("8", true);
+	if(m_pDoor)
+		m_pDoor->setDisplayFrame(cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("secretDoorBtn2_open_001.png"))
+}
+
+void LevelPage::onPlay(cocos2d::CCObject*)
+{
+	if (m_pLevel->getLevelID() != -1)
+	{
+		if (m_pLevel->m_nRequiredCoins <= GameStatsManager::sharedState()->getStat("8"))
+		{
+			if (!m_bUnlocked) // still unsure about the name
+			{
+				m_bUnlocked = true;
+				Globals::gClickedPlay = true;
+
+				GameSoundManager::sharedManager()->stopBackgroundMusic();
+				GameSoundManager::sharedManager()->playEffect("playSound_01.ogg");
+
+				cocos2d::CCDelayTime* delay = cocos2d::CCDelayTime::create(0.0f);
+				cocos2d::CCCallFunc* func = cocos2d::CCCallFunc::create(this, LevelPage::playStep2);
+
+				runAction(cocos2d::CCSequence::create(delay, func, 0));
+
+			}
+		}
+		else
+		{
+			std::string msg = cocos2d::CCString::createWithFormat("Collect %i more <cy>Secret Coins</c> to unlock this <cl>level</c>!", m_pLevel->m_nRequiredCoins - GameStatsManager::sharedState()->getStat("8"))->m_sString;
+			FLAlertLayer::create(nullptr, "Locked", msg, "OK", nullptr, 300.0f)->show();
+		}
+	}
+}
+
+void LevelPage::playStep2()
+{
+	GameSoundManager::sharedManager()->playBackgroundMusic(m_pLevel->getAudioFileName(), 0, 1);
+
+	cocos2d::CCDelayTime* delay = cocos2d::CCDelayTime::create(0.0f);
+	cocos2d::CCCallFunc* func = cocos2d::CCCallFunc::create(this, LevelPage::playStep3);
+	runAction(cocos2d::CCSequence::create(delay, func, 0));
+}
+
+void LevelPage::playStep3()
+{
+	GameManager::sharedState()->m_nScene = 9;
+	m_pLevel->setLevelString(LocalLevelManager::sharedState()->getMainLevelString())
 }
