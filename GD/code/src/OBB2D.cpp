@@ -31,5 +31,5 @@ void OBB2D::computeAxes()
     cocos2d::CCPoint yAxis = 1.0 / (m_obVerticalDifference.x * m_obVerticalDifference.x) + (m_obVerticalDifference.y * m_obVerticalDifference.y);
 
     // We're using the BottomLeft vertex as the origin for the object
-    m_obAxes = { HorizontalLength * m_obVertexBottomLeft, VerticalLength * m_obVertexBottomLeft };
+    m_obAxes = { xAxis * m_obVertexBottomLeft, yAxis * m_obVertexBottomLeft };
 }
