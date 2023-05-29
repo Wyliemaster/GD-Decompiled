@@ -29,4 +29,5 @@ public:
 	void calculateOBBWithCenter(cocos2d::CCPoint, float, float, float);
 	void computeAxes();
 	void orderCorners();
+	bool init(cocos2d::CCPoint, float, float, float);
 };

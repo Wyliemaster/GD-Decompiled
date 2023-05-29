@@ -33,3 +33,13 @@ void OBB2D::computeAxes()
     // We're using the BottomLeft vertex as the origin for the object
     m_obAxes = { xAxis * m_obVertexBottomLeft, yAxis * m_obVertexBottomLeft };
 }
+
+bool OBB2D::init(cocos2d::CCPoint center, float width, float height, float rotationAngle)
+{
+    if (cocos2d::CCNode::init())
+    {
+        calculateOBBWithCenter(center, width, height, rotationAngle);
+        return true;
+    }
+    return false;
+}
