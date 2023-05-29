@@ -121,4 +121,5 @@ public:
     void updateLayerCapacity(std::string _capacityString);
     void createTextLayers();
     void setupLayers();
+    void updateOBB2D(cocos2d::CCRect);
 };

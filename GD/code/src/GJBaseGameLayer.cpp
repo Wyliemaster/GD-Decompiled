@@ -589,3 +589,11 @@ int GJBaseGameLayer::sectionForPos(float pos) {
     int floor_div = static_cast<int>(div);
     return abs(floor_div);
 }
+
+void GJBaseGameLayer::updateOBB2D(cocos2d::CCRect rect)
+{
+	cocos2d::CCPoint temp = rect.size / 2;
+	cocos2d::CCPoint center = rect.origin + temp;
+
+	m_pOBB2D->calculateWithCenter(center, rect.size.width, rect.size.height, 0);
+}
