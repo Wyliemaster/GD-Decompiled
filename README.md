@@ -7,7 +7,7 @@ English | [Russian](README-RU.md) | [Czech](README-CZ.md) | [Spanish](README-ES.
 
 - This Project is intended to be used as reference material to assist with modding. 
 - This repository is <b>not</b> a matching decompilation
-- As the code is not compilable, there may be errors in the syntax.
+- This code is NOT intended to be compiled. I don't condone pirating the game!!
 
 Classes that ive pushed but haven't finished will be found in [Issues](https://github.com/Wyliemaster/GD-Decompiled/issues).
 
