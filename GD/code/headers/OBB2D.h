@@ -32,4 +32,6 @@ public:
 	bool init(cocos2d::CCPoint, float, float, float);
 	cocos2d::CCRect getBoundingRect();
 	bool overlaps1Way(OBB2D*);
+	bool overlaps(OBB2D*);
+
 };

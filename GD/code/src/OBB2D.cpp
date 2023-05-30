@@ -131,3 +131,11 @@ bool OBB2D::overlaps1Way(OBB2D* other)
         return true;
     }
 }
+
+bool OBB2D::overlaps(OBB2D* other)
+{
+    if (this->overlaps1Way(other))
+    {
+        return other->overlaps1Way(this);
+    }
+}
