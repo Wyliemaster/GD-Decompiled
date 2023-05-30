@@ -89,3 +89,46 @@ cocos2d::CCRect OBB2D::getBoundingRect()
 
     return { x_start, y_start, x_end, y_end };
 }
+
+// Another weird one. Should be close enough?
+bool OBB2D::overlaps1Way(OBB2D* other)
+{
+    float dot;
+    for (int i = 0; i < 2; i++)
+    {
+        float origin = (this->m_obVertexBottomLeft.x * this->m_obAxes.x) + (other->m_obVertexBottomLeft.y * this->m_obAxes.y);
+
+        float dot = (other->m_obVertexBottomLeft.x * this->m_obAxes.x) + (other->m_obVertexBottomLeft.y * this->m_obAxes.y);
+
+        float min = dot;
+        float max = dot;
+
+        // Checking each corder to get a range for the dot prouct
+        for (int c = 1; c < 4; c++)
+        {
+            cocos2d::CCPoint vertex = &other->m_obVertexBottomLeft[c];
+
+            dot = (vertex.x * this->m_obAxes.x) + (vertex.y * this->m_obAxes.y);
+
+            if (dot < min)
+            {
+                min = dot;
+            }
+
+            if (dot > max)
+            {
+                max = dot;
+            }
+        }
+
+        if (min > origin + 1)
+        {
+            return false;
+        }
+        if (max < origin)
+        {
+            return false;
+        }
+        return true;
+    }
+}
