@@ -164,4 +164,5 @@ void OBB2D::orderCorners()
 
     }
     // Head is too battered, will finish later
+    // Note to self: 1FDCCA
 }
