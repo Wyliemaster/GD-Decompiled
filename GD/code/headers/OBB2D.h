@@ -26,6 +26,9 @@ public:
 	int field_15C;
 	cocos2d::CCPoint m_obCenter;
 
+	OBB2D() = default;
+	~OBB2D() = default;
+
 	void calculateOBBWithCenter(cocos2d::CCPoint, float, float, float);
 	void computeAxes();
 	void orderCorners();

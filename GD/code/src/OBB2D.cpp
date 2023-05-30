@@ -139,3 +139,29 @@ bool OBB2D::overlaps(OBB2D* other)
         return other->overlaps1Way(this);
     }
 }
+
+// Prolly one of the most confusing functions in this class
+void OBB2D::orderCorners()
+{
+    cocos2d::CCPoint VertexStart = m_obVertexBottomLeft;
+    cocos2d::CCPoint UnknownStackValue(0, 0);
+
+    for (int i = 0; i < 4; i++)
+    {
+        float VertexStartY = m_obVertexBottomLeft[i].y;
+        if (VertexStart.y <= UnknownStackValue.y)
+        {
+            if (m_obVertexBottomLeft.y >= VertexStart.y || m_obVertexBottomLeft.x < VertexStart.x)
+            {
+                VertexStart = m_obVertexBottomLeft[i];
+            }
+        }
+        else
+        {
+            VertexStart = UnknownStackValue;
+            m_obVertexBottomLeft[i] = VertexStart;
+        }
+
+    }
+    // Head is too battered, will finish later
+}
