@@ -93,7 +93,6 @@ cocos2d::CCRect OBB2D::getBoundingRect()
 // Another weird one. Should be close enough?
 bool OBB2D::overlaps1Way(OBB2D* other)
 {
-    float dot;
     for (int i = 0; i < 2; i++)
     {
         float origin = (this->m_obVertexBottomLeft.x * this->m_obAxes.x) + (other->m_obVertexBottomLeft.y * this->m_obAxes.y);
