@@ -8,13 +8,13 @@ void OBB2D::calculateOBBWithCenter(cocos2d::CCPoint center, float width, float h
     float cosAngle = cos(rotationAngle);
     float sinAngle = sin(rotationAngle);
 
-    cocos2d::CCPoint horizontalAxis = cocos2d::CCPoint(cosAngle, sinAngle) * width * 0.5;
-    cocos2d::CCPoint verticalAxis = cocos2d::CCPoint(-sinAngle, cosAngle) * height * 0.5;
+    cocos2d::CCPoint x = cocos2d::CCPoint(cosAngle, sinAngle) * width * 0.5;
+    cocos2d::CCPoint y = cocos2d::CCPoint(-sinAngle, cosAngle) * height * 0.5;
 
-    m_obVertexBottomLeft = center - horizontalAxis - verticalAxis;
-    m_obVertexBottomRight = center + horizontalAxis - verticalAxis;
-    m_obVertexTopRight = center + horizontalAxis + verticalAxis;
-    m_obVertexTopLeft = center - horizontalAxis + verticalAxis;
+    m_obVertexBottomLeft = center - x - y;
+    m_obVertexBottomRight = center + x - y;
+    m_obVertexTopRight = center + x + y;
+    m_obVertexTopLeft = center - x + y;
 
     computeAxes();
     orderCorners();
@@ -42,4 +42,50 @@ bool OBB2D::init(cocos2d::CCPoint center, float width, float height, float rotat
         return true;
     }
     return false;
+}
+
+cocos2d::CCRect OBB2D::getBoundingRect()
+{
+    float x_start = 0;
+    float x_end = 0;
+    float y_start = 0;
+    float y_end = 0;
+
+    // Member variables after this are also vertices. Treating this
+    // as an array and making the first vertex the base.
+    cocos2d::CCPoint* vertices = &m_obVertexBottomLeft;
+    for (int i = 0; i < 4; i++)
+    {
+        cocos2d::CCPoint vertex = vertices[i];
+
+        if (vertex.x > x_end)
+        {
+            x_end = vertex.x;
+        }
+
+        if (vertex.x >= x_start && x_start == 0.0f)
+        {
+            x_start = vertex.x;
+        }
+        else if (vertex.x < x_start)
+        {
+            x_start = vertex.x;
+        }
+
+        if (vertex.y > y_end)
+        {
+            y_end = vertex.y;
+        }
+
+        if (vertex.y >= y_start && y_start == 0.0f)
+        {
+            y_start = vertex.y;
+        }
+        else if (vertex.y < y_start)
+        {
+            y_start = vertex.y;
+        }
+    }
+
+    return { x_start, y_start, x_end, y_end };
 }
