@@ -1,4 +1,4 @@
-[English](README.md) | [Russian](README-RU.md) | [Czech](README-CZ.md) | [Spanish](README-ES.md) | 简体中文
+[English](README.md) | [Russian](README-RU.md) | [Czech](README-CZ.md) | [Spanish](README-ES.md) | 简体中文 | [Français](README-FR.md)
 
 # GD Decompiled
  尝试通过逆向工程和反编译游戏来获取 Geometry Dash 的源代码。
