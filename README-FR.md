@@ -1,4 +1,5 @@
-[English](README.md) | [Russian](README-RU.md) | [Czech](README-CZ.md) | [Spanish](README-ES.md) | [简体中文](README-CN.md) | Français
+[English](README.md) | [Russian](README-RU.md) | [Czech](README-CZ.md) | [Spanish](README-ES.md) | [简体中文](README-CN.md) | Français  
+*(translation made by [@EDM115](https://github.com/EDM115))*
 
 # GD-Decompiled
  Une tentative d'obtenir le code source de Geometry Dash par rétro-ingénierie et décompilation du jeu.  
