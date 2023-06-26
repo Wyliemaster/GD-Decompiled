@@ -1,4 +1,4 @@
-[English](README.md) | [Russian](README-RU.md) | [Czech](README-CZ.md) | Spanish | [简体中文](README-CN.md)
+[English](README.md) | [Russian](README-RU.md) | [Czech](README-CZ.md) | Spanish | [简体中文](README-CN.md) | [Français](README-FR.md)
 
 # GD Decompiled
 
