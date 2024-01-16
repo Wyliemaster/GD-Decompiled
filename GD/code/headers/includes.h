@@ -17,6 +17,7 @@
 #include "DialogObject.h"
 #include "GJMapPack.h"
 #include "GJGameLevel.h"
+#include "GJHttpResult.h"
 #include "LevelSettingsObject.h"
 #include "ObjectToolbox.h"
 #include "GameObject.h"
