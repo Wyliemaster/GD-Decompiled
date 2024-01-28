@@ -2,6 +2,11 @@ English | [Russian](README-RU.md) | [Czech](README-CZ.md) | [Spanish](README-ES.
 
 # GD-Decompiled
  An attempt to get the source code for Geometry Dash through reverse engineering and decompiling the game.  
+I Calloc Have forked this repository for decompling other sources within 2.2 and beyond while wylie is off doing other things (Until he makes a 2.2 repository)
+For now I shall dump what I do have for 2.204 in here. Feel free to submit pull requests here so I can look at them I would like this to be an official repo for the 
+people of geode to start using temporarly...
+
+ 
 
 ## IMPORTANT
 
