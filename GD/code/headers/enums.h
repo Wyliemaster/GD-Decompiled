@@ -74,5 +74,16 @@ enum ButtonType {
 enum LikeItemType {
 	kLikeItemTypeLevel = 1,
 	kLikeItemTypeComment = 2,
-	kLikeItemTypeAccComment = 3;
+	kLikeItemTypeAccComment = 3
 };
+
+enum CommentKeyType {
+	kCommentKeyTypeUserType = 0,
+	kCommentKeyTypeLevelType = 1,
+};
+
+enum UserListType {
+	kUserListTypeGetFriends = 0,
+	kUserListTypeGetBlocked = 1
+};
+
