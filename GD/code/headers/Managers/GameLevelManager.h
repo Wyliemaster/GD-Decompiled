@@ -73,5 +73,53 @@ class GameLevelManager : public cocos2d::CCNode
 	int m_nUnkDownload;
 	DWORD unk;
 	std::string m_sUnkString;
-	cocos2d::CCObject* m_pReportedLevel;
+	cocos2d::CCDictionary* m_pReportedLevel;
+
+	void handleIt(bool success, std::string _response,std::string _tag, GJHttpType httpType);
+	void getLevelComments(int ID, int page, int total, int mode, CommentKeyType keytype);
+	const char* getCommentKey (int ID, int page, int mode, CommentKeyType keytype);
+	const char* getAccountCommentKey(int accountID, int page);
+	void getAccountComments(int accountID,int page,int total);
+	bool isDLActive (char * DLKey);
+	void addDLToActive(const char *_tag);
+	void cleanupDailyLevels();
+
+	const char* getFriendRequestKey(bool sent, int page);
+	void getFriendRequests(bool sent, int page, int total);
+
+	const char* getGauntletKey(int key);
+	const char* getGauntletSearchKey(int searchKey);
+	void getGauntlets();
+
+	/* TODO turn levelType Variable back into a GJTimedLevelType once figured out...*/
+	void getGJDailyLevelState(int levelType);
+	const char* getUserInfoKey(int targetAccountID);
+	void getGJUserInfo(int targetAccountID);
+	const char* getLenKey(int Len);	
+
+	void getLevelSaveData();
+
+	const char* getMapPackKey(int pack);
+
+	const char* getPostCommentsKey(int seconds_left);
+	const char* getRateStarsKey(int key);
+	const char* getReportKey(int levelID);
+	bool hasReportedLevel(int levelID);
+	void markLevelAsReported(int levelID); /* TODO (Calloc): Reverse Engineer markLevelAsReported() */
+	void reportLevel(int levelID);
+	void getUsers (GJSearchObject * searhObject);
+
+	void getTopArtists(int page,int total);
+	const char* getTopArtistsKey(int key);
+
+	void getUserList(UserListType listType);
+
+	const char* char * getMessagesKey (bool sent, int page);
+	void getUserMessages(bool getSent, int page, int total);
+
+	/* TODO: Rervse engineer all of getBasePostString() */
+	std::string getBasePostString();
+	void ProcessHttpRequest(std::string _endpoint, std::string _params, std::string _tag, GJHttpType _httpType);
+	int accountIDForUserID(int accountID);
+	const char* getLevelKey(int levelID);
 };
