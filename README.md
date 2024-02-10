@@ -1,4 +1,4 @@
-English | [Russian](README-RU.md) | [Czech](README-CZ.md) | [Spanish](README-ES.md) | [简体中文](README-CN.md)
+ English | [Russian](README-RU.md) | [Czech](README-CZ.md) | [Spanish](README-ES.md) | [简体中文](README-CN.md)
 
 # GD-Decompiled
  An attempt to get the source code for Geometry Dash through reverse engineering and decompiling the game.  
@@ -6,6 +6,8 @@ I Calloc Have forked this repository for decompling other sources within 2.2 and
 For now I shall dump what I do have for 2.204 in here. Feel free to submit pull requests here so I can look at them I would like this to be an official repo for the 
 people of geode to start using temporarly...
 
+## My Goals with this fork
+- To have all of the `GameLevelManager` and `GameManager` class components completely decompiled and reverse engineered as they can be the most difficult parts of gd's code to understand. They also make up a large chunk of the game and have numerous functions involved with them and I am also working on providing bindings to geode at the same time as more parts and variable names are being discovered. Understanding these componentes will allow for better mods to be made in the future as well as for understanding how http requests are made (Even though these have been well documentented already thanks to wyliemaster).
  
 
 ## IMPORTANT
