@@ -27,9 +27,15 @@ std::string GameLevelManager::getBasePostString(){
     return BasePostString;
 }
 
+const char* GameLevelManager::getLevelDownloadKey(int levelID, bool _isGauntlet) {
+    return cocos2d::CCString::createWithFormat("%i_%i", levelID, _isGauntlet)->getCString();
+}
 
+const char* GameLevelManager::getLevelListKey(int listID) {
+    return cocos2d::CCString::createWithFormat("%i", listID)->getCString();
+}
 
-const char * GameLevelManager::getCommentKey (int ID, int page, int mode, CommentKeyType keytype){
+const char* GameLevelManager::getCommentKey(int ID, int page, int mode, CommentKeyType keytype){
     /* IT Honstesly should be only one line which is very surprising...*/
     return cocos2d::CCString::createWithFormat("comment_%i_%i_%i_%i", page, mode, keytype, ID)->getCString();
 };
@@ -40,6 +46,10 @@ const char* GameLevelManager::getLevelKey(int levelID){
 
 int GameLevelManager::accountIDForUserID(int accountID){
     return m_pAccountIDDict->valueForKey(accountID)->intValue();
+}
+
+void GameLevelManager::banUser(int _accountID) {
+    return;
 }
 
 void GameLevelManager::cleanupDailyLevels(){
@@ -255,6 +265,10 @@ void GameLevelManager::getUserList(UserListType listType){
 
 const char* GameLevelManager::getMessagesKey(bool getSent, int page){
     return cocos2d::CCString::createWithFormat("messages_%i_%i",(int)getSent, page)->getCString();
+}
+
+const char* GameLevelManager::getMessageKey(int _message) {
+    return cocos2d::CCString::createWithFormat("message_%i", _message)->getCString();
 }
 
 void GameLevelManager::getUserMessages(bool getSent, int page, int total){
