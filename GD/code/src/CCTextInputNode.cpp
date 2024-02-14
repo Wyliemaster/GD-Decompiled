@@ -312,7 +312,6 @@ CCTextInputNode::onTextFieldDetachWithIME(cocos2d::CCTextFieldTTF* tField){
         }
 
 
-        /* Part of function CCTextInputNode::onTextFieldDetachWithIME(cocos2d::CCTextFieldTTF* tField) */
         bool censor_swear_words = false;
         
         for (i = 0; i < cocos2d::CCArray::count(blacklist); i++){
