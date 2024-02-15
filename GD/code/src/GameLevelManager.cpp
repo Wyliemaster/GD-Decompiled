@@ -42,14 +42,17 @@ int GameLevelManager::accountIDForUserID(int accountID)
     return m_pAccountIDDict->valueForKey(accountID)->intValue();
 }
 
-/* TODO: (Calloc) Complete this function */
-std::string GameLevelManager::getBasePostString()
+std::string static GameLevelManager::getBasePostString()
 {
     auto GM = GameManager::sharedState();
-
     std::string BasePostString;
-    BasePostString += cocos2d::CCString::createWithFormat("gameVersion=%i&binaryVersion=%i&udid=%s&uuid=%i", 22, 0x28, GM->m_sPlayerUDID, GM->m_nChkRand - GM->m_nChkSeed)->getCString();
-    /* There is more to this function but I have yet to find all of it out...*/
+    BasePostString += cocos2d::CCString::createWithFormat(
+            "gameVersion=%i&binaryVersion=%i&udid=%s&uuid=%i", 22, 0x28, GM->m_sPlayerUDID, GM->m_nChkRand - GM->m_nChkSeed
+            )->getCString();
+    auto AM = GJAccountManager::sharedState();
+    BasePostString += cocos2d::CCString::createWithFormat(
+        "&accountID=%i&gjp2=%s",AM->m_nPlayerAccountID - AM->m_nPlayerAccountIDRand, AM->m_sGJP2
+    )
     return BasePostString;
 }
 
