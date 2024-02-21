@@ -239,7 +239,7 @@ GJGameLevel *static GJGameLevel::create()
     repair this one function from the awful mess ghidra had generated for me.
     At least the result when repaired was satisfying...
 
-    TODO: Ask Robtop if the keys used are actually enums
+    TODO: Ask Robtop if the keys used are actually or Macros
 */
 
 static GJGameLevel *create(cocos2d::CCDictionary *dict, bool has_password)
