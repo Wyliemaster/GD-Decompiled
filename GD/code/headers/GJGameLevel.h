@@ -1,339 +1,246 @@
+#ifndef __GJGAMELEVEL_H__
+#define __GJGAMELEVEL_H__
+
+
+/* NOTE: I put a TODO docstring 
+ * next to each function that still 
+ * needs to be reversed - Calloc 
+ * 
+ * You can help me by doing those missing 
+ * functions if you wish... 
+ */
+
+
+#pragma once
 #include "includes.h"
 
 enum GJSong;
 
 enum GJLength {
-	kGJLengthTiny = 0x0,
-	kGJLengthShort = 0x1,
-	kGJLengthMedium = 0x2,
-	kGJLengthLong = 0x3,
-	kGJLengthXL = 0x4
+	kGJLengthTiny = 0,
+	kGJLengthShort = 1,
+	kGJLengthMedium = 2,
+	kGJLengthLong = 3,
+	kGJLengthXL = 4,
+	kGJLengthPlat = 5
 };
 
 enum GJLevelType;
 
+
+/* Functions Completed 38 / 41  (92.7%) */
+
+
 class GJGameLevel : public cocos2d::CCNode
 {
 public:
-	cocos2d::CCDictionary* m_pRecentlyBrowsedPages;
-	int m_nLevelIDSeed;
-	int m_nLevelIDRand;
-	int m_nLevelID;
-	std::string m_sLevelName;
-	std::string m_sDescription;
-	std::string m_sLevelString;
-	std::string m_sCreator;
-	std::string m_sReplayData;
-	std::string m_sUploadDate;
-	std::string m_sUpdateDate;
-	int m_nUserIDSeed;
-	int m_nUserIDRand;
-	int m_nUserID;
-	int m_nAccountIDSeed;
-	int m_nAccountIDRand;
-	int m_nAccountID;
-	int m_nDifficulty;
-	int m_nSongIndex;
-	int m_nSongID;
-	int m_nRevision;
-	bool m_bIsUnlisted;
-	char field_141;
-	char field_142;
-	char field_143;
-	int m_nObjectCountSeed;
-	int m_nObjectCountRand;
-	int m_nObjectCount;
-	int m_nLevelOrder;
-	int m_nRatings;
-	int m_nRatingsSum;
-	int m_nDownloads;
-	bool m_bIsEditable;
-	bool m_bIsGauntlet;
-	bool m_bIsFreeGame;
-	char field_163;
-	int m_nEditorTimeLocal;
-	int m_nEditorTimeCopies;
-	bool m_bHasLDM;
-	bool m_bToggleLDM;
-	char field_16E;
-	char field_16F;
-	int m_nVerifiedSeed;
-	int m_nVerifiedRand;
-	bool m_bVerified;
-	bool m_bPublished;
-	bool m_bHasBeenAltered;
-	char field_17B;
-	int m_nLevelVersion;
-	int m_nGameVersion;
-	int m_nAttemptsSeed;
-	int m_nAttemptsRand;
-	int m_nAttempts;
-	int m_nJumpSeed;
-	int m_nJumpRand;
-	int m_nJumps;
-	int m_nClickSeed;
-	int m_nClickRand;
-	int m_nClicks;
-	int m_nAttemptTimeSeed;
-	int m_nAttemptTimeRand;
-	int m_nAttemptTime;
-	int m_nLevelSeed;
-	bool m_bVfDChk;
-	bool m_bAnticheat;
-	char field_1BA;
-	char field_1BB;
-	int m_nPercentage;
-	int m_nPercentageRand;
-	int m_nPercentageSeed;
-	int m_nManaOrbSeed;
-	int m_nManaOrbRand;
-	int m_nManaOrbs;
-	int m_nLeaderboardSeed;
-	int m_nLeaderboardRand;
-	int m_nLeaderboard;
-	int m_nPractice;
-	int m_nLikes;
-	int m_nDislikes;
-	GJLevelLength m_eLength;
-	int m_nFeatureScore;
-	bool m_bIsEpic;
-	bool m_bIsLevelFavourited;
-	char field_1F6;
-	char field_1F7;
-	int m_nFolder;
-	int m_nTimelyIDSeed;
-	int m_nTimelyIDRand;
-	int m_nTimelyID;
-	int m_nDemonSeed;
-	int m_nDemonRand;
-	int m_nDemon;
-	GJDemonType m_eDemonType;
-	int m_nStarSeed;
-	int m_nStarRand;
-	int m_nStars;
-	bool m_bIsAuto;
-	char field_225;
-	char field_226;
-	char field_227;
-	int m_nTotalCoins;
-	int m_nVerifiedCoinsSeed;
-	int m_nVerifiedCoinsRand;
-	int m_nCoinsVerified;
-	int m_nPasswordSeed;
-	int m_nPasswordRand;
-	int m_nLevelIDServerSeed;
-	int m_nLevelIDServerRand;
-	int m_nLevelIDServer;
-	bool m_bIsTwoPlayer;
-	char field_24D;
-	char field_24E;
-	char field_24F;
-	_DWORD dword164;
-	int m_nCoin1Seed;
-	int m_nCoin1Rand;
-	int m_nCoin1;
-	int m_nCoin2Seed;
-	int m_nCoin2Rand;
-	int m_nCoin2;
-	int m_nCoin3Seed;
-	int m_nCoin3Rand;
-	int m_nCoin3;
-	int m_nRequestedStars;
-	_DWORD dword190;
-	_DWORD dword194;
-	_DWORD dword198;
-	_DWORD dword19C;
-	_DWORD dword1A0;
-	_DWORD dword1A4;
-	_DWORD dword1A8;
-	_DWORD dword1AC;
-	_DWORD dword1B0;
-	bool m_bIsChallenge;
-	bool m_bDownloadable;
-	char field_2A2;
-	char field_2A3;
-	int m_nRequiredCoins;
-	bool m_bUnlocked;
-	char field_2A9;
-	char field_2AA;
-	char field_2AB;
-	float m_fCameraX;
-	float m_fCameraY;
-	float m_fCameraZoom;
-	int m_nBuildTabPage;
-	int m_nbuildTabPage;
-	int m_nEditorLayer;
-	GJLevelType m_eLevelType;
-	_DWORD dword1DC;
-	std::string m_sTempName;
-	std::string m_sCapacityString;
-	bool m_bHighObjectCount;
-	char field_2D5;
-	char field_2D6;
-	char field_2D7;
-	std::string m_sLevelProgress;
-
-
-	GJGameLevel();
-	inline int getLevelID();
-	inline int getUserID();
-	inline int getDifficulty();
-	inline GJSong getAudioTrack();
-	inline int getSongID();
-	inline int getLevelRev();
-	inline int getObjectCount();
-	inline int getOrder();
-	inline int getRatings();
-	inline int getRatingSum();
-	inline int getDownloads();
-	inline int getCompletes();
-	inline bool getIsEditable();
-	inline bool getIsVerified();
-	inline bool getIsUploaded();
-	inline bool getHasBeenModified();
-	inline int getLevelVersion();
-	inline int getGameVersion();
-	inline int getAttempts();
-	inline int getJumps();
-	inline int getClicks();
-	inline int getAttemptTime();
-	inline int getNormalPercent();
-	inline int getNewNormalPercent();
-	inline int getNewNormalPercent2();
-	inline int getPracticePercent();
-	inline int getLikes();
-	inline int getDislikes();
-	inline GJLength getLevelLength();
-	inline int getFeatured();
-	inline bool getEpic();
-	inline bool getDemon();
-	inline int getStars();
-	inline bool getAutoLevel();
-	inline int getCoins();
-	inline int getPassword();
-	inline int getOriginalLevel();
-	inline bool getTwoPlayerMode();
-	inline int getFailedPasswordAttempts();
-	inline bool getShowedSongWarning();
-	inline int getStarRatings();
-	inline int getStarRatingsSum();
-	inline int getMaxStarRatings();
-	inline int getMinStarRatings();
-	inline int getDemonVotes();
-	inline int getRateStars();
-	inline int getRateFeature();
-	inline bool getDontSave();
-	inline bool getIsHidden();
-	inline int getRequiredCoins();
-	inline bool getIsUnlocked();
-	inline float getLastEditorZoom();
-	inline int getLastBuildTab();
-	inline int getLastBuildPage();
-	inline GJLevelType getLevelType();
-	inline int getM_ID();
-	inline std::string getTempName();
-	inline std::string getRateUser();
-	inline std::string getUpdateDate();
-	inline std::string getUploadDate();
-	inline std::string getRecordString();
-	inline std::string getUserName();
-	inline std::string getLevelString();
-	inline std::string getLevelDesc();
-	inline std::string getLevelName();
-	inline cocos2d::CCPoint getLastCameraPos();
-	inline GJLength getLengthKey();
-	inline int getAverageDifficulty();
-	inline std::string getSongName();
-	inline std::string getCapacityString();
-	inline bool getVfDChk();
-	inline int getLevelSeed();
-	inline std::string getLevelProgress();
-	inline int getDailyID();
-	inline bool getCoin1();
-	inline bool getCoin2();
-	inline bool getCoin3();
-
-
-	inline void setLevelID(int _LevelID);
-	inline void setUserID(int _UserID);
-	inline void setDifficulty(int _Difficulty);
-	inline void setAudioTrack(GJSong _AudioTrack);
-	inline void setSongID(int _SongID);
-	inline void setLevelRev(int _LevelRev);
-	inline void setObjectCount(int _ObjectCount);
-	inline void setOrder(int _Order);
-	inline void setRatings(int _Ratings);
-	inline void setRatingSum(int _RatingSum);
-	inline void setDownloads(int _Downloads);
-	inline void setCompletes(int _Completes);
-	inline void setIsEditable(bool _IsEditable);
-	inline void setIsVerified(bool _IsVerified);
-	inline void setIsUploaded(bool _IsUploaded);
-	inline void setHasBeenModified(bool _HasBeenModified);
-	inline void setLevelVersion(int _LevelVersion);
-	inline void setGameVersion(int _GameVersion);
-	inline void setAttempts(int _Attempts);
-	inline void setJumps(int _Jumps);
-	inline void setClicks(int _Clicks);
-	inline void setAttemptTime(int _AttemptTime);
-	inline void setNormalPercent(int _NormalPercent);
-	inline void setNewNormalPercent(int _NewNormalPercent);
-	inline void setNewNormalPercent2(int _NewNormalPercent2);
-	inline void setPracticePercent(int _PracticePercent);
-	inline void setLikes(int _Likes);
-	inline void setDislikes(int _Dislikes);
-	inline void setLevelLength(GJLength _LevelLength);
-	inline void setFeatured(int _Featured);
-	inline void setEpic(bool _Epic);
-	inline void setDemon(bool _Demon);
-	inline void setStars(int _Stars);
-	inline void setAutoLevel(bool _AutoLevel);
-	inline void setCoins(int _Coins);
-	inline void setPassword(int _Password);
-	inline void setOriginalLevel(int _OriginalLevel);
-	inline void setTwoPlayerMode(bool _TwoPlayerMode);
-	inline void setFailedPasswordAttempts(int _FailedPasswordAttempts);
-	inline void setShowedSongWarning(bool _ShowedSongWarning);
-	inline void setStarRatings(int _StarRatings);
-	inline void setStarRatingsSum(int _StarRatingsSum);
-	inline void setMaxStarRatings(int _MaxStarRatings);
-	inline void setMinStarRatings(int _MinStarRatings);
-	inline void setDemonVotes(int _DemonVotes);
-	inline void setRateStars(int _RateStars);
-	inline void setRateFeature(int _RateFeature);
-	inline void setDontSave(bool _DontSave);
-	inline void setIsHidden(bool _IsHidden);
-	inline void setRequiredCoins(int _RequiredCoins);
-	inline void setIsUnlocked(bool _IsUnlocked);
-	inline void setLastEditorZoom(float _LastEditorZoom);
-	inline void setLastBuildTab(int _LastBuildTab);
-	inline void setLastBuildPage(int _LastBuildPage);
-	inline void setLevelType(GJLevelType _LevelType);
-	inline void setM_ID(int _M_ID);
-	inline void setTempName(std::string _TempName);
-	inline void setRateUser(std::string _RateUser);
-	inline void setUpdateDate(std::string _UpdateDate);
-	inline void setUploadDate(std::string _UploadDate);
-	inline void setRecordString(std::string _RecordString);
-	inline void setUserName(std::string _UserName);
-	inline void setLevelString(std::string _LevelString);
-	inline void setLevelDesc(std::string _LevelDesc);
-	inline void setLevelName(std::string _LevelName);
-	inline void setLastCameraPos(cocos2d::CCPoint _LastCameraPos);
-	inline void setLengthKey(GJLength _LengthKey);
-	inline void setAverageDifficulty(int _AverageDifficulty);
-	inline void setSongName(std::string _SongName);
-	inline void setCapacityString(std::string _capacityString);
-	inline void setVfDChk(bool _vfDChk);
-	inline void setLevelSeed(int _seed);
-	inline void setLevelProgress(std::string _progress);
-	inline void setDailyID(int _dailyID);
-	inline void setCoin1(bool _coin);
-	inline void setCoin2(bool _coin);
-	inline void setCoin3(bool _coin);
+	cocos2d::CCDictionary* m_lastBuildSave;
+	int m_levelID_Random;
+	int m_levelID_Seed;
+	int m_levelID;
+	std::string m_levelName;
+	std::string m_levelDesc;
+	std::string m_levelString;
+	std::string m_creatorName;
+	std::string m_recordString;
+	std::string m_uploadDate;
+	std::string m_updateDate;
+	std::string m_unkString1;
+	std::string m_unkString2;
+	/* I have a strong theory this class-member 
+	 * belongs to the start position camera when 
+	 * a level is about to be played... */
+	cocos2d::CCPoint m_unkPoint;
+	int m_userID_Random;
+	int m_userID_Seed;
+	int m_userID;
+	int m_accountID_Random;
+	int m_accountID_Seed;
+	int m_accountID;
+	GJDifficulty m_difficulty;
+	int m_audioTrack;
+	int m_songID;
+	int m_levelRev;
+	bool m_unlisted;
+	bool m_friendsOnly;
+	int m_objectCount_Random;
+	int m_objectCount_Seed;
+	int m_objectCount;
+	int m_levelIndex;
+	int m_ratings;
+	int m_ratingsSum;
+	int m_downloads;
+	bool m_isEditable;
+	bool m_gauntletLevel;
+	bool m_gauntletLevel2;
+	int m_workingTime;
+	int m_workingTime2;
+	bool m_lowDetailMode;
+	bool m_lowDetailModeToggled;
+	bool m_selected;
+	bool m_localOrSaved;
+	bool m_disableShake;
+	int m_isVerified_Random;
+	int m_isVerified_Seed;
+	bool m_isVerifiedRaw;
+	bool m_isUploaded;
+	bool m_hasBeenModified;
+	int m_levelVersion;
+	int m_gameVersion;
+	int m_attempts_Random;
+	int m_attempts_Seed;
+	int m_attempts;
+	int m_jumps_Random;
+	int m_jumps_Seed;
+	int m_jumps;
+	int m_clicks_Random;
+	int m_clicks_Seed;
+	int m_clicks;
+	int m_attemptTime_Random;
+	int m_attemptTime_Seed;
+	int m_attemptTime;
+	int m_chk;
+	bool m_isChkValid;
+	bool m_isCompletionLegitimate;
+	int m_normalPercent_Seed;
+	int m_normalPercent;
+	int m_normalPercent_Random;
+	int m_orbCompletion_Random;
+	int m_orbCompletion_Seed;
+	int m_orbCompletion;
+	int m_newNormalPercent_Random;
+	int m_newNormalPercent_Seed;
+	int m_newNormalPercent;
+	int m_newNormalPercent2_Random;
+	int m_newNormalPercent2_Seed;
+	int m_newNormalPercent2;
+	int m_practicePercent;
+	int m_likes;
+	int m_dislikes;
+	GJLength m_levelLength;
+	int m_featured;
+	int m_isEpic;
+	int m_levelFavorited;
+	int m_levelFolder;
+	int m_dailyID_Random;
+	int m_dailyID_Seed;
+	int m_dailyID;
+	int m_demon_Random;
+	int m_demon_Seed;
+	int m_demon;
+	int m_demonDifficulty;
+	int m_stars_Random;
+	int m_stars_Seed;
+	int m_stars;
+	int m_autoLevel;
+	int m_coins;
+	int m_coinsVerified_Random;
+	int m_coinsVerified_Seed;
+	int m_coinsVerified;
+	int m_password_Random;
+	int m_password_Seed;
+	int m_originalLevel_Random;
+	int m_originalLevel_Seed;
+	int m_originalLevel;
+	bool m_twoPlayerMode;
+	int m_failedPasswordAttempts;
+	int m_firstCoinVerified_Random;
+	int m_firstCoinVerified_Seed;
+	int m_firstCoinVerified;
+	int m_secondCoinVerified_Random;
+	int m_secondCoinVerified_Seed;
+	int m_secondCoinVerified;
+	int m_thirdCoinVerified_Random;
+	int m_thirdCoinVerified_Seed;
+	int m_thirdCoinVerified;
+	int m_starsRequested;
+	int m_showedSongWarning;
+	int m_starRatings;
+	int m_starRatingsSum;
+	int m_maxStarRatings;
+	int m_minStarRatings;
+	int m_demonVotes;
+	int m_rateStars;
+	int m_rateFeature;
+	std::string m_rateUser;
+	bool m_dontSave;
+	bool m_levelNotDownloaded;
+	int m_requiredCoins;
+	int m_isUnlocked;
+	cocos2d::CCPoint m_lastCameraPos;
+	float m_fastEditorZoom;
+	int m_lastBuildTab;
+	int m_lastBuildPage;
+	int m_lastBuildGroupID;
+	GJLevelType m_levelType;
+	int m_M_ID;
+	std::string m_tempName;
+	std::string m_capacityString;
+	bool m_highObjectsEnabled;
+	int m_unlimitedObjectsEnabled;
+	std::string m_personalBests;
+	int m_timestamp;
+	int m_unkInt;
+	std::string m_songIDs;
+	std::string m_sfxIDs;
+	int m_54;
+	int m_bestTime;
+	int m_bestPoints;
+	int m_k111;
+	std::string m_unkString3;
+	std::string m_unkString4;
 
 	bool areCoinsVerified();
+	bool canEncode();
+	static GJGameLevel* create();
+	static GJGameLevel* create(cocos2d::CCDictionary* dict, bool unkwnbool);
+	void copyLevelInfo (GJGameLevel * LevelInfo);
+	void dataLoaded(DS_Dictionary *dsdict);
+	static int demonIconForDifficulty(DemonDifficultyType demonDiff);
+	std::string getAudioFileName();
+	long getAverageDifficulty();
+	const char *getCoinKey(int unknInt);
+	GJLength getLengthKey(int seconds, bool platformer);
+	GJGameLevel *getListSnapshot();
+	/* Might be Inlined on windows... */
+	int getNormalPercent();
+	std::string getUnpackedLevelDescription();
+	void handleStatsConflict(GJGameLevel * otherLevel);
+	bool init();
+	bool isPlatformer();
+	const char* lengthKeyToString(int lengthKey);
 	void levelWasAltered();
+	void levelWasSubmitted();
+	void parseSettingsString(std::string Settings);
+	void saveNewScore(int newTime, int newPoints);
+	/* TODO */
+	void savePercentage(int, bool, int, int, bool);
+	/* TODO */
+	std::vector<std::string> scoreStringToVector(std::string, std::vector<int, std::allocator<int> >&);
+	/* TODO */
+	std::string scoreVectorToString(std::vector<int, std::allocator<int> >&, int);
+	void setAccountID(int accountID);
+	void setAttempts(int attempts);
+	void setAttemptTime(int attemptTime);
+	void setClicks(int clicks);
+	void setCoinsVerified(int coinsVerified);
+	void setDailyID(int dailyID);
+	void setDemon(int demon);
+	void setJumps(int jumps);
+	void setLevelID(int levelID);
+	void setNewNormalPercent(int newNormalPercent);
+	void setNewNormalPercent2(int newNormalPercent2);
+	void setNormalPercent(int normalPercent);
+	void setObjectCount(int objectCount);
+	void setOriginalLevel(int copiedID);
+	void setStars(int stars)
+	bool shouldCheatReset();
+	/* TODO */
+	void storeNewLocalScore(int newTime, int newPoints);
 	void unverifyCoins();
-	void savePercentage(int _percentage, bool _practice, int _clicks, int _attemptTime, bool _vfDChk)
+
+
+
 };
+
+#endif // __GJGAMELEVEL_H__
