@@ -714,7 +714,7 @@ StoreAndExit:
 
 
 
-/* I had a python script write me write and reverse this RSV shit
+/* I had a python script write me and reverse this RSV shit
  * since it got repettative and annoying. I will have it in my
  * micellaneous tools repository for you soon... */
 
