@@ -233,7 +233,7 @@ public:
 	void setNormalPercent(int normalPercent);
 	void setObjectCount(int objectCount);
 	void setOriginalLevel(int copiedID);
-	void setStars(int stars)
+	void setStars(int stars);
 	bool shouldCheatReset();
 	/* TODO */
 	void storeNewLocalScore(int newTime, int newPoints);
