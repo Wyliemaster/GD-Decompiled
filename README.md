@@ -3,8 +3,12 @@
 # GD-Decompiled
  An attempt to get the source code for Geometry Dash through reverse engineering and decompiling the game.  
 I Calloc Have forked this repository for decompling other sources within 2.2 and beyond while wylie is off doing other things (Until he makes a 2.2 repository)
-For now I shall dump what I do have for 2.204 and android v2.205 in here. Feel free to submit pull requests here so I can look at them I would like this to be an official repo for the 
-people of geode to start using temporarly...
+For now I shall dump what I do have for 2.204 and android v2.205 in here. Feel free to submit pull requests here so I can look at them I would like this to be an official repo for the people of geode to start using temporarly...
+
+
+## Tools Used
+See this [repo](https://github.com/CallocGD/Geometry-Dash-Miscellaneous-Decomp-Tools)
+
 
 ## My Goals with this fork
 - To have all of the `GameLevelManager` and `GameManager` class components completely decompiled and reverse engineered as they can be the most difficult parts of gd's code to understand. They also make up a large chunk of the game and have numerous functions involved with them and I am also working on providing bindings to geode at the same time as more parts and variable names are being discovered. Understanding these componentes will allow for better mods to be made in the future as well as for understanding how http requests are made (Even though these have been well documentented already thanks to wyliemaster).
@@ -13,11 +17,12 @@ people of geode to start using temporarly...
 - The Good news is that most of everyone has already found most of the puzzle pieces missing , I just have to put them all together and make sure they all fit.
 
 
+
 ## IMPORTANT
 
 - This Project is intended to be used as reference material to assist with modding. 
 - This repository is <b>not</b> a matching decompilation
-- This code is NOT intended to be compiled. I don't condone pirating the game!!
+- This code is NOT intended to be compiled. I don't condone pirating the game!! I sure hope you bought it with your own money first!
 
 Classes that ive pushed but haven't finished will be found in [Issues](https://github.com/Wyliemaster/GD-Decompiled/issues).
 
