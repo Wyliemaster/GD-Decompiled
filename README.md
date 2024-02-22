@@ -20,7 +20,8 @@ See this [repo](https://github.com/CallocGD/Geometry-Dash-Miscellaneous-Decomp-T
 
 ## IMPORTANT
 
-- This Project is intended to be used as reference material to assist with modding. 
+- This Project is intended to be used as reference material to assist with modding.
+- Educating people on how geometry dash is built under the hood. 
 - This repository is <b>not</b> a matching decompilation
 - This code is NOT intended to be compiled. I don't condone pirating the game!! I sure hope you bought it with your own money first!
 
