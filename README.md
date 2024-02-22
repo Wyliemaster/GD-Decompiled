@@ -17,8 +17,9 @@ See this [repo](https://github.com/CallocGD/Geometry-Dash-Miscellaneous-Decomp-T
 - The Good news is that most of everyone has already found most of the puzzle pieces missing , I just have to put them all together and make sure they all fit.
 
 ## How Can I Contribute?
-- Unlike WylieMaster, I'm not very skilled yet at naming class members by myself and I have chosen to simply leave that puzzle up to the Geode and it's many contributors and volunteers so that nothing remains in conflict. So in trade, the more class-members you find and add to the [geode bindings](https://github.com/geode-sdk/bindings) the more class objects and functions I will be able to reverse engineer.
+- Unlike WylieMaster, I'm not very skilled yet at finding and naming class members by myself and I have chosen to simply leave that puzzle up to the Geode and it's many contributors and volunteers so that nothing remains in conflict. So in trade, the more class-members you find and add to the [geode bindings](https://github.com/geode-sdk/bindings) the more class objects and functions I will be able to reverse engineer.
 - Downloading [Ghidra](https://github.com/NationalSecurityAgency/ghidra) or [IDA Pro](https://hex-rays.com/IDA-pro/) and Reverse engineering some of these class objects and members by youself. I am looking for other contributors besides just myself to volunteer in this effort.
+- Writing me a tool in Java to automatically write and fill class members from csv files to Structures and datatypes in ghidra would be a nice addition to this [repository](https://github.com/CallocGD/Geometry-Dash-Miscellaneous-Decomp-Tools) as it would speedup the proccess for new contributors to catch up with where I am at.
 
 
 ## IMPORTANT
