@@ -26,10 +26,10 @@ class GManager: cocos2d::CCNode {
     void setup();
     bool tryLoadData(DS_Dictionary* dsdict, std::string fileName);
 
-	std::string m_fileName;
-	bool m_setup;
-	bool m_saved;
-	bool m_quickSave;
+    std::string m_fileName;
+    bool m_setup;
+    bool m_saved;
+    bool m_quickSave;
 };
 
 
