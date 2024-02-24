@@ -812,7 +812,7 @@ void GJGameLevel::setStars(int stars){
 bool GJGameLevel::shouldCheatReset(){  
   if ((7 < m_stars_Random - m_stars_Seed) && (m_jumps_Random - m_jumps_Seed < 0x32)) {
         int clicks = m_clicks_Random - m_clicks_Seed;
-        return clicks > 49 ? false : (bool)(clicks < 50);
+        return clicks <= 49;
   }
   return false;
 }
