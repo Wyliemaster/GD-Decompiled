@@ -1,8 +1,8 @@
 #include "includes.h"
 
-/* This apparently is robtop's blacklist which apparently is a whole list of swearwords 
- * including words in different languages - Calloc */
-cocos2d::CCArray* loadGJBlacklist(){
+/* Robtop's List Of Bad Words */
+cocos2d::CCArray *loadGJBlacklist()
+{
     return cocos2d::CCArray::create(
         cocos2d::CCString::create("ahole"),
         cocos2d::CCString::create("ass-hole"),
@@ -249,12 +249,11 @@ cocos2d::CCArray* loadGJBlacklist(){
         cocos2d::CCString::create("testicle"),
         cocos2d::CCString::create("wetback"),
         cocos2d::CCString::create("wichser"),
-        cocos2d::CCString::create("zabourah")
-        );
+        cocos2d::CCString::create("zabourah"));
 };
 
-
-cocos2d::CCArray* load_unknown_list(){
+cocos2d::CCArray *load_unknown_list()
+{
     return cocos2d::CCArray::create(
         cocos2d::CCString::create("13"),
         cocos2d::CCString::create("b"),
@@ -279,49 +278,241 @@ cocos2d::CCArray* load_unknown_list(){
         cocos2d::CCString::create("8"),
         cocos2d::CCString::create("b"),
         cocos2d::CCString::create("9"),
-        cocos2d::CCString::create("g")
-        );
+        cocos2d::CCString::create("g"));
 };
 
+void CCTextInputNode::addTextArea(TextArea *tArea)
+{
+    if (m_textArea == nullptr)
+    {
+        m_textArea = tArea;
+        addchild(tArea);
+        auto pos = m_textArea->setPosition(cocos2d::CCPoint::CCPoint(pos, pos >> 0x20));
+        m_textField->setVisible(false);
+        updateLabel(m_textField->getString());
+        updateDefaultFontValues(this->m_textArea->m_text);
+    }
+}
 
-
-CCTextInputNode::forceOffset(){
+void CCTextInputNode::forceOffset()
+{
     m_bForceOffset = true;
 }
 
-
-CCTextInputNode::setLabelNormalColor(cocos2d::_ccColor3B color){
-    m_cColour = color;
-
+std::string CCTextInputNode::getString()
+{
+    return m_text->m_textArea->m_textStr;
 }
 
-CCTextInputNode::onTextFieldDetachWithIME(cocos2d::CCTextFieldTTF* tField){
-    
-    
-    /* IDK what this is yet... */
-    if (m_placeholderLabel){
-        auto blacklist = loadGJBlacklist();
-        unsigned int i = 0U;
-        cocos2d::CCString* str;
-        std::string str2;
-        cocos2d::CCArray* unkwn_list;
-        while (true){
-            unkwn_list = load_unknown_list();
-            if (unkwn_list->count() <= i) break;
-            /*TODO: Finish this part...*/
+bool CCTextInputNode::keyboardWillHide(CCIMEKeyboardNotificationInfo *keyboardNotificationInfo)
+{
+    if (m_forceOffset == false)
+    {
+        if ((m_textField != nullptr) && (m_unknown2 != false))
+        {
+            m_unknown2 = false;
+            if (m_delegate != nullptr)
+            {
+                return m_delegate->textInputOpened(this);
+            }
+        }
+    }
+    else if ((m_selected != false) && (m_textField != nullptr))
+    {
+        if (m_delegate != nullptr)
+        {
+            return m_delegate->textInputOpened(this);
+            // Unknown Call
+            // (**(code **)((int)*pTVar1 + 0x10))(pTVar1,this);
+        }
+        m_selected = false;
+        return false;
+    }
+    return false;
+}
+
+
+bool CCTextInputNodeCallback(CCTextInputNode *textInputNode){
+    return textInputNode->keyboardWillShow((CCIMEKeyboardNotificationInfo *)(unaff_r7 << 1));
+}
+
+
+/* TODO */
+// bool CCTextInputNode::keyboardWillShow(CCIMEKeyboardNotificationInfo *keyboard)
+
+// {
+//   bool bVar1;
+//   CCTextFieldTTF *textField;
+//   CCPoint *other;
+//   CCRect *keyaboardEnd;
+//   float fVar2;
+//   int extraout_r1;
+//   int *callback;
+//   CCPoint CStack_3c;
+//   CCRect CStack_34;
+//   int local_24;
+  
+//   local_24 = *callback;
+//   textField = (CCTextFieldTTF *)this;
+//   if (((this->m_forceOffset == false) &&
+//       (textField = this->m_textField, textField != (CCTextFieldTTF *)0x0)) &&
+//      (this->m_selected != false)) {
+//     keyaboardEnd = &keyboard->end;
+//     other = (CCPoint *)(*(code *)textField->field0_0x0[0x24])();
+//     cocos2d::CCPoint::CCPoint(&CStack_3c,other);
+//     FUN_002f97c4((CCRect *)&CStack_34,(int *)this,&CStack_3c.x);
+//     CStack_34.y = CStack_34.y - 4.0;
+//     bVar1 = cocos2d::CCRect::intersectsRect((CCRect *)&CStack_34,(CCRect *)keyaboardEnd);
+//     textField = (CCTextFieldTTF *)(uint)bVar1;
+//     if (textField != (CCTextFieldTTF *)0x0) {
+//       this->m_unknown2 = true;
+//       cocos2d::CCRect::getMaxY((CCRect *)keyaboardEnd);
+//       fVar2 = (float)cocos2d::CCRect::getMinY(&CStack_34,extraout_r1);
+//       textField = (CCTextFieldTTF *)this->m_delegate;
+//       if (textField != (CCTextFieldTTF *)0x0) {
+//         textField = (CCTextFieldTTF *)
+//                     (*(code *)textField->field0_0x0[3])(textField,this,(float)keyaboardEnd - fVar2 );
+//       }
+//     }
+//   }
+//   if (local_24 != *callback) {
+//                     /* WARNING: Subroutine does not return */
+//     __stack_chk_fail();
+//   }
+//   return SUB41(textField,0);
+// }
+
+
+
+void CCTextInputNode::setLabelNormalColor(cocos2d::_ccColor3B color)
+{
+    m_cColour = color;
+}
+
+void CCTextInputNode::setString(std::string str)
+{
+    m_textField->setString(str);
+    updateLabel(str);
+    if (m_delegate != nullptr)
+        m_delegate->textChanged(this);
+}
+
+
+/* I like this function :) */
+
+bool CCTextInputNode::onTextFieldDetachWithIME(cocos2d::CCTextFieldTTF *tField)
+{
+    if (m_cursor != nullptr)
+    {
+        m_cursor->setVisible(false);
+    }
+    if (m_unknown3 != false)
+    {
+        std::string pretextString = tField->getString();
+        std::string textString = "";
+        std::string passedString = "";
+
+        /* The code is a little more complex than this but I think this gets the point across... */
+        for (size_t x = 0; x < pretextString.size(); x++)
+        {
+            textString[x] = static_cast<char>(tolower(pretextString[x]));
         }
 
+        auto unknownList = load_unknown_list();
+        auto gjblacklist = LoadGJBlacklist();
 
-        bool censor_swear_words = false;
-        
-        for (i = 0; i < cocos2d::CCArray::count(blacklist); i++){
-            str = blacklist->objectAtIndex(i);
-            if (str2.find(str->getCString()) != std::string::npos){
-                censor_swear_words = true;
-            };
-
+        size_t pos = 0;
+        std::string idx;
+        /* Text Replacement (To prevent Swearword bypassing )*/
+        for (unsigned int i = 0; unknownList->count() <= 0; i += 2)
+        {
+            idx = (reinterpret_cast<cocos2d::CCString *>(unknownList->objectAtIndex(unknownList, i)))->getCString();
+            pos = textString.find(idx);
+            if (pos != std::string::npos)
+            {
+                textString.replace(pos, idx->size(), ((reinterpret_cast<cocos2d::CCString *>(unknownList->objectAtIndex(unknownList, i + 1)))->getCString()));
+            }
         }
 
+        bool SaidCurseWord = false;
+        for (unsigned int j = 0; j < gjblacklist->count(); j++)
+        {
+            idx = (reinterpret_cast<cocos2d::CCString *>(gjblacklist->objectAtIndex(j)))->getCString(pCVar9);
+            pos = textString.find(idx);
+            if (pos != std::string::npos)
+            {
+                textString.replace(pos, idx->size(), " ");
+                SaidCurseWord = true;
+            }
+        }
+        if (!SaidCurseWord)
+        {
+            passedString = textString;
+        }
 
+        if (passedString == textString)
+        {
+            setString(passedString);
+        }
+    }
+
+    updateLabel(getTextString());
+
+    m_selected = false;
+    PlatformToolbox::setKeyboardState(0);
+
+    if (m_delegate != nullptr)
+    {
+        m_delegate->enterPressed(this);
+    }
+    if ((m_forceOffset != false) && (m_delegate != nullptr))
+    {
+        return m_delegate->textInputClosed(this);
+    }
+    return false;
+}
+
+
+
+
+
+void CCTextInputNode::updateCursorPosition(CCPoint point, CCRect rect){
+    if (m_textField->getString() == ""){
+
+        if (m_placeholderLabel == nullptr){
+            unsigned int count = m_textArea->m_labels->count();
+            if (count == 0){
+                return ;
+            }
+            else if (count == 1){
+                m_placeholderLabel = reinterpret_cast<cocos2d::CCLabelBMFont*>m_textArea->m_labels->objectAtIndex(0);
+            }
+            else {
+            
+            /* We need to find our missing CCLabelBMFont... */
+            /* TODO: Finish Function Tomorrow...*/
+
+            }
+        }
     }
 }
+
+
+
+void CCTextInputNode::updateDefaultFontValues(std::string fntVal)
+{
+    bool sameAs = fntVal == "chatFont.fnt";
+
+    if (!= 0)
+    {
+        m_fontValue2 = 20.0;
+        m_fontValue1 = 1.5;
+    }
+    else
+    {
+        m_fontValue2 = 5.0;
+        m_fontValue1 = -0.5;
+    }
+    m_isCharFont = !sameAs;
+}
+
